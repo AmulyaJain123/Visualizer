@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Exo 2";
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+.customScroll::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 30px;
+}
+
+.customScroll::-webkit-scrollbar-track {
+  border-radius: 30px;
+}
+
+.customScroll:hover::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 30px;
+}
