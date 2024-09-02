@@ -6,6 +6,9 @@ import BubbleSort from "./pages/BubbleSort";
 import InsertionSort from "./pages/InsertionSort";
 import SelectionSort from "./pages/SelectionSort";
 import CountingSort from "./pages/CountingSort";
+import LinearSearch from "./pages/LinearSearch";
+import BinarySearch from "./pages/BinarySearch";
+import MergeSort from "./pages/MergeSort";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +38,24 @@ const router = createBrowserRouter([
           {
             path: "counting",
             element: <CountingSort />,
+          },
+          {
+            path: "merge",
+            element: <MergeSort />,
+          },
+        ],
+      },
+      {
+        path: "search",
+        element: <Sorting />,
+        children: [
+          {
+            path: "linear",
+            element: <LinearSearch />,
+          },
+          {
+            path: "binary",
+            element: <BinarySearch />,
           },
         ],
       },

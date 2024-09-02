@@ -11,7 +11,7 @@
 }
 
 .customScroll::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
   border-radius: 30px;
 }
 

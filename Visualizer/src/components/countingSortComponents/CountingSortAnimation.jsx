@@ -284,7 +284,7 @@ export default function CountingSortAnimation({ arr, order }) {
         <CountingArray ind={ind2} array={counting} />
       ) : null}
       {stage === 1 && ind === -1 ? (
-        <div className="text-xl text-[#0077b6] font-bold mx-auto mb-16 ">
+        <div className="text-xl text-[#0077b6] font-semibold mx-auto mb-16 ">
           Length of Count Array: {counting.length}
         </div>
       ) : null}
