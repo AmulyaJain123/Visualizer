@@ -9,6 +9,7 @@ import CountingSort from "./pages/CountingSort";
 import LinearSearch from "./pages/LinearSearch";
 import BinarySearch from "./pages/BinarySearch";
 import MergeSort from "./pages/MergeSort";
+import BucketSort from "./pages/BucketSort";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
           {
             path: "merge",
             element: <MergeSort />,
+          },
+          {
+            path: "bucket",
+            element: <BucketSort />,
           },
         ],
       },

@@ -8,9 +8,10 @@ export default function SortingSideMenu() {
   const insertionSort = location.pathname === "/sorting/insertion";
   const selectionSort = location.pathname === "/sorting/selection";
   const countingSort = location.pathname === "/sorting/counting";
+  const mergeSort = location.pathname === "/sorting/merge";
+  const bucketSort = location.pathname === "/sorting/bucket";
   const linearSearch = location.pathname === "/search/linear";
   const binarySearch = location.pathname === "/search/binary";
-  const mergeSort = location.pathname === "/sorting/merge";
 
   const col1 = "#ff87ab";
   const col2 = "#fadde1";
@@ -69,6 +70,16 @@ export default function SortingSideMenu() {
             to={"/sorting/merge"}
           >
             Merge Sort
+          </Link>
+          <Link
+            style={{
+              backgroundColor: bucketSort ? col1 : col2,
+              color: bucketSort ? col2 : col1,
+            }}
+            className="text-center py-1 hover:bg-[#ff87ab] hover:text-[#fadde1]"
+            to={"/sorting/bucket"}
+          >
+            Bucket Sort
           </Link>
         </div>
       </div>
