@@ -8,19 +8,35 @@ const Logo = styled.button`
   color: white;
 `;
 
+const bar = [
+  {
+    name: "sorting",
+    path: "/sorting",
+  },
+  {
+    name: "search",
+    path: "/search",
+  },
+];
+
 export default function TopNav() {
   return (
     <>
-      <div className="flex w-screen bg-inherit py-4 sticky">
-        <div className="flex flex-grow mx-4 bg-black rounded-xl px-8 items-center justify-between">
+      <div className="flex w-screen bg-inherit sticky">
+        <div className="flex flex-grow  bg-black px-8 items-center justify-between">
           <div className="">
             <Link to={"/"}>
               <Logo>AlgoTrace</Logo>
             </Link>
           </div>
-          <div className="flex space-x-4 text-lg text-white ">
-            <Link to={"/sorting"}>Sorting</Link>
-            <Link to={"/bst"}>BST</Link>
+          <div className="flex space-x-4 text-lg items-center text-white ">
+            {bar.map((i) => {
+              return (
+                <Link to={i.path} className="uppercase text-sm ">
+                  {i.name}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

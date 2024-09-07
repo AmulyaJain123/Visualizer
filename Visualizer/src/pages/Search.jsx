@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import SideMenu from "../components/SideMenu";
 
-export default function Home() {
+export default function Search() {
   return (
     <>
       <div className="flex w-full h-full">

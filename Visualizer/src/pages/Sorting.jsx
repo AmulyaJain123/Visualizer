@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
-import SortingSideMenu from "../components/sortingComponents/SortingSideMenu";
+import SideMenu from "../components/SideMenu";
 
 export default function Sorting() {
   return (
     <>
       <div className="flex w-full h-full">
-        <div className="w-[250px]  border-r-2 my-8 border-neutral-400">
-          <SortingSideMenu />
+        <div className="  border-r-2 py-4 border-neutral-400">
+          <SideMenu />
         </div>
         <div className="flex flex-grow overflow-auto customScroll mr-4 h-full ">
           <Outlet />

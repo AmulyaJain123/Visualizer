@@ -9,7 +9,15 @@ export default function Stack({ arr }) {
         </span>
         {arr.toReversed().map((i, index) => {
           if (i[0] === "-") {
-            return null;
+            return (
+              <>
+                <div className="relative " key={Math.random()}>
+                  <span className="text-sm opacity-30 px-1">
+                    {i.split("-")[1]}
+                  </span>
+                </div>
+              </>
+            );
           } else {
             return (
               <>

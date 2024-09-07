@@ -10,6 +10,9 @@ import LinearSearch from "./pages/LinearSearch";
 import BinarySearch from "./pages/BinarySearch";
 import MergeSort from "./pages/MergeSort";
 import BucketSort from "./pages/BucketSort";
+import RadixSort from "./pages/RadixSort";
+import QuickSort from "./pages/QuickSort";
+import Search from "./pages/Search";
 
 const router = createBrowserRouter([
   {
@@ -45,14 +48,22 @@ const router = createBrowserRouter([
             element: <MergeSort />,
           },
           {
+            path: "quick",
+            element: <QuickSort />,
+          },
+          {
             path: "bucket",
             element: <BucketSort />,
+          },
+          {
+            path: "radix",
+            element: <RadixSort />,
           },
         ],
       },
       {
         path: "search",
-        element: <Sorting />,
+        element: <Search />,
         children: [
           {
             path: "linear",
