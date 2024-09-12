@@ -30,6 +30,9 @@ export default function SideMenu() {
   const linearSearch = location.pathname === "/search/linear";
   const binarySearch = location.pathname === "/search/binary";
 
+  const binaryTree = location.pathname === "/bst/binary_tree";
+  const binarySearchTree = location.pathname === "/bst/binary_search_tree";
+
   const col1 = "#ff87ab";
   const col2 = "#fadde1";
 
@@ -94,43 +97,77 @@ export default function SideMenu() {
         },
       ],
     },
+    {
+      name: "BST",
+      children: [
+        {
+          name: "Binary Tree",
+          path: "/bst/binary_tree",
+          status: binaryTree,
+        },
+        {
+          name: "Binary Search Tree",
+          path: "/bst/binary_search_tree",
+          status: binarySearchTree,
+        },
+      ],
+    },
   ];
 
   return (
-    <div className="flex flex-col w-full h-full px-4 gap-y-6 ">
-      <div className="text-center flex flex-col uppercase font-bold text-lg">
-        Navigation
-      </div>
-      <div className="flex flex-col border-y-2 w-[150px] justify-center divide-y-2 divide-[#ff87ab] border-[#ff87ab]">
-        <Link to={"/"}>
-          <Tile className="text-center py-1" $status={home ? "true" : "false"}>
-            Home
-          </Tile>
-        </Link>
-      </div>
-      {tiles.map((i) => {
-        return (
-          <div key={i.name} className="w-[150px]">
-            <header className="font-semibold uppercase text-center text-sm py-1">
-              {i.name}
-            </header>
-            <div className="flex flex-col border-y-2 w-[150px] justify-center divide-y-2 divide-[#ff87ab] border-[#ff87ab]">
-              {i.children.map((j) => {
-                return (
-                  <Link key={j.name} to={j.path}>
-                    <Tile
-                      className="text-center py-1"
-                      $status={j.status ? "true" : "false"}
-                    >
-                      {j.name}
-                    </Tile>
-                  </Link>
-                );
-              })}
-            </div>
+    <div className="flex flex-col w-full h-full overflow-y-auto overflow-x-hidden sidebarScroll  pt-2  ">
+      <div className="flex flex-col items-center gap-y-6 pb-4">
+        <div className="flex flex-col gap-y-6 pb-4 mx-4">
+          {/* <div className="text-center flex flex-col uppercase font-bold text-lg">
+            Navigation
+          </div> */}
+          <div className="flex flex-col mt-4 border-y-2 w-[150px] justify-center divide-y-2 divide-[#ff87ab] border-[#ff87ab]">
+            <Link to={"/"}>
+              <Tile
+                className="text-center py-1"
+                $status={home ? "true" : "false"}
+              >
+                Home
+              </Tile>
+            </Link>
           </div>
-        );
-      })}
+          {tiles.map((i) => {
+            return (
+              <div key={i.name} className="w-[150px]">
+                <header className="font-semibold uppercase text-center text-sm py-1">
+                  {i.name}
+                </header>
+                <div className="flex flex-col border-y-2 w-[150px] justify-center divide-y-2 divide-[#ff87ab] border-[#ff87ab]">
+                  {i.children.map((j) => {
+                    return (
+                      <Link key={j.name} to={j.path}>
+                        <Tile
+                          className="text-center py-1"
+                          $status={j.status ? "true" : "false"}
+                        >
+                          {j.name}
+                        </Tile>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="h-[50px] border-t-2 mt-8 py-2 border-neutral-400 flex justify-center items-center w-full ">
+          <span className="text-xs">
+            Uicons by{" "}
+            <a
+              className="underline underline-offset-2"
+              target="_blank"
+              href="https://www.flaticon.com/uicons"
+            >
+              Flaticon
+            </a>
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

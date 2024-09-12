@@ -13,6 +13,9 @@ import BucketSort from "./pages/BucketSort";
 import RadixSort from "./pages/RadixSort";
 import QuickSort from "./pages/QuickSort";
 import Search from "./pages/Search";
+import BST from "./pages/BST";
+import BinaryTree from "./pages/BinaryTree";
+import BinarySearchTree from "./pages/BinarySearchTree";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +75,20 @@ const router = createBrowserRouter([
           {
             path: "binary",
             element: <BinarySearch />,
+          },
+        ],
+      },
+      {
+        path: "bst",
+        element: <BST />,
+        children: [
+          {
+            path: "binary_tree",
+            element: <BinaryTree />,
+          },
+          {
+            path: "binary_search_tree",
+            element: <BinarySearchTree />,
           },
         ],
       },

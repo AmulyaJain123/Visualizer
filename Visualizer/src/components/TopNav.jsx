@@ -17,6 +17,10 @@ const bar = [
     name: "search",
     path: "/search",
   },
+  {
+    name: "bst",
+    path: "/bst",
+  },
 ];
 
 export default function TopNav() {
@@ -32,7 +36,7 @@ export default function TopNav() {
           <div className="flex space-x-4 text-lg items-center text-white ">
             {bar.map((i) => {
               return (
-                <Link to={i.path} className="uppercase text-sm ">
+                <Link to={i.path} key={i.name} className="uppercase text-sm ">
                   {i.name}
                 </Link>
               );

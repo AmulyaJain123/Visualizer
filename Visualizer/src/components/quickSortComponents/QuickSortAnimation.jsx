@@ -137,6 +137,11 @@ export default function QuickSortAnimation({ arr, order }) {
               { x: [0, (prevHigh - pivot) * 82] },
               { type: "spring", duration: time }
             );
+            animate(
+              `.misc`,
+              { opacity: [0, 0] },
+              { type: "tween", duration: time }
+            );
             setTimeout(() => {
               setArray([...newArray]);
               setSwap({ first: null, second: null });
@@ -260,6 +265,11 @@ export default function QuickSortAnimation({ arr, order }) {
               { x: [0, (swap.first - swap.second) * 82] },
               { type: "spring", duration: time }
             );
+            animate(
+              `.misc`,
+              { opacity: [0, 0] },
+              { type: "tween", duration: time }
+            );
             setTimeout(() => {
               setArray([...newArray]);
               setSwap({ first: null, second: null });
@@ -292,6 +302,11 @@ export default function QuickSortAnimation({ arr, order }) {
               `.index${pivot}`,
               { x: [0, (swap.second - pivot) * 82] },
               { type: "spring", duration: time }
+            );
+            animate(
+              `.misc`,
+              { opacity: [0, 0] },
+              { type: "tween", duration: time }
             );
             setTimeout(() => {
               setArray([...newArray]);

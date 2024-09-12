@@ -26,7 +26,7 @@ export default function Node({
         >
           {children}
           {first ? (
-            <div>
+            <div className="misc">
               <img
                 src={down}
                 className="w-[20px] absolute top-[-20px] left-[-10px] -rotate-45"
@@ -35,7 +35,7 @@ export default function Node({
             </div>
           ) : null}
           {second ? (
-            <div>
+            <div className="misc">
               <img
                 src={down}
                 className="w-[20px] absolute top-[-20px] right-[-10px] rotate-45"
@@ -45,21 +45,21 @@ export default function Node({
           ) : null}
           {range && range.low === index && range.high != index ? (
             <>
-              <div className="absolute text-black bottom-[-30px] text-lg font-bold">
+              <div className="absolute text-black bottom-[-30px] text-lg font-bold misc">
                 L
               </div>
             </>
           ) : null}
           {range && range.high === index && range.low != index ? (
             <>
-              <div className="absolute text-black bottom-[-30px] text-lg font-bold">
+              <div className="absolute text-black bottom-[-30px] text-lg font-bold misc">
                 H
               </div>
             </>
           ) : null}
           {range && range.low === index && range.high === index ? (
             <>
-              <div className="absolute text-black bottom-[-30px] text-lg font-bold">
+              <div className="absolute text-black bottom-[-30px] text-lg font-bold misc">
                 L H
               </div>
             </>
