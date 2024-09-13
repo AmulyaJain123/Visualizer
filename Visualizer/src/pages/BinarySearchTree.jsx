@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import InsertionAnimation from "../components/binarySearchTreeComponents/InsertionAnimation";
+import SearchingAnimation from "../components/binarySearchTreeComponents/SearchingAnimation";
 import { useDispatch } from "react-redux";
 import { bstActions } from "../store/main";
 import Tree from "../components/binarySearchTreeComponents/Tree";
@@ -37,9 +38,34 @@ export default function BinarySearchTree() {
       }
       ans = parseInt(ans);
       setInsertion(ans);
+      searchingRef.current.value = "";
       insertionRef.current.value = "";
+      deletionRef.current.value = "";
       setDisable(true);
       dispatch(bstActions.setCurrentOp([0, ans]));
+    }
+  }
+
+  function searchingClick(event) {
+    if (event.key === "Enter") {
+      const str = searchingRef.current.value.trim();
+      let ans = "";
+      for (let i of str) {
+        if (i.charCodeAt(0) >= 48 && i.charCodeAt(0) <= 57) {
+          ans += i;
+        } else {
+          setSearching(null);
+          return;
+        }
+      }
+      ans = parseInt(ans);
+      setSearching(ans);
+      searchingRef.current.value = "";
+      insertionRef.current.value = "";
+      deletionRef.current.value = "";
+      traversalRef.current.value = "postorder";
+      setDisable(true);
+      dispatch(bstActions.setCurrentOp([2, ans]));
     }
   }
 
@@ -139,7 +165,7 @@ export default function BinarySearchTree() {
                   type="text"
                   disabled={disable}
                   ref={searchingRef}
-                  onKeyDown={(event) => keyClick(event)}
+                  onKeyDown={(event) => searchingClick(event)}
                 />
               </div>
 
@@ -214,6 +240,15 @@ export default function BinarySearchTree() {
               exit={{ opacity: 0, y: 30 }}
             >
               <InsertionAnimation ref={animationRef} clean={clean} />
+            </motion.div>
+          ) : null}
+          {disable && searching != null && searching != undefined ? (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 30 }}
+            >
+              <SearchingAnimation ref={animationRef} clean={clean} />
             </motion.div>
           ) : null}
           {!disable && treeArray != null ? (

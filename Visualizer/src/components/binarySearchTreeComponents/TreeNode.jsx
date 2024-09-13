@@ -5,6 +5,8 @@ export default function TreeNode({
   left,
   highlight,
   children,
+  success,
+  failed,
 }) {
   console.log(nextNode);
   return (
@@ -18,9 +20,26 @@ export default function TreeNode({
             ? "4px solid black"
             : "0px solid black",
           outlineOffset: nextNode || highlight ? "3px" : "0px",
-          backgroundColor: highlight ? "#caf0f8" : "#0077b6",
-          color: highlight ? "#0077b6" : "#caf0f8",
-          border: "3px solid #0077b6",
+          backgroundColor:
+            success === true
+              ? "#4f772d"
+              : failed === true
+              ? "#0077b6"
+              : highlight
+              ? "#caf0f8"
+              : "#0077b6",
+          color:
+            success === true || failed === true
+              ? "#fff"
+              : highlight
+              ? "#0077b6"
+              : "#caf0f8",
+          border:
+            success === true
+              ? "0px solid #000"
+              : failed === true
+              ? "3px solid #c9184a"
+              : "3px solid #0077b6",
         }}
         className="flex relative justify-center items-center  rounded-full text-sm font-semibold w-[35px] h-[35px]"
       >
