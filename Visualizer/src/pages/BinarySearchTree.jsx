@@ -6,6 +6,8 @@ import { bstActions } from "../store/main";
 import Tree from "../components/binarySearchTreeComponents/Tree";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
+import TraversalAnimation from "../components/binarySearchTreeComponents/TraversalAnimaton";
+import DeletionAnimation from "../components/binarySearchTreeComponents/DeletionAnimation";
 
 export default function BinarySearchTree() {
   const insertionRef = useRef();
@@ -15,12 +17,13 @@ export default function BinarySearchTree() {
   const [deletion, setDeletion] = useState(undefined);
   const [searching, setSearching] = useState(undefined);
   const searchingRef = useRef();
-  const [traversal, setTraversal] = useState("postorder");
+  const [traversal, setTraversal] = useState(undefined);
   const traversalRef = useRef(null);
   const dispatch = useDispatch();
   const treeArray = useSelector((state) => state.bst.treeArr);
   const treeObject = useSelector((state) => state.bst.treeObject);
   const animationRef = useRef();
+  const [traversalVal, setTraversalVal] = useState("postorder");
 
   function keyClick() {}
 
@@ -37,12 +40,61 @@ export default function BinarySearchTree() {
         }
       }
       ans = parseInt(ans);
+      if (isNaN(ans) || ans < 0) {
+        setInsertion(null);
+        return;
+      }
       setInsertion(ans);
-      searchingRef.current.value = "";
-      insertionRef.current.value = "";
-      deletionRef.current.value = "";
+      begin(0);
       setDisable(true);
       dispatch(bstActions.setCurrentOp([0, ans]));
+    }
+  }
+
+  function deletionClick(event) {
+    if (event.key === "Enter") {
+      const str = deletionRef.current.value.trim();
+      let ans = "";
+      for (let i of str) {
+        if (i.charCodeAt(0) >= 48 && i.charCodeAt(0) <= 57) {
+          ans += i;
+        } else {
+          setDeletion(null);
+          return;
+        }
+      }
+      ans = parseInt(ans);
+      if (isNaN(ans) || ans < 0) {
+        setDeletion(null);
+        return;
+      }
+      setDeletion(ans);
+      begin(1);
+      setDisable(true);
+      dispatch(bstActions.setCurrentOp([1, ans]));
+    }
+  }
+
+  function begin(num) {
+    searchingRef.current.value = "";
+    insertionRef.current.value = "";
+    deletionRef.current.value = "";
+    if (num === 0) {
+      setDeletion(undefined);
+      setSearching(undefined);
+      setTraversal(undefined);
+    } else if (num === 1) {
+      setInsertion(undefined);
+      setSearching(undefined);
+      setTraversal(undefined);
+    } else if (num === 2) {
+      setInsertion(undefined);
+      setDeletion(undefined);
+      setTraversal(undefined);
+    } else {
+      setInsertion(undefined);
+      setDeletion(undefined);
+      setSearching(undefined);
     }
   }
 
@@ -59,11 +111,12 @@ export default function BinarySearchTree() {
         }
       }
       ans = parseInt(ans);
+      if (isNaN(ans) || ans < 0) {
+        setSearching(null);
+        return;
+      }
       setSearching(ans);
-      searchingRef.current.value = "";
-      insertionRef.current.value = "";
-      deletionRef.current.value = "";
-      traversalRef.current.value = "postorder";
+      begin(2);
       setDisable(true);
       dispatch(bstActions.setCurrentOp([2, ans]));
     }
@@ -73,27 +126,39 @@ export default function BinarySearchTree() {
     setDisable(false);
     setInsertion(undefined);
     setDeletion(undefined);
-    setTraversal("postorder");
+    setTraversal(undefined);
     setSearching(undefined);
     dispatch(bstActions.setTreeArr(null));
     dispatch(bstActions.setCurrentOp(null));
     dispatch(bstActions.setTreeObject(null));
+    searchingRef.current.value = "";
+    insertionRef.current.value = "";
+    deletionRef.current.value = "";
+    traversalRef.current.value = "postorder";
   }
 
   function clean() {
     setDisable(false);
     setInsertion(undefined);
     setDeletion(undefined);
-    setTraversal("postorder");
+    setTraversal(undefined);
     setSearching(undefined);
   }
 
   function skip() {
     animationRef.current.skip();
   }
+
   function cancel() {
     clean();
     dispatch(bstActions.setCurrentOp(null));
+  }
+
+  function traversalClick() {
+    begin(3);
+    setTraversal(traversalRef.current.value);
+    setDisable(true);
+    dispatch(bstActions.setCurrentOp([3, traversalRef.current.value]));
   }
 
   return (
@@ -140,7 +205,7 @@ export default function BinarySearchTree() {
                   type="text"
                   disabled={disable}
                   ref={deletionRef}
-                  onKeyDown={(event) => keyClick(event)}
+                  onKeyDown={(event) => deletionClick(event)}
                 />
               </div>
 
@@ -188,8 +253,8 @@ export default function BinarySearchTree() {
                   className="px-3 p-1 text-black text-sm min-w-[150px] mx-2 my-2 disabled:opacity-50 disabled:bg-white rounded-md focus:outline-none"
                   disabled={disable}
                   ref={traversalRef}
-                  onChange={(event) => setTraversal(event.target.value)}
-                  value={traversal}
+                  value={traversalVal}
+                  onChange={(event) => setTraversalVal(event.target.value)}
                 >
                   <option value="postorder">Postorder</option>
                   <option value="preorder">Preorder</option>
@@ -200,9 +265,10 @@ export default function BinarySearchTree() {
               <div className="px-2 p-1 m-1  bg-[#f3e9dc] border-2 h-16 border-[#c08552] rounded-xl text-sm flex-grow justify-center items-center flex ">
                 <button
                   disabled={disable}
+                  onClick={traversalClick}
                   className=" px-4 flex-col pb-1  m-4 rounded-lg disabled:opacity-30 disabled:pointer-events-none bg-[#87b38d] text-lg border-[2px] duration-700 border-[#87b38d] hover:text-[#87b38d] hover:bg-white text-white font-semibold flex justify-center items-center"
                 >
-                  {traversal[0].toUpperCase() + traversal.slice(1)}
+                  {traversalVal[0].toUpperCase() + traversalVal.slice(1)}
                 </button>
               </div>
             </div>
@@ -249,6 +315,24 @@ export default function BinarySearchTree() {
               exit={{ opacity: 0, y: 30 }}
             >
               <SearchingAnimation ref={animationRef} clean={clean} />
+            </motion.div>
+          ) : null}
+          {disable && traversal != null && traversal != undefined ? (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 30 }}
+            >
+              <TraversalAnimation ref={animationRef} clean={clean} />
+            </motion.div>
+          ) : null}
+          {disable && deletion != null && deletion != undefined ? (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 30 }}
+            >
+              <DeletionAnimation ref={animationRef} clean={clean} />
             </motion.div>
           ) : null}
           {!disable && treeArray != null ? (

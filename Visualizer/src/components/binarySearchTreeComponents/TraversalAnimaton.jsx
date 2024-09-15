@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import SearchingTree from "./SearchingTree";
-import { useState, forwardRef, useImperativeHandle } from "react";
+import TraversalTree from "./TraversalTree";
+import { useState, forwardRef, useImperativeHandle, useEffect } from "react";
 import next from "../../assets/next.png";
+import { postOrder, preorder, inOrder } from "../../algorithms/bst";
+import { useAnimate } from "framer-motion";
 
-const SearchingAnimation = forwardRef(function SearchingAnimation(
+const TraversalAnimation = forwardRef(function TraversalAnimation(
   { clean },
   ref
 ) {
@@ -18,13 +20,16 @@ const SearchingAnimation = forwardRef(function SearchingAnimation(
   const currentOp = useSelector((state) => state.bst.currentOp);
   const [history, setHistory] = useState([
     {
-      focus: [null, null, null],
+      printed: [],
+      currInd: null,
       status: null,
     },
   ]);
-  const dispatch = useDispatch();
-  const [focus, setFocus] = useState([null, null, null]);
+  const [timeline, setTimeline] = useState(null);
+  const [currInd, setCurrInd] = useState(null);
+  const [printed, setPrinted] = useState([]);
   const [status, setStatus] = useState(null);
+  const [scope, animate] = useAnimate();
 
   useImperativeHandle(ref, () => {
     return {
@@ -34,111 +39,102 @@ const SearchingAnimation = forwardRef(function SearchingAnimation(
     };
   });
 
+  useEffect(() => {
+    if (treeArr != null) {
+      if (currentOp[1] === "postorder") {
+        const array = JSON.parse(JSON.stringify(postOrder(originalObj)));
+        setTimeline(array);
+      } else if (currentOp[1] === "preorder") {
+        const array = JSON.parse(JSON.stringify(preorder(originalObj)));
+        setTimeline(array);
+      } else {
+        const array = JSON.parse(JSON.stringify(inOrder(originalObj)));
+        setTimeline(array);
+      }
+    }
+  }, []);
+
   function end() {
     clean();
   }
 
   function forward() {
-    if (focus[0] === null && focus[1] === null) {
-      setFocus([0, 0, null]);
+    if (currInd === null) {
+      setCurrInd(0);
       setHistory((p) => {
         return [
           ...p,
           {
             ...p[p.length - 1],
-            focus: [0, 0, null],
+            currInd: 0,
           },
         ];
       });
-    } else if (focus[2] === null) {
-      const x = focus[0];
-      const y = focus[1];
-      const val = treeArr[x][y];
-      const newFocus = [...focus];
-      if (val === currentOp[1]) {
-        setStatus(true);
-        setFocus([x, y, null]);
+    } else {
+      const newInd = currInd + 1;
+      if (newInd < timeline.length) {
+        const newPrinted = JSON.parse(JSON.stringify(printed));
+        if (timeline[newInd].type === "print") {
+          newPrinted.push({
+            val: originalArr[timeline[newInd].x][timeline[newInd].y],
+            x: timeline[newInd].x,
+            y: timeline[newInd].y,
+          });
+          setPrinted(newPrinted);
+          setTimeout(() => {
+            animate(
+              `.index${newPrinted.length - 1}`,
+              { scale: [5, 2, 0.5, 1] },
+              { type: "spring", duration: 0.5 }
+            );
+          }, 0);
+        }
+
+        setCurrInd((p) => p + 1);
         setHistory((p) => {
           return [
             ...p,
             {
               ...p[p.length - 1],
-              focus: [x, y, null],
+              currInd: newInd,
+              printed: JSON.parse(JSON.stringify(newPrinted)),
+            },
+          ];
+        });
+      } else {
+        setCurrInd(null);
+        setStatus(true);
+        setHistory((p) => {
+          return [
+            ...p,
+            {
+              ...p[p.length - 1],
+              currInd: null,
               status: true,
             },
           ];
         });
-      } else if (val > currentOp[1]) {
-        newFocus.pop();
-        if (x + 1 === treeArr.length || treeArr[x + 1][2 * y] === null) {
-          newFocus.push([true, false]);
-        } else {
-          newFocus.push([x + 1, 2 * y]);
-        }
-      } else {
-        newFocus.pop();
-        if (x + 1 === treeArr.length || treeArr[x + 1][2 * y + 1] === null) {
-          newFocus.push([false, true]);
-        } else {
-          newFocus.push([x + 1, 2 * y + 1]);
-        }
       }
-      setFocus(JSON.parse(JSON.stringify(newFocus)));
-      setHistory((p) => {
-        return [
-          ...p,
-          {
-            ...p[p.length - 1],
-            focus: JSON.parse(JSON.stringify(newFocus)),
-          },
-        ];
-      });
-    } else if (typeof focus[2][0] != "boolean") {
-      console.log(typeof focus[2][0]);
-      let newFocus = JSON.parse(JSON.stringify(focus));
-      newFocus = [newFocus[2][0], newFocus[2][1], null];
-      setFocus(newFocus);
-      setHistory((p) => {
-        return [
-          ...p,
-          {
-            ...p[p.length - 1],
-            focus: JSON.parse(JSON.stringify(newFocus)),
-          },
-        ];
-      });
-    } else {
-      setFocus(null);
-      setStatus(false);
-      setHistory((p) => {
-        return [
-          ...p,
-          {
-            ...p[p.length - 1],
-            focus: null,
-            status: false,
-          },
-        ];
-      });
     }
   }
 
   function backward() {
-    setFocus(JSON.parse(JSON.stringify(history[history.length - 2].focus)));
+    setPrinted(JSON.parse(JSON.stringify(history[history.length - 2].printed)));
     setStatus(history[history.length - 2].status);
+    setCurrInd(history[history.length - 2].currInd);
     const newHistory = JSON.parse(JSON.stringify(history));
     newHistory.pop();
     setHistory(JSON.parse(JSON.stringify(newHistory)));
   }
 
   function restart() {
-    setFocus([null, null, null]);
+    setCurrInd(null);
     setStatus(null);
-    setTreeArr(JSON.parse(JSON.stringify(originalArr)));
-    setTreeObject(JSON.parse(JSON.stringify(originalObj)));
+    setPrinted([]);
     setHistory([
       {
-        focus: [null, null, null],
+        printed: [],
+        currInd: null,
         status: null,
       },
     ]);
@@ -188,7 +184,7 @@ const SearchingAnimation = forwardRef(function SearchingAnimation(
               <>
                 <button
                   onClick={backward}
-                  disabled={focus[0] === null}
+                  disabled={currInd === null}
                   className="w-[30px] h-[30px] duration-700 disabled:pointer-events-none disabled:opacity-30 hover:scale-110 flex justify-center items-center rounded-full bg-blue-300 "
                 >
                   <img src={next} className="w-[50px] rotate-180" alt="" />
@@ -203,14 +199,17 @@ const SearchingAnimation = forwardRef(function SearchingAnimation(
             )}
           </div>
         </div>
-        <SearchingTree
-          treeArr={treeArr}
-          status={status}
-          focus={focus != null ? focus : [null, null, null]}
-        />
+        <div ref={scope}>
+          <TraversalTree
+            treeArr={treeArr}
+            status={status}
+            currentNode={timeline && currInd != null ? timeline[currInd] : null}
+            printed={printed}
+          />
+        </div>
       </>
     );
   }
 });
 
-export default SearchingAnimation;
+export default TraversalAnimation;
