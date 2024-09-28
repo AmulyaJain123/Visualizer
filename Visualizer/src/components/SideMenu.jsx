@@ -33,6 +33,9 @@ export default function SideMenu() {
   const binaryTree = location.pathname === "/bst/binary_tree";
   const binarySearchTree = location.pathname === "/bst/binary_search_tree";
 
+  const stacks = location.pathname === "/stacksnqueue/stacks";
+  const queue = location.pathname === "/stacksnqueue/queue";
+
   const col1 = "#ff87ab";
   const col2 = "#fadde1";
 
@@ -109,6 +112,21 @@ export default function SideMenu() {
           name: "Binary Search Tree",
           path: "/bst/binary_search_tree",
           status: binarySearchTree,
+        },
+      ],
+    },
+    {
+      name: "Stacks & Queue",
+      children: [
+        {
+          name: "Stacks",
+          path: "/stacksnqueue/stacks",
+          status: stacks,
+        },
+        {
+          name: "Queue",
+          path: "/stacksnqueue/queue",
+          status: queue,
         },
       ],
     },

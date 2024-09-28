@@ -21,6 +21,10 @@ const bar = [
     name: "bst",
     path: "/bst",
   },
+  {
+    name: "stacks & queue",
+    path: "/stacksnqueue",
+  },
 ];
 
 export default function TopNav() {

@@ -3,6 +3,7 @@ import TreeNode from "./TreeNode";
 import Array from "./Array";
 import replace from "../../assets/replace.png";
 import cross from "../../assets/cross-circle.png";
+import copyPaste from "../../assets/arrows-cross.png";
 
 export default function DeletionTree({ treeArr, found, currentNode, status }) {
   const [ans, setAns] = useState(undefined);
@@ -238,6 +239,23 @@ export default function DeletionTree({ treeArr, found, currentNode, status }) {
                                   alt=""
                                 />
                               </div>
+                            ) : null}
+                            {status === null &&
+                            currentNode &&
+                            currentNode.type === "successorFound" &&
+                            ((currentNode.x === ind1 &&
+                              currentNode.y === ind2) ||
+                              (currentNode.p === ind1 &&
+                                currentNode.q === ind2)) ? (
+                              <>
+                                <div className="absolute z-20 right-[50%] translate-x-[50%] top-[-30px]">
+                                  <img
+                                    src={copyPaste}
+                                    className="h-[20px] w-[20px]"
+                                    alt=""
+                                  />
+                                </div>
+                              </>
                             ) : null}
                             <TreeNode
                               success={

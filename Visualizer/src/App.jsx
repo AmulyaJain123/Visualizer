@@ -16,6 +16,9 @@ import Search from "./pages/Search";
 import BST from "./pages/BST";
 import BinaryTree from "./pages/BinaryTree";
 import BinarySearchTree from "./pages/BinarySearchTree";
+import StacksNQueue from "./pages/StacksNQueue";
+import Stacks from "./pages/Stacks";
+import Queue from "./pages/Queue";
 
 const router = createBrowserRouter([
   {
@@ -89,6 +92,20 @@ const router = createBrowserRouter([
           {
             path: "binary_search_tree",
             element: <BinarySearchTree />,
+          },
+        ],
+      },
+      {
+        path: "stacksnqueue",
+        element: <StacksNQueue />,
+        children: [
+          {
+            path: "stacks",
+            element: <Stacks />,
+          },
+          {
+            path: "queue",
+            element: <Queue />,
           },
         ],
       },

@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import InsertionAnimation from "../components/binarySearchTreeComponents/InsertionAnimation";
 import SearchingAnimation from "../components/binarySearchTreeComponents/SearchingAnimation";
 import { useDispatch } from "react-redux";
@@ -25,7 +25,11 @@ export default function BinarySearchTree() {
   const animationRef = useRef();
   const [traversalVal, setTraversalVal] = useState("postorder");
 
-  function keyClick() {}
+  useEffect(() => {
+    dispatch(bstActions.setCurrentOp(null));
+    dispatch(bstActions.setTreeArr(null));
+    dispatch(bstActions.setTreeObject(null));
+  }, []);
 
   function insertionClick(event) {
     if (event.key === "Enter") {
