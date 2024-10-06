@@ -120,7 +120,7 @@ export default function BinarySearch() {
                   onKeyDown={(event) => keyClick(event)}
                 />
               </div>
-              <div className="px-2 p-1 m-1 flex flex-col bg-[#f3e9dc] border-2 border-[#c08552] rounded-xl text-sm flex-grow justify-center items-center flex ">
+              <div className="px-2 p-1 m-1 flex-col bg-[#f3e9dc] border-2 border-[#c08552] rounded-xl text-sm flex-grow justify-center items-center flex ">
                 {arr === undefined ? (
                   <p>Array not entered</p>
                 ) : arr === null ? (

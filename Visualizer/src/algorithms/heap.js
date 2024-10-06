@@ -48,6 +48,28 @@ export function heapArrToTreeObj(arr) {
     return head;
 }
 
+export function heapSortTimeline(arr, heapType) {
+    let newArr = [...arr];
+    let ans = [];
+    while (newArr.length != 0) {
+        const ans1 = deletionTimeline(newArr, heapType);
+        ans = ans.concat(ans1);
+        newArr = deletionInHeap(newArr, heapType);
+    }
+    ans.push({ type: "fullSuccessful" })
+    console.log(ans);
+    return ans;
+}
+
+export function arrToHeap(arr, heapType) {
+    let newArr = [];
+    for (let i of arr) {
+        newArr = insertionInHeap(newArr, i, heapType);
+    }
+    console.log(newArr);
+    return newArr;
+}
+
 
 
 export function insertionTimeline(arr, val, heapType) {

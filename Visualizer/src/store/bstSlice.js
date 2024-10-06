@@ -6,7 +6,7 @@ const initialSlice = {
     currentOp: [null, null],
     heapType: null,
     heapArr: null,
-    minMaxNumber: null
+    minMaxNumber: null,
 
 }
 
@@ -34,7 +34,8 @@ const bstSlice = createSlice({
         },
         setMinMaxNumber(state, action) {
             state.minMaxNumber = action.payload;
-        }
+        },
+
 
     }
 })
