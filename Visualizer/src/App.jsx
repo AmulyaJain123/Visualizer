@@ -19,6 +19,10 @@ import BinarySearchTree from "./pages/BinarySearchTree";
 import StacksNQueue from "./pages/StacksNQueue";
 import Stacks from "./pages/Stacks";
 import Queue from "./pages/Queue";
+import Graphs from "./pages/Graphs";
+import Graph from "./pages/Graph";
+import Heap from "./pages/Heap";
+import HeapSort from "./pages/HeapSort";
 
 const router = createBrowserRouter([
   {
@@ -82,7 +86,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "bst",
+        path: "tree",
         element: <BST />,
         children: [
           {
@@ -92,6 +96,14 @@ const router = createBrowserRouter([
           {
             path: "binary_search_tree",
             element: <BinarySearchTree />,
+          },
+          {
+            path: "heap",
+            element: <Heap />,
+          },
+          {
+            path: "heap_sort",
+            element: <HeapSort />,
           },
         ],
       },
@@ -106,6 +118,16 @@ const router = createBrowserRouter([
           {
             path: "queue",
             element: <Queue />,
+          },
+        ],
+      },
+      {
+        path: "graphs",
+        element: <Graphs />,
+        children: [
+          {
+            path: "graph",
+            element: <Graph />,
           },
         ],
       },

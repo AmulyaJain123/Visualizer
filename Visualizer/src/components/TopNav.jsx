@@ -18,12 +18,16 @@ const bar = [
     path: "/search",
   },
   {
-    name: "bst",
-    path: "/bst",
+    name: "trees",
+    path: "/tree",
   },
   {
     name: "stacks & queue",
     path: "/stacksnqueue",
+  },
+  {
+    name: "graphs",
+    path: "/graphs",
   },
 ];
 

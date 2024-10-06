@@ -30,11 +30,15 @@ export default function SideMenu() {
   const linearSearch = location.pathname === "/search/linear";
   const binarySearch = location.pathname === "/search/binary";
 
-  const binaryTree = location.pathname === "/bst/binary_tree";
-  const binarySearchTree = location.pathname === "/bst/binary_search_tree";
+  const binaryTree = location.pathname === "/tree/binary_tree";
+  const binarySearchTree = location.pathname === "/tree/binary_search_tree";
+  const heap = location.pathname == "/tree/heap";
+  const heapSort = location.pathname == "/tree/heap_sort";
 
   const stacks = location.pathname === "/stacksnqueue/stacks";
   const queue = location.pathname === "/stacksnqueue/queue";
+
+  const graph = location.pathname == "/graphs/graph";
 
   const col1 = "#ff87ab";
   const col2 = "#fadde1";
@@ -101,17 +105,27 @@ export default function SideMenu() {
       ],
     },
     {
-      name: "BST",
+      name: "Trees",
       children: [
         {
           name: "Binary Tree",
-          path: "/bst/binary_tree",
+          path: "/tree/binary_tree",
           status: binaryTree,
         },
         {
           name: "Binary Search Tree",
-          path: "/bst/binary_search_tree",
+          path: "/tree/binary_search_tree",
           status: binarySearchTree,
+        },
+        {
+          name: "Heap",
+          path: "/tree/heap",
+          status: heap,
+        },
+        {
+          name: "Heap Sort",
+          path: "/tree/heap_sort",
+          status: heapSort,
         },
       ],
     },
@@ -127,6 +141,16 @@ export default function SideMenu() {
           name: "Queue",
           path: "/stacksnqueue/queue",
           status: queue,
+        },
+      ],
+    },
+    {
+      name: "Graphs",
+      children: [
+        {
+          name: "Graph",
+          path: "/graphs/graph",
+          status: graph,
         },
       ],
     },

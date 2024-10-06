@@ -50,19 +50,14 @@ export default function QueueAnimation() {
       );
       animate(`.array`, { x: [0, -40] }, { type: "tween", duration: 1 });
       setTimeout(() => {
+        animate(
+          `.index${0}`,
+          { y: 0, opacity: 100 },
+          { type: "tween", duration: 0 }
+        );
+        animate(`.array`, { x: 0 }, { type: "tween", duration: 0 });
         dispatch(stacksNQueueActions.deque());
         dispatch(stacksNQueueActions.setDisable(false));
-        setTimeout(() => {
-          if (index === 0) {
-            return;
-          }
-          animate(
-            `.index${0}`,
-            { y: 0, opacity: 100 },
-            { type: "tween", duration: 0 }
-          );
-          animate(`.array`, { x: 0 }, { type: "tween", duration: 0 });
-        }, 0);
       }, 1000);
     }
     if (currOp[0] === "peek") {
