@@ -1,9 +1,14 @@
 import { useSelector } from "react-redux";
 import Node from "./Node";
 import { useRef, useEffect, useState } from "react";
+import triangle from "../../assets/triangle.png";
+import Arrow from "./Arrow";
+import Weight from "./Weight";
 
 export default function Fig() {
-  const display = useSelector((state) => state.graphs.display);
+  const graph = useSelector((state) => state.graphs.graph);
+  const graphType = useSelector((state) => state.graphs.graphType);
+
   const list = useSelector((state) => state.graphs.list);
 
   const containerRef = useRef(null);
@@ -73,40 +78,6 @@ export default function Fig() {
         }
       }
 
-      //   const newLines = [];
-      //   const newArray = [];
-      //   let layer = 0;
-      //   let num = 1;
-      //   let index = 0;
-      //   let temp = [];
-      //   while (index < nodePositions.length) {
-      //     if (num === 0) {
-      //       newArray.push(temp);
-      //       temp = [];
-      //       ++layer;
-      //       num = Math.round(Math.pow(2, layer));
-      //     }
-      //     temp.push(nodePositions[index]);
-      //     ++index;
-      //     --num;
-      //   }
-      //   newArray.push(temp);
-      //   console.log(newArray);
-
-      //   for (let i = 0; i < newArray.length - 1; ++i) {
-      //     for (let j = 0; j < newArray[i].length; ++j) {
-      //       const start = newArray[i][j];
-      //       const end1 = newArray[i + 1][j * 2];
-      //       const end2 = newArray[i + 1][j * 2 + 1];
-      //       if (start.val != "N" && end1.val != "N") {
-      //         newLines.push({ x1: start.x, y1: start.y, x2: end1.x, y2: end1.y });
-      //       }
-      //       if (start.val != "N" && end2.val != "N") {
-      //         newLines.push({ x1: start.x, y1: start.y, x2: end2.x, y2: end2.y });
-      //       }
-      //     }
-      //   }
-
       setLines(newLines);
     };
 
@@ -114,31 +85,47 @@ export default function Fig() {
     window.addEventListener("resize", calculateLines);
 
     return () => window.removeEventListener("resize", calculateLines);
-  }, [display]);
+  }, [graph]);
 
   console.log(lines);
 
   return (
-    <div ref={containerRef} className="w-full h-full relative">
-      <svg
-        className="absolute top-0 left-0  w-full box h-full"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {lines.map((line, index) => (
-          <line
-            key={index}
-            x1={line.x1}
-            y1={line.y1 + 20}
-            x2={line.x2}
-            y2={line.y2 + 15}
-            stroke="#0077b6"
-            strokeWidth="3"
-          />
-        ))}
-      </svg>
-      {display.map((i, ind1) => {
-        return <Node val={i[0]} x={i[1][0]} y={i[1][1]}></Node>;
-      })}
+    <div className="w-full h-full">
+      <h1 className="text-center bg-[#0077b6] w-[70%] max-w-[400px] mx-auto mb-24 text-white rounded-lg py-1">
+        Graph
+      </h1>
+      <div ref={containerRef} className="w-full h-full relative">
+        <svg
+          className="absolute top-0 left-0  w-full box h-full"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {lines.map((line, index) => (
+            <line
+              key={index}
+              x1={line.x1}
+              y1={line.y1 + 20}
+              x2={line.x2}
+              y2={line.y2 + 20}
+              stroke="#0077b6"
+              strokeWidth="3"
+            />
+          ))}
+        </svg>
+        {graph.coordinates.map((i, ind1) => {
+          return (
+            <div className="relative">
+              <Node val={i.val} x={i.x} y={i.y} i={i}></Node>
+            </div>
+          );
+        })}
+        {graphType > 1 ? (
+          <>
+            {graph.weights.map((i) => {
+              return <Weight val={i.val} x={i.x} y={i.y}></Weight>;
+            })}
+          </>
+        ) : null}
+      </div>
     </div>
   );
 }

@@ -1,12 +1,12 @@
-import { createSlice, current } from "@reduxjs/toolkit";
-import { arrToAdjacencyList, arrToAdjacencyMatrix, listToDisplay } from "../algorithms/graphs";
-import { json } from "react-router-dom";
+import { createSlice } from "@reduxjs/toolkit";
+import { arrToAdjacencyList, arrToAdjacencyMatrix } from "../algorithms/graphs";
 
 const initialSlice = {
     edgesArr: null,
     list: null,
     matrix: null,
-    display: null
+    graph: null,
+    graphType: null
 }
 
 const graphsSlice = createSlice({
@@ -14,35 +14,34 @@ const graphsSlice = createSlice({
     initialState: initialSlice,
     reducers: {
         setEdgesArr(state, action) {
-            state.edgesArr = JSON.parse(JSON.stringify(action.payload));
-            const lst = arrToAdjacencyList(state.edgesArr);
-            const mat = arrToAdjacencyMatrix(state.edgesArr);
-            const dis = listToDisplay(lst);
-            state.matrix = JSON.parse(JSON.stringify(mat));
-            state.list = JSON.parse(JSON.stringify(lst));
-            state.display = JSON.parse(JSON.stringify(dis));
+            const graph = action.payload[0];
+            const graphType = action.payload[2];
+            const graphNo = action.payload[1];
+            if (graphType % 2 === 1) {
+                state.edgesArr = JSON.parse(JSON.stringify(graph.directedEdges));
+                const lst = arrToAdjacencyList(state.edgesArr);
+                const mat = arrToAdjacencyMatrix(state.edgesArr);
+                state.matrix = JSON.parse(JSON.stringify(mat));
+                state.list = JSON.parse(JSON.stringify(lst));
+                state.graph = JSON.parse(JSON.stringify(graph));
+                state.graphType = graphType;
+            } else {
+                state.edgesArr = JSON.parse(JSON.stringify(graph.undirectedEdges));
+                const lst = arrToAdjacencyList(state.edgesArr);
+                const mat = arrToAdjacencyMatrix(state.edgesArr);
+                state.matrix = JSON.parse(JSON.stringify(mat));
+                state.list = JSON.parse(JSON.stringify(lst));
+                state.graph = JSON.parse(JSON.stringify(graph));
+                state.graphType = graphType;
+            }
 
         },
-        pushEdgesArr(state, action) {
-            state.edgesArr.push([...action.payload]);
-            const lst = arrToAdjacencyList(state.edgesArr);
-            const mat = arrToAdjacencyMatrix(state.edgesArr);
-            const dis = listToDisplay(lst);
-            state.matrix = JSON.parse(JSON.stringify(mat));
-            state.list = JSON.parse(JSON.stringify(lst));
-            state.display = JSON.parse(JSON.stringify(dis));
-
-
-        },
-        removeEdge(state, action) {
-            state.edgesArr.splice(action.payload, 1);
-            const lst = arrToAdjacencyList(state.edgesArr);
-            const mat = arrToAdjacencyMatrix(state.edgesArr);
-            const dis = listToDisplay(lst);
-            state.matrix = JSON.parse(JSON.stringify(mat));
-            state.list = JSON.parse(JSON.stringify(lst));
-            state.display = JSON.parse(JSON.stringify(dis));
-
+        resetAll(state) {
+            state.edgesArr = null;
+            state.graph = null;
+            state.graphType = null;
+            state.list = null;
+            state.matrix = null;
 
         }
     }

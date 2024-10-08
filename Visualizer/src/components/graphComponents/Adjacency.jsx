@@ -9,21 +9,19 @@ export default function Adjacency() {
   const edgesArr = useSelector((state) => state.graphs.edgesArr);
   const list = useSelector((state) => state.graphs.list);
   const matrix = useSelector((state) => state.graphs.matrix);
-
-  function removeEdge(index) {
-    dispatch(graphsActions.removeEdge(index));
-  }
+  const graph = useSelector((state) => state.graphs.graph);
+  const graphType = useSelector((state) => state.graphs.graphType);
 
   return (
-    <div className="flex justify-center space-x-[100px]">
+    <div className="flex justify-center space-x-[50px]">
       <div className="flex flex-col min-w-[300px] items-center">
-        <h1 className="text-center bg-[#606c38] w-full text-white rounded-lg py-1">
+        <h1 className="text-center bg-[#0077b6] w-full text-white rounded-lg py-1">
           Adjacency List
         </h1>
-        <div className="flex flex-col gap-y-1 mt-4 px-4">
+        <div className="flex flex-col gap-y-1 mt-8 px-4">
           {list.map((i, ind1) => {
             return (
-              <div className="flex space-x-2 ">
+              <div key={ind1} className="flex space-x-2 ">
                 <div className="w-[40px] h-[40px] flex justify-center items-center border-2 border-black bg-[#fefae0]">
                   {i[0]}
                 </div>
@@ -34,25 +32,34 @@ export default function Adjacency() {
                     alt=""
                   />
                 </div>
-                <div className="flex border-l-2  border-black">
-                  {i[1].map((j, ind2) => {
-                    return (
-                      <div className="w-[40px] h-[40px] flex justify-center items-center border-r-2 border-y-2 border-black bg-[#fefae0]">
-                        {j}
-                      </div>
-                    );
-                  })}
-                </div>
+                {i[1].length != 0 ? (
+                  <div className="flex border-l-2  border-black">
+                    {i[1].map((j, ind2) => {
+                      return (
+                        <div
+                          key={ind2}
+                          className="w-[40px] h-[40px] flex justify-center items-center border-r-2 border-y-2 border-black bg-[#fefae0]"
+                        >
+                          {j}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="h-[40px] flex items-center uppercase font-medium ">
+                    null
+                  </div>
+                )}
               </div>
             );
           })}
         </div>
       </div>
       <div className="flex flex-col">
-        <h1 className="text-center bg-[#606c38] text-white rounded-lg py-1">
+        <h1 className="text-center bg-[#0077b6] text-white rounded-lg py-1">
           Edges
         </h1>
-        <div className="flex flex-col mt-4 px-4">
+        <div className="flex flex-wrap w-[300px] justify-between mt-8 px-4">
           {edgesArr.map((i, ind) => {
             return (
               <div
@@ -60,27 +67,30 @@ export default function Adjacency() {
                 className="flex px-3 py-1 mb-2 rounded-md bg-[#fefae0]"
               >
                 <div className="flex ">
-                  <span className="w-[30px]">{i[0]}</span>
+                  <span className="w-[30px] flex items-center">{i[0]}</span>
                   <div className="flex flex-col w-[40px]">
-                    <div className="border-b flex-grow border-black"></div>
-                    <div className="border-t flex-grow border-black"></div>
+                    <div
+                      style={{ height: graphType > 1 ? "20px" : "auto" }}
+                      className="border-b text-xs text-center flex-grow border-black"
+                    >
+                      {graphType > 1 ? i[2] : null}
+                    </div>
+                    <div
+                      style={{ height: graphType > 1 ? "20px" : "auto" }}
+                      className="border-t flex-grow border-black"
+                    ></div>
                   </div>
-                  <span className="w-[30px] flex flex-row-reverse ">
+                  <span className="w-[30px] flex items-center flex-row-reverse ">
                     {i[1]}
                   </span>
                 </div>
-                <span className="ml-8 flex justify-center items-center">
-                  <button onClick={() => removeEdge(ind)}>
-                    <img src={cross} className="w-[20px] h-[20px]" alt="" />
-                  </button>
-                </span>
               </div>
             );
           })}
         </div>
       </div>
       <div className="flex flex-col min-w-[300px] items-center">
-        <h1 className="text-center bg-[#606c38] w-full text-white rounded-lg py-1">
+        <h1 className="text-center bg-[#0077b6] w-full text-white rounded-lg py-1">
           Adjacency Matrix
         </h1>
         <div className="flex flex-col mt-4 px-4">

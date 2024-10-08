@@ -216,7 +216,7 @@ export default function DeletionTree({ treeArr, found, currentNode, status }) {
                             currentNode.y1 === ind2 ? (
                               <div className="absolute right-[50%] translate-x-[50%] top-[-30px]">
                                 <img
-                                  src={replace}
+                                  src={copyPaste}
                                   className="w-[20px]  h-[20px]"
                                   alt=""
                                 />
@@ -250,7 +250,7 @@ export default function DeletionTree({ treeArr, found, currentNode, status }) {
                               <>
                                 <div className="absolute z-20 right-[50%] translate-x-[50%] top-[-30px]">
                                   <img
-                                    src={copyPaste}
+                                    src={replace}
                                     className="h-[20px] w-[20px]"
                                     alt=""
                                   />
