@@ -40,6 +40,7 @@ export default function SideMenu() {
 
   const graph = location.pathname == "/graphs/graph";
   const bfsdfs = location.pathname == "/graphs/bfsdfs";
+  const dijkstra = location.pathname == "/graphs/dijkstra";
 
   const col1 = "#ff87ab";
   const col2 = "#fadde1";
@@ -157,6 +158,11 @@ export default function SideMenu() {
           name: "BFS & DFS",
           path: "/graphs/bfsdfs",
           status: bfsdfs,
+        },
+        {
+          name: "Dijkstra's",
+          path: "/graphs/dijkstra",
+          status: dijkstra,
         },
       ],
     },

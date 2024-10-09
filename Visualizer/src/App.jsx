@@ -24,6 +24,7 @@ import Graph from "./pages/Graph";
 import Heap from "./pages/Heap";
 import HeapSort from "./pages/HeapSort";
 import BSFNDFS from "./pages/BFSNDFS";
+import Dijkstra from "./pages/Dijkstra";
 
 const router = createBrowserRouter([
   {
@@ -133,6 +134,10 @@ const router = createBrowserRouter([
           {
             path: "bfsdfs",
             element: <BSFNDFS />,
+          },
+          {
+            path: "dijkstra",
+            element: <Dijkstra />,
           },
         ],
       },

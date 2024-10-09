@@ -182,30 +182,92 @@ export function dfsTimeline(lst) {
 
         solver(stack, visited);
 
-        // while (stack.length != 0) {
-
-        //     const top = stack.shift();
-        //     ans.push({ type: "start", highlight: [top], visited: getVisited(visited), fullVisit: [...fullVisit], dfs: [...bfs] });
-        //     console.log(front);
-        //     for (let j of lst[front - 1][1]) {
-        //         if (visited[j] === false) {
-        //             ans.push({ type: "exploration", highlight: [front], explore: [j], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...bfs] });
-        //             visited[j] = true;
-        //             bfs.push(j);
-
-        //             queue.push(j);
-        //             ans.push({ type: "visitedExplored", highlight: [front], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...bfs] });
-        //         }
-        //     }
-        //     fullVisit.push(front);
-        //     ans.push({ type: "fullVisit", highlight: [front], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...bfs] });
-
-        // }
-
     }
     ans.push({ type: "success", visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...dfs] });
     console.log(ans);
     return ans;
 
+}
+
+function getWeight(edges, edge) {
+    for (let i of edges) {
+        if (i[0] === edge[0] && i[1] === edge[1]) {
+            return i[2];
+        }
+    }
+}
+
+function leastDistanceNode(distanceTable, selected) {
+    let ind = 0;
+    let min = 5000;
+    let ans;
+    for (let i of distanceTable[distanceTable.length - 1][1]) {
+        const currNode = ind + 1;
+        if (!selected.includes(currNode) && (i < min)) {
+            min = i;
+            ans = currNode;
+        }
+        ++ind;
+    }
+    return ans;
+}
+
+function dc(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
+
+export function dijkstraTimeline(lst, edges, start) {
+    const distanceTable = [];
+    const ans = [];
+    const selected = [];
+    const array = new Array(lst.length).fill(4000);
+    const firstEntry = [start, [...array], selected];
+    firstEntry[1][start - 1] = 0;
+    for (let i of lst[start - 1][1]) {
+        const edge = [start, i];
+        const weight = getWeight(edges, edge);
+        if (weight < firstEntry[1][i - 1]) {
+            firstEntry[1][i - 1] = weight;
+        }
+    }
+    distanceTable.push(firstEntry);
+    selected.push(start);
+
+    ans.push({ table: dc(distanceTable), highlight: start, selected: [...selected] })
+    distanceTable[distanceTable.length - 1] = dc(distanceTable[distanceTable.length - 1]);
+
+    while (selected.length != lst.length) {
+        const leastDisNode = leastDistanceNode(distanceTable, selected);
+        const currWeight = distanceTable[distanceTable.length - 1][1][leastDisNode - 1];
+        const newEntry = [leastDisNode, [...(distanceTable[distanceTable.length - 1][1])], selected];
+        selected.push(leastDisNode);
+        distanceTable.push(newEntry);
+        ans.push({ table: dc(distanceTable), highlight: leastDisNode, selected: [...selected] })
+        distanceTable[distanceTable.length - 1] = dc(distanceTable[distanceTable.length - 1]);
+        for (let i of lst[leastDisNode - 1][1]) {
+            if (selected.includes(i)) {
+                continue;
+            }
+            const distance = getWeight(edges, [leastDisNode, i]);
+            if (currWeight + distance < distanceTable[distanceTable.length - 1][1][i - 1]) {
+                ans.push({ table: dc(distanceTable), highlight: leastDisNode, selected: [...selected], neighbour: i, type: "change", msg: `${currWeight >= 4000 ? "∞" : currWeight} + ${distance >= 4000 ? "∞" : distance} --> ${(currWeight + distance) >= 4000 ? "∞" : currWeight + distance}  <  ${distanceTable[distanceTable.length - 1][1][i - 1]}` })
+
+                distanceTable[distanceTable.length - 1][1][i - 1] = currWeight + distance;
+                ans.push({ table: dc(distanceTable), highlight: leastDisNode, selected: [...selected], neighbour: i });
+
+            } else {
+                ans.push({ table: dc(distanceTable), highlight: leastDisNode, selected: [...selected], neighbour: i, type: "noChange", msg: `${currWeight >= 4000 ? "∞" : currWeight} + ${distance >= 4000 ? "∞" : distance} --> ${(currWeight + distance) >= 4000 ? "∞" : currWeight + distance}  >=  ${distanceTable[distanceTable.length - 1][1][i - 1]}` })
+
+                ans.push({ table: dc(distanceTable), highlight: leastDisNode, selected: [...selected], neighbour: i });
+
+            }
+
+        }
+        // distanceTable.push(newEntry);
+        // ans.push({ table: dc(distanceTable), highlight: leastDisNode, selected: [...selected] })
+    }
+    ans.push({ table: dc(distanceTable), type: "success", selected: [...selected] })
+    console.log(ans);
+    return ans;
 }
 
