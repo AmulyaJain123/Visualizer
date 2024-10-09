@@ -6,7 +6,9 @@ const initialSlice = {
     list: null,
     matrix: null,
     graph: null,
-    graphType: null
+    graphType: null,
+    timeline: null,
+    ind: null,
 }
 
 const graphsSlice = createSlice({
@@ -42,8 +44,30 @@ const graphsSlice = createSlice({
             state.graphType = null;
             state.list = null;
             state.matrix = null;
+            state.ind = null;
+            state.timeline = null;
 
+        },
+        setTimeline(state, action) {
+            state.timeline = JSON.parse(JSON.stringify(action.payload));
+        },
+        setInd(state, action) {
+            if (action.payload === "restart") {
+                state.ind = null;
+            }
+            else if (state.ind === null) {
+                state.ind = 0;
+            } else if (state.ind === 0 && action.payload === -1) {
+                state.ind = null;
+            } else {
+                state.ind += action.payload;
+            }
+        },
+        resetAlgo(state) {
+            state.ind = null;
+            state.timeline = null;
         }
+
     }
 })
 

@@ -39,6 +39,7 @@ export default function SideMenu() {
   const queue = location.pathname === "/stacksnqueue/queue";
 
   const graph = location.pathname == "/graphs/graph";
+  const bfsdfs = location.pathname == "/graphs/bfsdfs";
 
   const col1 = "#ff87ab";
   const col2 = "#fadde1";
@@ -151,6 +152,11 @@ export default function SideMenu() {
           name: "Graph",
           path: "/graphs/graph",
           status: graph,
+        },
+        {
+          name: "BFS & DFS",
+          path: "/graphs/bfsdfs",
+          status: bfsdfs,
         },
       ],
     },

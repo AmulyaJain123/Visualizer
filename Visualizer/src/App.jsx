@@ -23,6 +23,7 @@ import Graphs from "./pages/Graphs";
 import Graph from "./pages/Graph";
 import Heap from "./pages/Heap";
 import HeapSort from "./pages/HeapSort";
+import BSFNDFS from "./pages/BFSNDFS";
 
 const router = createBrowserRouter([
   {
@@ -128,6 +129,10 @@ const router = createBrowserRouter([
           {
             path: "graph",
             element: <Graph />,
+          },
+          {
+            path: "bfsdfs",
+            element: <BSFNDFS />,
           },
         ],
       },

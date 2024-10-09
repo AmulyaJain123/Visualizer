@@ -99,3 +99,113 @@ export function arrToAdjacencyMatrix(arr) {
     console.log(matrix);
     return matrix
 }
+
+function getVisited(visited) {
+    const ans = [];
+    for (let i = 0; i < visited.length; ++i) {
+        if (visited[i]) {
+            ans.push(i);
+        }
+    }
+    return ans;
+}
+
+export function bfsTimeline(lst) {
+    const ans = [];
+    const visited = new Array(lst[lst.length - 1][0] + 1).fill(false);
+    const fullVisit = [];
+    const queue = [];
+    const bfs = [];
+    for (let i = 1; i <= lst[lst.length - 1][0]; ++i) {
+        if (visited[i]) {
+            continue;
+        }
+        //visit the node 
+        visited[i] = true;
+        bfs.push(i);
+        queue.push(i);
+        while (queue.length != 0) {
+
+            const front = queue.shift();
+            ans.push({ type: "start", highlight: [front], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...bfs] });
+            console.log(front);
+            for (let j of lst[front - 1][1]) {
+                if (visited[j] === false) {
+                    ans.push({ type: "exploration", highlight: [front], explore: [j], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...bfs] });
+                    visited[j] = true;
+                    bfs.push(j);
+
+                    queue.push(j);
+                    ans.push({ type: "visitedExplored", highlight: [front], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...bfs] });
+                }
+            }
+            fullVisit.push(front);
+            ans.push({ type: "fullVisit", highlight: [front], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...bfs] });
+
+        }
+
+    }
+    ans.push({ type: "success", visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...bfs] });
+    console.log(ans);
+    return ans;
+
+}
+
+export function dfsTimeline(lst) {
+    const ans = [];
+    const visited = new Array(lst[lst.length - 1][0] + 1).fill(false);
+    const fullVisit = [];
+    const stack = [];
+    const dfs = [];
+    for (let i = 1; i <= lst[lst.length - 1][0]; ++i) {
+        if (visited[i]) {
+            continue;
+        }
+        //visit the node 
+        stack.unshift(i);
+
+        function solver(stack, visited) {
+            const top = stack.shift();
+            visited[top] = true;
+            dfs.push(top);
+            ans.push({ type: "start", highlight: [top], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...dfs] });
+            for (let j of lst[top - 1][1]) {
+                if (visited[j] === false) {
+                    stack.unshift(j);
+                    ans.push({ type: "exploration", highlight: [top], explore: [j], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...dfs] });
+                    solver(stack, visited);
+                }
+            }
+            fullVisit.push(top);
+            ans.push({ type: "fullVisit", highlight: [top], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...dfs] });
+        }
+
+        solver(stack, visited);
+
+        // while (stack.length != 0) {
+
+        //     const top = stack.shift();
+        //     ans.push({ type: "start", highlight: [top], visited: getVisited(visited), fullVisit: [...fullVisit], dfs: [...bfs] });
+        //     console.log(front);
+        //     for (let j of lst[front - 1][1]) {
+        //         if (visited[j] === false) {
+        //             ans.push({ type: "exploration", highlight: [front], explore: [j], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...bfs] });
+        //             visited[j] = true;
+        //             bfs.push(j);
+
+        //             queue.push(j);
+        //             ans.push({ type: "visitedExplored", highlight: [front], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...bfs] });
+        //         }
+        //     }
+        //     fullVisit.push(front);
+        //     ans.push({ type: "fullVisit", highlight: [front], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...bfs] });
+
+        // }
+
+    }
+    ans.push({ type: "success", visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...dfs] });
+    console.log(ans);
+    return ans;
+
+}
+

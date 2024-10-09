@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import Node from "./Node";
 import { useRef, useEffect, useState } from "react";
 import triangle from "../../assets/triangle.png";
+import Arrow from "./Arrow";
 import Weight from "./Weight";
 
 export default function Fig() {
@@ -90,9 +91,6 @@ export default function Fig() {
 
   return (
     <div className="w-full h-full">
-      <h1 className="text-center bg-[#0077b6] w-[70%] max-w-[400px] mx-auto mb-24 text-white rounded-lg py-1">
-        Graph
-      </h1>
       <div ref={containerRef} className="w-full h-full relative">
         <svg
           className="absolute top-0 left-0  w-full box h-full"

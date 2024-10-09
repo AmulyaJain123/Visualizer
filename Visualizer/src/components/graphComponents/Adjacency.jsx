@@ -1,8 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import cross from "../../assets/cross-circle.png";
 import arrow from "../../assets/down-arrow.png";
 import { graphsActions } from "../../store/main";
+import tick from "../../assets/hand-tick.png";
+import cross from "../../assets/hand-cross.png";
 
 export default function Adjacency() {
   const dispatch = useDispatch();
@@ -119,7 +120,28 @@ export default function Adjacency() {
                       }}
                       className="w-[40px] h-[40px]  flex justify-center items-center"
                     >
-                      {ind1 === 0 && ind2 === 0 ? null : j === null ? 0 : j}
+                      {ind1 === 0 && ind2 === 0 ? null : ind1 === 0 ||
+                        ind2 === 0 ? (
+                        j
+                      ) : j === null ? (
+                        <>
+                          {/* <img
+                            src={cross}
+                            className="w-[25px] h-[25px]"
+                            alt=""
+                          /> */}
+                          {0}
+                        </>
+                      ) : (
+                        <>
+                          {/* <img
+                            src={tick}
+                            className="w-[25px] h-[25px]"
+                            alt=""
+                          /> */}
+                          {j}
+                        </>
+                      )}
                     </div>
                   );
                 })}
