@@ -263,10 +263,69 @@ export function dijkstraTimeline(lst, edges, start) {
             }
 
         }
-        // distanceTable.push(newEntry);
-        // ans.push({ table: dc(distanceTable), highlight: leastDisNode, selected: [...selected] })
     }
     ans.push({ table: dc(distanceTable), type: "success", selected: [...selected] })
+    console.log(ans);
+    return ans;
+}
+
+function getMst(key, parents, mst) {
+    const ans = [];
+    for (let i = 1; i < key.length; ++i) {
+        if (mst[i] && parents[i] != -1 && mst[parents[i]]) {
+            ans.push([i, parents[i]]);
+            ans.push([parents[i], i]);
+        }
+    }
+    return dc(ans);
+}
+
+export function primsTimeline(lst, edges, start) {
+    const ans = [];
+    const mst = new Array(lst.length + 1).fill(false);
+    const key = new Array(lst.length + 1).fill(4000);
+    const parents = new Array(lst.length + 1).fill(-1);
+    key[start] = 0;
+
+
+    while (1) {
+        let min = 4000;
+        let node;
+        for (let i = 1; i < key.length; ++i) {
+            if (mst[i] === false && key[i] < min) {
+                min = key[i];
+                node = i;
+            }
+        }
+        if (!node) {
+            break;
+        }
+        ans.push({ mst: [...mst], key: [...key], highlight: node, edges: [...getMst(key, parents, mst)] })
+        mst[node] = true;
+        ans.push({ mst: [...mst], key: [...key], highlight: node, edges: [...getMst(key, parents, mst)] })
+
+        for (let i of lst[node - 1][1]) {
+            if (mst[i]) {
+                continue;
+            }
+            const edge = [node, i];
+            const weight = getWeight(edges, edge);
+            ans.push({ mst: [...mst], key: [...key], highlight: node, neighbour: i, edges: [...getMst(key, parents, mst)] })
+            if (mst[i] === false && key[i] > weight) {
+                const prevKey = key[i];
+                key[i] = weight;
+                parents[i] = node;
+                ans.push({ mst: [...mst], key: [...key], highlight: node, neighbour: i, edges: [...getMst(key, parents, mst)], type: "change", msg: `E [${node},${i}] < ${prevKey}` });
+            } else {
+                const prevKey = key[i];
+                ans.push({ mst: [...mst], key: [...key], highlight: node, neighbour: i, edges: [...getMst(key, parents, mst)], type: "noChange", msg: `E [${node},${i}] >= ${prevKey}` });
+
+            }
+        }
+    }
+    ans.push({ mst: [...mst], key: [...key], edges: [...getMst(key, parents, mst)], type: "success" });
+
+
     console.log(ans);
     return ans;
 }

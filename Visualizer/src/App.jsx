@@ -25,6 +25,7 @@ import Heap from "./pages/Heap";
 import HeapSort from "./pages/HeapSort";
 import BSFNDFS from "./pages/BFSNDFS";
 import Dijkstra from "./pages/Dijkstra";
+import Prims from "./pages/Prims";
 
 const router = createBrowserRouter([
   {
@@ -138,6 +139,10 @@ const router = createBrowserRouter([
           {
             path: "dijkstra",
             element: <Dijkstra />,
+          },
+          {
+            path: "prims",
+            element: <Prims />,
           },
         ],
       },

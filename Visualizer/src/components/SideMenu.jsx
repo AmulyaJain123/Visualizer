@@ -41,6 +41,7 @@ export default function SideMenu() {
   const graph = location.pathname == "/graphs/graph";
   const bfsdfs = location.pathname == "/graphs/bfsdfs";
   const dijkstra = location.pathname == "/graphs/dijkstra";
+  const prims = location.pathname == "/graphs/prims";
 
   const col1 = "#ff87ab";
   const col2 = "#fadde1";
@@ -163,6 +164,11 @@ export default function SideMenu() {
           name: "Dijkstra's",
           path: "/graphs/dijkstra",
           status: dijkstra,
+        },
+        {
+          name: "Prim's",
+          path: "/graphs/prims",
+          status: prims,
         },
       ],
     },
