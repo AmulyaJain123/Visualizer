@@ -1,17 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { graphsActions } from "../store/main";
-import Fig from "../components/primsComponents/Fig";
+import Fig from "../components/kruskalComponents/Fig";
 import { options } from "../algorithms/options";
 import rightArrow from "../assets/right-arrow.png";
 import right from "../assets/next.png";
-import {
-  bfsTimeline,
-  dfsTimeline,
-  dijkstraTimeline,
-  primsTimeline,
-} from "../algorithms/graphs";
+import { kruskalsTimeline } from "../algorithms/graphs";
 import next from "../assets/next.png";
+import Stack from "../components/kruskalComponents/Stack";
 // import Table from "../components/dijkstraComponents/Table";
 
 const types = [
@@ -21,7 +17,7 @@ const types = [
   "weigted Directed",
 ];
 
-export default function Prims() {
+export default function Kruskal() {
   const [chosenGraph, setChosenGraph] = useState(undefined);
   const [graphType, setGraphType] = useState(2);
   const dispatch = useDispatch();
@@ -30,16 +26,12 @@ export default function Prims() {
   const [algoName, setAlgoName] = useState(null);
   const ind = useSelector((state) => state.graphs.ind);
   const timeline = useSelector((state) => state.graphs.timeline);
-  const insertionRef = useRef();
-  const [insertion, setInsertion] = useState(undefined);
 
   useEffect(() => {
     dispatch(graphsActions.resetAll());
   }, []);
 
   function keyClick(num) {
-    insertionRef.current.value = "";
-    setInsertion(undefined);
     let graphNo;
     if (chosenGraph === undefined) {
       graphNo = 0;
@@ -64,31 +56,15 @@ export default function Prims() {
 
   function begin(option) {
     if (option === 1) {
-      const res = primsTimeline(list, edgesArr, insertion);
+      const res = kruskalsTimeline(list, edgesArr);
       dispatch(graphsActions.setTimeline(res));
-      setAlgoName("Prims");
+      setAlgoName("Kruskal");
     }
-  }
-
-  function typeClick(num) {
-    insertionRef.current.value = "";
-    setInsertion(undefined);
-    let newInd;
-    if (graphType === 2) {
-      newInd = 3;
-    } else {
-      newInd = 2;
-    }
-    setGraphType(newInd);
-    setChosenGraph(undefined);
-    dispatch(graphsActions.resetAll());
   }
 
   function reset() {
     setAlgoName(null);
     dispatch(graphsActions.resetAlgo());
-    insertionRef.current.value = "";
-    setInsertion(undefined);
   }
 
   function restart() {
@@ -103,33 +79,11 @@ export default function Prims() {
     dispatch(graphsActions.setInd(-1));
   }
 
-  function insertionClick(event) {
-    if (event.key === "Enter") {
-      const str = insertionRef.current.value.trim();
-      let ans = "";
-      for (let i of str) {
-        if (i.charCodeAt(0) >= 48 && i.charCodeAt(0) <= 57) {
-          ans += i;
-        } else {
-          setInsertion(null);
-          return;
-        }
-      }
-      ans = parseInt(ans);
-      if (isNaN(ans) || ans < 0 || ans > list.length) {
-        setInsertion(null);
-        return;
-      }
-      setInsertion(ans);
-      insertionRef.current.value = "";
-    }
-  }
-
   return (
     <>
       <div className="flex flex-col w-full py-16 pt-12 px-8 h-full">
         <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-12">
-          Prim's Algorithm
+          Kruskal's Algorithm
         </h1>
         <div className="flex   mx-auto">
           <div className="flex  border-2 text-[#c08552]   border-neutral-200">
@@ -177,49 +131,17 @@ export default function Prims() {
           <div className="flex  border-2 text-[#c08552]   border-neutral-200">
             <div className="flex  flex-col min-w-[200px] ">
               <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
-                Enter Start Node
-              </p>
-              <div className="bg-[#f3e9dc] border-2 border-[#c08552] m-1 rounded-xl flex justify-between items-center">
-                <input
-                  className="px-3 p-1 text-black text-sm min-w-[150px] mx-2 my-2 disabled:opacity-50 disabled:bg-white rounded-md focus:outline-none"
-                  placeholder="4 Press Enter"
-                  type="text"
-                  disabled={list === null || algoName != null}
-                  ref={insertionRef}
-                  onKeyDown={(event) => insertionClick(event)}
-                />
-              </div>
-              <div className="bg-[#f3e9dc] border-2 flex-grow border-[#c08552] m-1 rounded-xl text-sm flex justify-between items-center">
-                {insertion === undefined ? (
-                  <p className="mx-auto">Start Node Not Selected</p>
-                ) : insertion === null ? (
-                  <p className="mx-auto text-red-500">Invalid Value Entered</p>
-                ) : (
-                  <p className="mx-auto">{`${insertion} is the Starting Node`}</p>
-                )}
-              </div>
-            </div>
-          </div>
-
-          <div className="flex  border-2 text-[#c08552]   border-neutral-200">
-            <div className="flex  flex-col min-w-[200px] ">
-              <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
                 Begin
               </p>
               <div className="bg-[#f3e9dc] border-2 border-[#c08552] m-1 rounded-xl flex justify-between items-center">
                 <button
-                  disabled={
-                    chosenGraph === undefined ||
-                    algoName != null ||
-                    insertion === null ||
-                    insertion === undefined
-                  }
+                  disabled={chosenGraph === undefined || algoName != null}
                   onClick={() => {
                     begin(1);
                   }}
                   className="m-2 mx-auto px-4 py-1  font-bold rounded-lg disabled:opacity-30 disabled:pointer-events-none bg-[#87b38d]  border-[2px] duration-700 border-[#87b38d] hover:text-[#87b38d] hover:bg-white text-white"
                 >
-                  Prim's Algo
+                  Kruskal's Algo
                 </button>
               </div>
               <div className="bg-[#f3e9dc] border-2 text-sm flex-grow border-[#c08552] m-1 rounded-xl flex justify-between items-center">
@@ -276,11 +198,11 @@ export default function Prims() {
 
             <span
               style={{
-                color: timeline[ind].type === "change" ? "green" : "black",
+                color: timeline[ind].type === "correct" ? "green" : "black",
               }}
               className="absolute left-[50%] translate-x-[-50%] bottom-[-40px] text-nowrap uppercase font-semibold "
             >
-              {timeline[ind].type === "change" ? "Relaxation" : "no relaxation"}
+              {timeline[ind].type === "correct" ? "Include" : "ignore"}
             </span>
           </div>
         ) : (
@@ -290,9 +212,13 @@ export default function Prims() {
         <div className="w-full h-full mt-24 space-x-20 justify-center flex mb-8">
           <div
             style={{ minHeight: `${list ? list.length * 80 : 0}px` }}
-            className="w-full h-full"
+            className="w-[50%] h-full"
           >
             {edgesArr != null && edgesArr.length != 0 ? <Fig></Fig> : null}
+          </div>
+
+          <div className="w-fit h-full">
+            {timeline != null && ind != null ? <Stack></Stack> : null}
           </div>
         </div>
       </div>

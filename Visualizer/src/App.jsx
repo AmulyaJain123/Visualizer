@@ -26,6 +26,7 @@ import HeapSort from "./pages/HeapSort";
 import BSFNDFS from "./pages/BFSNDFS";
 import Dijkstra from "./pages/Dijkstra";
 import Prims from "./pages/Prims";
+import Kruskal from "./pages/Kruskal";
 
 const router = createBrowserRouter([
   {
@@ -143,6 +144,10 @@ const router = createBrowserRouter([
           {
             path: "prims",
             element: <Prims />,
+          },
+          {
+            path: "kruskal",
+            element: <Kruskal />,
           },
         ],
       },

@@ -330,3 +330,155 @@ export function primsTimeline(lst, edges, start) {
     return ans;
 }
 
+function getWeightedEdges(lst, edges) {
+    const ans = [];
+    for (let i of lst) {
+        const first = i[0];
+        for (let j of i[1]) {
+            const second = j;
+            const weight = getWeight(edges, [first, second]);
+            ans.push([first, second, weight]);
+        }
+    }
+    ans.sort((a, b) => {
+        if (a[2] <= b[2]) {
+            return -1
+        } else {
+            return 1
+        }
+    })
+    return dc(ans);
+}
+
+function detectCycle(edges, nodes) {
+    const maxval = Math.max(...nodes);
+    console.log(maxval);
+    const visited = new Array(maxval + 1).fill(false);
+    const list = new Array(maxval + 1);
+    for (let i = 0; i < list.length; ++i) {
+        list[i] = [];
+    }
+    for (let i of edges) {
+        const first = i[0];
+        const second = i[1];
+        const weight = i[2];
+        if (!list[first].includes(second)) {
+            list[first].push(second);
+        }
+        if (!list[second].includes(first)) {
+            list[second].push(first);
+        }
+    }
+    console.log(list)
+
+    function solver(node, visited, parents) {
+        for (let i of list[node]) {
+            //node->i
+            if (visited[i] && (parents[node] != i)) {
+                console.log("yo", node, i)
+                return true;
+            } else if (visited[i] === false) {
+                visited[i] = true;
+                parents[i] = node;
+                const res = solver(i, visited, parents);
+                if (res) {
+                    console.log("hi", node, i)
+                    return res;
+                }
+            }
+        }
+        return false;
+    }
+    const parents = new Array(maxval + 1).fill(-1);
+
+
+    for (let i = 1; i < list.length; ++i) {
+        if (visited[i] || !nodes.includes(i)) {
+            continue;
+        }
+        visited[i] = true;
+        const res = solver(i, visited, parents);
+        if (res) {
+            console.log(i, visited, parents, list);
+            return true;
+        }
+    }
+    return false;
+}
+
+function getListOfNodes(edges) {
+    const ans = [];
+    for (let i of edges) {
+        if (!ans.includes(i[0])) {
+            ans.push(i[0]);
+        }
+        if (!ans.includes(i[1])) {
+            ans.push(i[1]);
+        }
+    }
+    return [...ans];
+}
+
+function checkForDuplicate(edges, edge) {
+    for (let i of edges) {
+        if ((i[0] === edge[0] && i[1] === edge[1]) || (i[1] === edge[0] && i[0] === edge[1])) {
+            return true
+        }
+    }
+    return false;
+}
+
+function eleminateDuplicates(edges) {
+    const ans = [];
+    for (let i of edges) {
+        let stat = false;
+        for (let j of ans) {
+            if ((j[0] === i[0] && j[1] === i[1]) || (j[1] === i[0] && j[0] === i[1])) {
+                stat = true;
+                break;
+            }
+        }
+        if (!stat) {
+            ans.push(i);
+        }
+    }
+    return dc(ans);
+}
+
+export function kruskalsTimeline(lst, edges) {
+    const ans = [];
+    const mst = [];
+    const weightedEdges = getWeightedEdges(lst, edges);
+    const notMst = [];
+
+    let count = 0;
+    for (let i = 0; i < weightedEdges.length; ++i) {
+        if (checkForDuplicate(notMst, weightedEdges[i])) {
+            continue;
+        }
+        if (checkForDuplicate(mst, weightedEdges[i])) {
+            mst.push(weightedEdges[i]);
+            continue;
+        }
+        ans.push({ weightedEdges: eleminateDuplicates(weightedEdges), currEdge: count, type: "testing", highlight: [...weightedEdges[i]], nodes: getListOfNodes(mst), mst: dc(mst) })
+        const res = detectCycle([...dc(mst), weightedEdges[i]], getListOfNodes([...mst, weightedEdges[i]]));
+        if (res) {
+            ans.push({ weightedEdges: eleminateDuplicates(weightedEdges), currEdge: count, type: "inCorrect", highlight: [...weightedEdges[i]], nodes: getListOfNodes(mst), mst: dc(mst), msg: `E (${weightedEdges[i][0]},${weightedEdges[i][1]}) Forms Cycle` })
+            ans.push({ weightedEdges: eleminateDuplicates(weightedEdges), currEdge: count, nodes: getListOfNodes(mst), mst: dc(mst) })
+            notMst.push(weightedEdges[i])
+            ++count;
+            continue;
+        } else {
+            ans.push({ weightedEdges: eleminateDuplicates(weightedEdges), currEdge: count, type: "correct", highlight: [...weightedEdges[i]], nodes: getListOfNodes(mst), mst: dc(mst), msg: `E (${weightedEdges[i][0]},${weightedEdges[i][1]}) Does Not Form Cycle` })
+            mst.push(weightedEdges[i]);
+            ans.push({ weightedEdges: eleminateDuplicates(weightedEdges), currEdge: count, nodes: getListOfNodes(mst), mst: dc(mst) })
+            ++count;
+        }
+    }
+    console.log(mst);
+    console.log(ans);
+    return ans;
+
+
+}
+

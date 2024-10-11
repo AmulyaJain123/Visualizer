@@ -237,7 +237,7 @@ export default function BSFNDFS() {
 
         {timeline != null ? (
           <>
-            {ind != null ? (
+            {ind != null && timeline[ind] && timeline[ind].bfs ? (
               <div className="flex border-2 border-[#0077b6] divide-x-2 h-fit mx-auto mt-16 divide-[#0077b6]">
                 {timeline[ind].bfs.map((i) => {
                   return (

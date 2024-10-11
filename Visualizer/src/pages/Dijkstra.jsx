@@ -320,7 +320,9 @@ export default function Dijkstra() {
           </div>
 
           <div className="w-fit h-full">
-            {timeline != null && ind != null ? <Table></Table> : null}
+            {timeline != null && ind != null && timeline[ind].table ? (
+              <Table></Table>
+            ) : null}
           </div>
         </div>
       </div>

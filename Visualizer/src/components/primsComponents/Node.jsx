@@ -53,7 +53,7 @@ export default function Node({ val, x, y, i }) {
           })}
         </>
       ) : null}
-      {timeline != null && ind != null ? (
+      {timeline != null && ind != null && timeline[ind].key ? (
         <div
           style={{ transform: `rotate(${graph.free[val - 1]}deg)` }}
           className="absolute"

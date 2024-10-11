@@ -14,34 +14,43 @@ export default function Node({ val, x, y, i }) {
         top: `${y}px`,
         left: `calc( 50% - 20px + ${x}px )`,
         border:
-          (timeline &&
-            ind != null &&
-            timeline[ind].selected &&
-            timeline[ind].selected.includes(val)) ||
-          (timeline && ind != null && timeline[ind].neighbour === val)
+          (ind != null &&
+            timeline[ind].nodes &&
+            timeline[ind].nodes.includes(val)) ||
+          (ind != null &&
+            timeline[ind].highlight &&
+            (timeline[ind].highlight[0] === val ||
+              timeline[ind].highlight[1] === val))
             ? "2px solid black"
             : "0px solid black",
         outline:
-          timeline && ind != null && timeline[ind].highlight === val
+          ind != null &&
+          timeline[ind].highlight &&
+          (timeline[ind].highlight[0] === val ||
+            timeline[ind].highlight[1] === val)
             ? "4px solid black"
             : "0px",
         outlineOffset: "3px",
         backgroundColor:
-          timeline &&
           ind != null &&
-          timeline[ind].selected &&
-          timeline[ind].selected.includes(val)
+          timeline[ind].nodes &&
+          timeline[ind].nodes.includes(val)
             ? "#4f772d"
-            : timeline && ind != null && timeline[ind].neighbour === val
+            : ind != null &&
+              timeline[ind].highlight &&
+              (timeline[ind].highlight[0] === val ||
+                timeline[ind].highlight[1] === val)
             ? "#caf0f8"
             : "#0077b6",
         color:
-          timeline &&
           ind != null &&
-          timeline[ind].selected &&
-          timeline[ind].selected.includes(val)
+          timeline[ind].nodes &&
+          timeline[ind].nodes.includes(val)
             ? "#fff"
-            : timeline && ind != null && timeline[ind].neighbour === val
+            : ind != null &&
+              timeline[ind].highlight &&
+              (timeline[ind].highlight[0] === val ||
+                timeline[ind].highlight[1] === val)
             ? "#0077b6"
             : "#caf0f8",
       }}
@@ -62,16 +71,16 @@ export default function Node({ val, x, y, i }) {
           })}
         </>
       ) : null}
-      {timeline != null && ind != null && timeline[ind].table ? (
+      {/* {timeline != null && ind != null ? (
         <div
           style={{ transform: `rotate(${graph.free[val - 1]}deg)` }}
           className="absolute"
         >
           <CurrWeight angle={graph.free[val - 1]}>
-            {timeline[ind].table[timeline[ind].table.length - 1][1][val - 1]}
+            {timeline[ind].key[val]}
           </CurrWeight>
         </div>
-      ) : null}
+      ) : null} */}
     </div>
   );
 }
