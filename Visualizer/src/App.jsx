@@ -27,6 +27,7 @@ import BSFNDFS from "./pages/BFSNDFS";
 import Dijkstra from "./pages/Dijkstra";
 import Prims from "./pages/Prims";
 import Kruskal from "./pages/Kruskal";
+import BellmanFord from "./pages/BellmanFord";
 
 const router = createBrowserRouter([
   {
@@ -148,6 +149,10 @@ const router = createBrowserRouter([
           {
             path: "kruskal",
             element: <Kruskal />,
+          },
+          {
+            path: "bellman",
+            element: <BellmanFord />,
           },
         ],
       },

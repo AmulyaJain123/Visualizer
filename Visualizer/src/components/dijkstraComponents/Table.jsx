@@ -6,7 +6,7 @@ export default function Table() {
   const ind = useSelector((state) => state.graphs.ind);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col ml-20">
       <div className="flex border-b-2 border-black divide-x-2 divide-black">
         <div className="w-[100px] h-[40px] font-semibold leading-tight text-center  flex justify-center items-center ">
           Selected Node

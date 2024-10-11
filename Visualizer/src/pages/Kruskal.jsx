@@ -209,7 +209,7 @@ export default function Kruskal() {
           <div className="mt-8 min-h-[40px] w-[50px] mx-auto"></div>
         )}
 
-        <div className="w-full h-full mt-24 space-x-20 justify-center flex mb-8">
+        <div className="w-full h-full mt-24  justify-center flex mb-8">
           <div
             style={{ minHeight: `${list ? list.length * 80 : 0}px` }}
             className="w-[50%] h-full"

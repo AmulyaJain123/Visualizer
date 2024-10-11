@@ -21,7 +21,7 @@ export default function Stack() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative ml-20">
       <div className="flex flex-col divide-y-2 relative divide-black border-2 border-black w-[100px]">
         {timeline &&
           ind != null &&

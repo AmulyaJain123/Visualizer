@@ -43,6 +43,7 @@ export default function SideMenu() {
   const dijkstra = location.pathname == "/graphs/dijkstra";
   const prims = location.pathname == "/graphs/prims";
   const kruskal = location.pathname == "/graphs/kruskal";
+  const bellman = location.pathname == "/graphs/bellman";
 
   const col1 = "#ff87ab";
   const col2 = "#fadde1";
@@ -175,6 +176,11 @@ export default function SideMenu() {
           name: "Kruskal's",
           path: "/graphs/kruskal",
           status: kruskal,
+        },
+        {
+          name: "Bellman Ford's",
+          path: "/graphs/bellman",
+          status: bellman,
         },
       ],
     },

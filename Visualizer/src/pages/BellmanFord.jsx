@@ -1,17 +1,18 @@
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { graphsActions } from "../store/main";
-import Fig from "../components/dijkstraComponents/Fig";
+import Fig from "../components/bellmanfordComponents/Fig";
 import { options } from "../algorithms/options";
 import rightArrow from "../assets/right-arrow.png";
 import right from "../assets/next.png";
 import {
+  bellmanFordTimeline,
   bfsTimeline,
   dfsTimeline,
   dijkstraTimeline,
 } from "../algorithms/graphs";
 import next from "../assets/next.png";
-import Table from "../components/dijkstraComponents/Table";
+import Table from "../components/bellmanfordComponents/Table";
 
 const types = [
   "undirected",
@@ -20,9 +21,11 @@ const types = [
   "weigted Directed",
 ];
 
+const pos = [10, 11, 12, 13];
+
 export default function Dijkstra() {
   const [chosenGraph, setChosenGraph] = useState(undefined);
-  const [graphType, setGraphType] = useState(2);
+  const [graphType, setGraphType] = useState(3);
   const dispatch = useDispatch();
   const edgesArr = useSelector((state) => state.graphs.edgesArr);
   const list = useSelector((state) => state.graphs.list);
@@ -43,12 +46,13 @@ export default function Dijkstra() {
     if (chosenGraph === undefined) {
       graphNo = 0;
     } else {
-      graphNo = chosenGraph + num;
+      graphNo = chosenGraph - 10 + num;
       if (graphNo < 0) {
-        graphNo += 10;
+        graphNo += 4;
       }
-      graphNo = graphNo % 10;
+      graphNo = graphNo % 4;
     }
+    graphNo = pos[graphNo];
     setChosenGraph(graphNo);
 
     const res = options[graphNo];
@@ -63,24 +67,10 @@ export default function Dijkstra() {
 
   function begin(option) {
     if (option === 1) {
-      const res = dijkstraTimeline(list, edgesArr, insertion);
+      const res = bellmanFordTimeline(list, edgesArr, insertion);
       dispatch(graphsActions.setTimeline(res));
-      setAlgoName("Dijkstra");
+      setAlgoName("Bellman Ford");
     }
-  }
-
-  function typeClick(num) {
-    insertionRef.current.value = "";
-    setInsertion(undefined);
-    let newInd;
-    if (graphType === 2) {
-      newInd = 3;
-    } else {
-      newInd = 2;
-    }
-    setGraphType(newInd);
-    setChosenGraph(undefined);
-    dispatch(graphsActions.resetAll());
   }
 
   function reset() {
@@ -128,7 +118,7 @@ export default function Dijkstra() {
     <>
       <div className="flex flex-col w-full py-16 pt-12 px-8 h-full">
         <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-12">
-          Dijkstra's Algorithm
+          Bellman Ford's Algorithm
         </h1>
         <div className="flex   mx-auto">
           <div className="flex  border-2 text-[#c08552]   border-neutral-200">
@@ -137,31 +127,9 @@ export default function Dijkstra() {
                 Choose Graph
               </p>
               <div className="bg-[#f3e9dc] border-2 border-[#c08552] m-1 rounded-xl flex justify-between items-center">
-                <button
-                  disabled={algoName != null}
-                  onClick={() => {
-                    typeClick(-1);
-                  }}
-                  className="m-2 disabled:opacity-40"
-                >
-                  <img
-                    src={right}
-                    className="w-[30px] rotate-180 h-[30px]"
-                    alt=""
-                  />
-                </button>
-                <span className="capitalize mx-6 px-2 bg-white rounded-md text-black">
+                <span className="capitalize mx-auto my-3 px-2 bg-white rounded-md text-black">
                   {types[graphType]}
                 </span>
-                <button
-                  disabled={algoName != null}
-                  onClick={() => {
-                    typeClick(1);
-                  }}
-                  className="m-2 disabled:opacity-40"
-                >
-                  <img src={right} className="w-[30px] h-[30px]" alt="" />
-                </button>
               </div>
               <div className="bg-[#f3e9dc] border-2 border-[#c08552] m-1 rounded-xl flex justify-between items-center">
                 <button
@@ -223,7 +191,7 @@ export default function Dijkstra() {
           </div>
 
           <div className="flex  border-2 text-[#c08552]   border-neutral-200">
-            <div className="flex  flex-col min-w-[200px] ">
+            <div className="flex  flex-col min-w-[250px] ">
               <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
                 Begin
               </p>
@@ -240,7 +208,7 @@ export default function Dijkstra() {
                   }}
                   className="m-2 mx-auto px-4 py-1  font-bold rounded-lg disabled:opacity-30 disabled:pointer-events-none bg-[#87b38d]  border-[2px] duration-700 border-[#87b38d] hover:text-[#87b38d] hover:bg-white text-white"
                 >
-                  Dijkstra's Algo
+                  Bellman Ford's Algo
                 </button>
               </div>
               <div className="bg-[#f3e9dc] border-2 text-sm flex-grow border-[#c08552] m-1 rounded-xl flex justify-between items-center">
@@ -290,9 +258,19 @@ export default function Dijkstra() {
             )}
           </div>
         ) : null}
-
+        {timeline &&
+        ind != null &&
+        ind != timeline.length - 1 &&
+        timeline[ind].history ? (
+          <div className="w-fit mt-4 mb-4 mx-auto uppercase text-lg relative min-h-[40px] border-black px-6 flex items-center tracking-wider font-semibold ">
+            Iteration -{" "}
+            {timeline[ind].history[timeline[ind].history.length - 1][0]}
+          </div>
+        ) : (
+          <div className="mt-4 mb-4 min-h-[40px] w-[50px] mx-auto"></div>
+        )}
         {timeline && ind != null && timeline[ind].msg ? (
-          <div className="w-fit mt-8 mx-auto text-lg relative min-h-[40px] border-2 border-black px-6 flex items-center font-medium tracking-wide">
+          <div className="w-fit  mx-auto text-lg relative min-h-[40px] border-2 border-black px-6 flex items-center font-medium tracking-wide">
             {timeline[ind].msg.replaceAll("4000", "∞").split("-->")[0]}
             <span className="mx-4">
               <img src={rightArrow} className="w-[20px]" alt="" />
@@ -307,20 +285,28 @@ export default function Dijkstra() {
               {timeline[ind].type === "change" ? "Relaxation" : "no relaxation"}
             </span>
           </div>
+        ) : timeline &&
+          ind != null &&
+          timeline[ind] &&
+          timeline[ind].type &&
+          timeline[ind].type === "skip" ? (
+          <div className="w-fit  mx-auto uppercase text-lg relative min-h-[40px] border-2 border-black px-6 flex items-center font-semibold ">
+            since no change, terminating
+          </div>
         ) : (
-          <div className="mt-8 min-h-[40px] w-[50px] mx-auto"></div>
+          <div className=" min-h-[40px] w-[50px] mx-auto"></div>
         )}
 
         <div className="w-full h-full mt-24  justify-center flex mb-8">
           <div
             style={{ minHeight: `${list ? list.length * 80 : 0}px` }}
-            className="w-[50%]  h-full"
+            className="w-[40%] h-full"
           >
             {edgesArr != null && edgesArr.length != 0 ? <Fig></Fig> : null}
           </div>
 
           <div className="w-fit h-full">
-            {timeline != null && ind != null && timeline[ind].table ? (
+            {timeline != null && ind != null && timeline[ind].history ? (
               <Table></Table>
             ) : null}
           </div>

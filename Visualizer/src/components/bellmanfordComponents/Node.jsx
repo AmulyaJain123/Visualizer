@@ -1,5 +1,6 @@
 import Arrow from "./Arrow";
 import { useSelector } from "react-redux";
+import CurrWeight from "./CurrWeight";
 
 export default function Node({ val, x, y, i }) {
   const graphType = useSelector((state) => state.graphs.graphType);
@@ -13,16 +14,16 @@ export default function Node({ val, x, y, i }) {
         top: `${y}px`,
         left: `calc( 50% - 20px + ${x}px )`,
         border:
-          (ind != null &&
-            timeline[ind].nodes &&
-            timeline[ind].nodes.includes(val)) ||
-          (ind != null &&
+          (timeline && ind != null && ind === timeline.length - 1) ||
+          (timeline &&
+            ind != null &&
             timeline[ind].highlight &&
             (timeline[ind].highlight[0] === val ||
               timeline[ind].highlight[1] === val))
             ? "2px solid black"
             : "0px solid black",
         outline:
+          timeline &&
           ind != null &&
           timeline[ind].highlight &&
           (timeline[ind].highlight[0] === val ||
@@ -31,22 +32,20 @@ export default function Node({ val, x, y, i }) {
             : "0px",
         outlineOffset: "3px",
         backgroundColor:
-          ind != null &&
-          timeline[ind].nodes &&
-          timeline[ind].nodes.includes(val)
+          timeline && ind != null && ind === timeline.length - 1
             ? "#4f772d"
-            : ind != null &&
+            : timeline &&
+              ind != null &&
               timeline[ind].highlight &&
               (timeline[ind].highlight[0] === val ||
                 timeline[ind].highlight[1] === val)
             ? "#caf0f8"
             : "#0077b6",
         color:
-          ind != null &&
-          timeline[ind].nodes &&
-          timeline[ind].nodes.includes(val)
+          timeline && ind != null && ind === timeline.length - 1
             ? "#fff"
-            : ind != null &&
+            : timeline &&
+              ind != null &&
               timeline[ind].highlight &&
               (timeline[ind].highlight[0] === val ||
                 timeline[ind].highlight[1] === val)
@@ -61,25 +60,34 @@ export default function Node({ val, x, y, i }) {
           {i.angle.map((deg) => {
             return (
               <div
-                style={{ transform: `rotate(${deg}deg)` }}
+                style={{ transform: `rotate(${deg[2]}deg)` }}
                 className="absolute"
               >
-                <Arrow></Arrow>
+                <Arrow
+                  status={
+                    timeline &&
+                    ind != null &&
+                    timeline[ind] &&
+                    timeline[ind].highlight &&
+                    timeline[ind].highlight[0] === deg[0] &&
+                    timeline[ind].highlight[1] === deg[1]
+                  }
+                ></Arrow>
               </div>
             );
           })}
         </>
       ) : null}
-      {/* {timeline != null && ind != null ? (
+      {timeline != null && ind != null && timeline[ind].history ? (
         <div
           style={{ transform: `rotate(${graph.free[val - 1]}deg)` }}
           className="absolute"
         >
           <CurrWeight angle={graph.free[val - 1]}>
-            {timeline[ind].key[val]}
+            {timeline[ind].history[timeline[ind].history.length - 1][1][val]}
           </CurrWeight>
         </div>
-      ) : null} */}
+      ) : null}
     </div>
   );
 }

@@ -482,3 +482,66 @@ export function kruskalsTimeline(lst, edges) {
 
 }
 
+
+
+export function bellmanFordTimeline(lst, edges, start) {
+    const ans = [];
+    const n = lst.length;
+    const key = new Array(n + 1).fill(4000);
+    key[start] = 0;
+    const undirectedEdges = eleminateDuplicates(edges);
+    const history = [[0, key]];
+    ans.push({ type: "start", history: dc(history) });
+    let status = false;
+    for (let i = 0; i < n - 1; ++i) {
+        let stat = false;
+        history[history.length - 1] = dc(history[history.length - 1]);
+        history.push([i + 1, key]);
+        ans.push({ type: "start", history: dc(history) });
+        let index = -1;
+
+        for (let j of edges) {
+            ++index;
+            const first = j[0];
+            const second = j[1];
+            const weight = j[2];
+
+            if (key[first] + weight < key[second]) {
+                ans.push({ history: dc(history), edges: dc(edges), currEdge: index, highlight: [first, second], type: "change", msg: `${key[first] >= 3000 ? "∞" : key[first]} + ${weight}  -->  ${key[first] + weight >= 3000 ? "∞" : key[first] + weight} < ${key[second] >= 3000 ? "∞" : key[second]}` });
+
+                key[second] = key[first] + weight;
+                ans.push({ history: dc(history), edges: dc(edges), currEdge: index, });
+                stat = true;
+            } else {
+                ans.push({ history: dc(history), edges: dc(edges), currEdge: index, highlight: [first, second], type: "noChange", msg: `${key[first] >= 3000 ? "∞" : key[first]} + ${weight}  -->  ${key[first] + weight >= 3000 ? "∞" : key[first] + weight} >= ${key[second] >= 3000 ? "∞" : key[second]}` });
+                ans.push({ history: dc(history), edges: dc(edges), currEdge: index });
+            }
+        }
+        if (stat === false) {
+            status = true;
+            ans.push({ history: dc(history), type: "skip" });
+            break;
+        }
+    }
+    ans.push({ type: "success", history: dc(history) });
+
+
+    if (status === false) {
+        for (let j of edges) {
+            const first = j[0];
+            const second = j[1];
+            const weight = j[2];
+            if (key[first] + weight < key[second]) {
+                // neg Cycle is present 
+                console.log("Oh No")
+                break;
+            } else {
+
+            }
+        }
+    }
+    console.log(ans);
+    return ans;
+
+}
+
