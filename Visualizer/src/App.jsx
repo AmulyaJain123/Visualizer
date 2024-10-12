@@ -28,6 +28,7 @@ import Dijkstra from "./pages/Dijkstra";
 import Prims from "./pages/Prims";
 import Kruskal from "./pages/Kruskal";
 import BellmanFord from "./pages/BellmanFord";
+import FloydWarshall from "./pages/FloydWarshall";
 
 const router = createBrowserRouter([
   {
@@ -153,6 +154,10 @@ const router = createBrowserRouter([
           {
             path: "bellman",
             element: <BellmanFord />,
+          },
+          {
+            path: "floyd",
+            element: <FloydWarshall />,
           },
         ],
       },

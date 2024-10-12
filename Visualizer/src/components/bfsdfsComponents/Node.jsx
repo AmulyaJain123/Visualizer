@@ -65,7 +65,11 @@ export default function Node({ val, x, y, i }) {
           {i.angle.map((deg) => {
             return (
               <div
-                style={{ transform: `rotate(${deg}deg)` }}
+                style={{
+                  transform: `rotate(${
+                    deg.length === undefined ? deg : deg[2]
+                  }deg)`,
+                }}
                 className="absolute"
               >
                 <Arrow></Arrow>

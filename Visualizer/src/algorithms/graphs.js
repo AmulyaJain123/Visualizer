@@ -545,3 +545,57 @@ export function bellmanFordTimeline(lst, edges, start) {
 
 }
 
+export function floydWarshallTimeline(lst, edges) {
+    const ans = [];
+    const n = lst.length;
+    const matrix = new Array(n + 1).fill(0);
+    const head = new Array(n + 1).fill(null);
+    for (let i = 1; i < n + 1; ++i) {
+        head[i] = i;
+    }
+    matrix[0] = [...head];
+    for (let i = 1; i < n + 1; ++i) {
+        const arr = new Array(n + 1).fill(4000);
+        arr[0] = i;
+        arr[i] = 0;
+        for (let j of lst[i - 1][1]) {
+            const weight = getWeight(edges, [i, j]);
+            arr[j] = weight;
+        }
+        matrix[i] = [...arr];
+    }
+
+    console.log(dc(matrix));
+    ans.push({ matrix: dc(matrix), no: 0 });
+
+    for (let i = 1; i < n + 1; ++i) {
+        ans.push({ matrix: dc(matrix), no: i });
+        for (let a = 1; a < n + 1; ++a) {
+            for (let b = 1; b < n + 1; ++b) {
+                if (a === i || b === i || a === b) {
+                    continue;
+                }
+                // ans.push({ matrix: dc(matrix), no: i, a: a, b: b });
+
+                // a,b  a,i  i,b
+                if (matrix[a][b] > matrix[a][i] + matrix[i][b]) {
+                    ans.push({ matrix: dc(matrix), no: i, a: a, b: b, type: "change" });
+                    matrix[a][b] = matrix[a][i] + matrix[i][b]
+                    ans.push({ matrix: dc(matrix), no: i, a: a, b: b });
+
+                } else {
+                    ans.push({ matrix: dc(matrix), no: i, a: a, b: b, type: "noChange" });
+                    ans.push({ matrix: dc(matrix), no: i, a: a, b: b });
+
+                }
+            }
+        }
+    }
+    ans.push({ type: "success", matrix: dc(matrix) });
+
+
+    console.log(ans);
+    return ans;
+
+}
+

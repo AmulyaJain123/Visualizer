@@ -13,6 +13,32 @@ const types = [
   "weigted Directed",
 ];
 
+const unweightedPos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 14, 15, 16, 17, 18, 19];
+const weightedPos = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+];
+
+function getPos(val, type) {
+  if (type < 2) {
+    return unweightedPos.findIndex((i) => i === val);
+  }
+  return weightedPos.findIndex((i) => i === val);
+}
+
+function getSize(type) {
+  if (type < 2) {
+    return unweightedPos.length;
+  }
+  return weightedPos.length;
+}
+
+function getInd(val, type) {
+  if (type < 2) {
+    return unweightedPos[val];
+  }
+  return weightedPos[val];
+}
+
 export default function Graph() {
   const [chosenGraph, setChosenGraph] = useState(undefined);
   const [graphType, setGraphType] = useState(0);
@@ -29,12 +55,13 @@ export default function Graph() {
     if (chosenGraph === undefined) {
       graphNo = 0;
     } else {
-      graphNo = chosenGraph + num;
+      graphNo = getPos(chosenGraph, graphType) + num;
       if (graphNo < 0) {
-        graphNo += 10;
+        graphNo += getSize(graphType);
       }
-      graphNo = graphNo % 10;
+      graphNo = graphNo % getSize(graphType);
     }
+    graphNo = getInd(graphNo, graphType);
     setChosenGraph(graphNo);
 
     const res = options[graphNo];
