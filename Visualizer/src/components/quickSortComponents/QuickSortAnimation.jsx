@@ -125,17 +125,17 @@ export default function QuickSortAnimation({ arr, order }) {
           newArray[prevHigh] = array[pivot];
           newArray[pivot] = array[prevHigh];
           setHang(true);
-          const time = prevHigh === pivot ? 0 : 2;
+          const time = prevHigh === pivot ? 0 : 1;
           setTimeout(() => {
             animate(
               `.index${prevHigh}`,
               { x: [0, (pivot - prevHigh) * 82] },
-              { type: "spring", duration: time }
+              { type: "tween", duration: time }
             );
             animate(
               `.index${pivot}`,
               { x: [0, (prevHigh - pivot) * 82] },
-              { type: "spring", duration: time }
+              { type: "tween", duration: time }
             );
             animate(
               `.misc`,
@@ -253,17 +253,17 @@ export default function QuickSortAnimation({ arr, order }) {
           newArray[swap.first] = array[swap.second];
           newArray[swap.second] = array[swap.first];
           setHang(true);
-          const time = swap.first === swap.second ? 0 : 2;
+          const time = swap.first === swap.second ? 0 : 1;
           setTimeout(() => {
             animate(
               `.index${swap.first}`,
               { x: [0, (swap.second - swap.first) * 82] },
-              { type: "spring", duration: time }
+              { type: "tween", duration: time }
             );
             animate(
               `.index${swap.second}`,
               { x: [0, (swap.first - swap.second) * 82] },
-              { type: "spring", duration: time }
+              { type: "tween", duration: time }
             );
             animate(
               `.misc`,
@@ -291,17 +291,17 @@ export default function QuickSortAnimation({ arr, order }) {
           newArray[swap.second] = array[pivot];
           newArray[pivot] = array[swap.second];
           setHang(true);
-          const time = swap.second === pivot ? 0 : 2;
+          const time = swap.second === pivot ? 0 : 1;
           setTimeout(() => {
             animate(
               `.index${swap.second}`,
               { x: [0, (pivot - swap.second) * 82] },
-              { type: "spring", duration: time }
+              { type: "tween", duration: time }
             );
             animate(
               `.index${pivot}`,
               { x: [0, (swap.second - pivot) * 82] },
-              { type: "spring", duration: time }
+              { type: "tween", duration: time }
             );
             animate(
               `.misc`,

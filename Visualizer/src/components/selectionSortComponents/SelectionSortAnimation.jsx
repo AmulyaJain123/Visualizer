@@ -27,12 +27,12 @@ export default function SelectionSortAnimation({ arr, order }) {
           animate(
             ".first",
             { x: 82 * (val - successInd) },
-            { type: "spring", duration: 2 }
+            { type: "tween", duration: 1 }
           );
           animate(
             ".second",
             { x: -82 * (val - successInd) },
-            { type: "spring", duration: 2 }
+            { type: "tween", duration: 1 }
           );
           setTimeout(() => {
             setArray([...newArr]);
@@ -52,7 +52,7 @@ export default function SelectionSortAnimation({ arr, order }) {
               ];
             });
             setHang(false);
-          }, 2000);
+          }, 1000);
         } else {
           setArray([...newArr]);
           const successIndProxy = successInd;

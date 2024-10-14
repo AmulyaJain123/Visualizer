@@ -29,135 +29,139 @@ import Prims from "./pages/Prims";
 import Kruskal from "./pages/Kruskal";
 import BellmanFord from "./pages/BellmanFord";
 import FloydWarshall from "./pages/FloydWarshall";
+import PageWrapper from "./pages/PageWrapper";
+import NotFound from "./pages/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "",
     element: <Wrapper />,
+    errorElement: <NotFound />,
     children: [
       {
         path: "",
-        element: <Home />,
-      },
-      {
-        path: "sorting",
-        element: <Sorting />,
+        element: <PageWrapper />,
         children: [
           {
-            path: "bubble",
-            element: <BubbleSort />,
+            path: "",
+            element: <Home />,
           },
           {
-            path: "insertion",
-            element: <InsertionSort />,
+            path: "sorting",
+            children: [
+              {
+                path: "bubble",
+                element: <BubbleSort />,
+              },
+              {
+                path: "insertion",
+                element: <InsertionSort />,
+              },
+              {
+                path: "selection",
+                element: <SelectionSort />,
+              },
+              {
+                path: "counting",
+                element: <CountingSort />,
+              },
+              {
+                path: "merge",
+                element: <MergeSort />,
+              },
+              {
+                path: "quick",
+                element: <QuickSort />,
+              },
+              {
+                path: "bucket",
+                element: <BucketSort />,
+              },
+              {
+                path: "radix",
+                element: <RadixSort />,
+              },
+            ],
           },
           {
-            path: "selection",
-            element: <SelectionSort />,
+            path: "search",
+            children: [
+              {
+                path: "linear",
+                element: <LinearSearch />,
+              },
+              {
+                path: "binary",
+                element: <BinarySearch />,
+              },
+            ],
           },
           {
-            path: "counting",
-            element: <CountingSort />,
+            path: "tree",
+            children: [
+              {
+                path: "binary_tree",
+                element: <BinaryTree />,
+              },
+              {
+                path: "binary_search_tree",
+                element: <BinarySearchTree />,
+              },
+              {
+                path: "heap",
+                element: <Heap />,
+              },
+              {
+                path: "heap_sort",
+                element: <HeapSort />,
+              },
+            ],
           },
           {
-            path: "merge",
-            element: <MergeSort />,
+            path: "stacksnqueue",
+            children: [
+              {
+                path: "stacks",
+                element: <Stacks />,
+              },
+              {
+                path: "queue",
+                element: <Queue />,
+              },
+            ],
           },
           {
-            path: "quick",
-            element: <QuickSort />,
-          },
-          {
-            path: "bucket",
-            element: <BucketSort />,
-          },
-          {
-            path: "radix",
-            element: <RadixSort />,
-          },
-        ],
-      },
-      {
-        path: "search",
-        element: <Search />,
-        children: [
-          {
-            path: "linear",
-            element: <LinearSearch />,
-          },
-          {
-            path: "binary",
-            element: <BinarySearch />,
-          },
-        ],
-      },
-      {
-        path: "tree",
-        element: <BST />,
-        children: [
-          {
-            path: "binary_tree",
-            element: <BinaryTree />,
-          },
-          {
-            path: "binary_search_tree",
-            element: <BinarySearchTree />,
-          },
-          {
-            path: "heap",
-            element: <Heap />,
-          },
-          {
-            path: "heap_sort",
-            element: <HeapSort />,
-          },
-        ],
-      },
-      {
-        path: "stacksnqueue",
-        element: <StacksNQueue />,
-        children: [
-          {
-            path: "stacks",
-            element: <Stacks />,
-          },
-          {
-            path: "queue",
-            element: <Queue />,
-          },
-        ],
-      },
-      {
-        path: "graphs",
-        element: <Graphs />,
-        children: [
-          {
-            path: "graph",
-            element: <Graph />,
-          },
-          {
-            path: "bfsdfs",
-            element: <BSFNDFS />,
-          },
-          {
-            path: "dijkstra",
-            element: <Dijkstra />,
-          },
-          {
-            path: "prims",
-            element: <Prims />,
-          },
-          {
-            path: "kruskal",
-            element: <Kruskal />,
-          },
-          {
-            path: "bellman",
-            element: <BellmanFord />,
-          },
-          {
-            path: "floyd",
-            element: <FloydWarshall />,
+            path: "graphs",
+            children: [
+              {
+                path: "graph",
+                element: <Graph />,
+              },
+              {
+                path: "bfsdfs",
+                element: <BSFNDFS />,
+              },
+              {
+                path: "dijkstra",
+                element: <Dijkstra />,
+              },
+              {
+                path: "prims",
+                element: <Prims />,
+              },
+              {
+                path: "kruskal",
+                element: <Kruskal />,
+              },
+              {
+                path: "bellman",
+                element: <BellmanFord />,
+              },
+              {
+                path: "floyd",
+                element: <FloydWarshall />,
+              },
+            ],
           },
         ],
       },

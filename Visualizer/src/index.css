@@ -39,3 +39,19 @@
   background: #888;
   border-radius: 30px;
 }
+
+.searchTile:hover {
+  background-color: #e4e4e7;
+}
+
+@media (min-width: 1700px) {
+  .warning {
+    display: none;
+  }
+}
+
+@media (max-width: 1700px) {
+  .confirm {
+    display: none;
+  }
+}

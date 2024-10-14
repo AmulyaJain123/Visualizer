@@ -23,8 +23,8 @@ export default function InsertionSortAnimation({ arr, order }) {
         const temp = newArr[indProxy];
         newArr[indProxy] = newArr[indProxy - 1];
         newArr[indProxy - 1] = temp;
-        animate(".first", { x: 82 }, { type: "spring", duration: 2 });
-        animate(".second", { x: -82 }, { type: "spring", duration: 2 });
+        animate(".first", { x: 82 }, { type: "tween", duration: 1 });
+        animate(".second", { x: -82 }, { type: "tween", duration: 1 });
         setTimeout(() => {
           let newIndex = ind;
           let newSuccessIndex = successInd;
@@ -36,7 +36,7 @@ export default function InsertionSortAnimation({ arr, order }) {
           }
 
           if (indProxy === 1) {
-            animate(".divider", { x: 82 }, { type: "tween", duration: 0.7 });
+            animate(".divider", { x: 82 }, { type: "tween", duration: 0.5 });
             setTimeout(() => {
               setSuccessInd((p) => p + 1);
               setInd(successIndProxy + 2);
@@ -52,7 +52,7 @@ export default function InsertionSortAnimation({ arr, order }) {
                 ];
               });
               setHang(false);
-            }, 700);
+            }, 500);
           } else {
             setInd((p) => p - 1);
             setArray([...newArr]);
@@ -68,7 +68,7 @@ export default function InsertionSortAnimation({ arr, order }) {
             });
             setHang(false);
           }
-        }, 2000);
+        }, 1000);
       } else if (order === "desc" && array[ind] > array[ind - 1]) {
         const indProxy = ind;
         const successIndProxy = successInd;
@@ -76,8 +76,8 @@ export default function InsertionSortAnimation({ arr, order }) {
         const temp = newArr[indProxy];
         newArr[indProxy] = newArr[indProxy - 1];
         newArr[indProxy - 1] = temp;
-        animate(".first", { x: 82 }, { type: "spring", duration: 2 });
-        animate(".second", { x: -82 }, { type: "spring", duration: 2 });
+        animate(".first", { x: 82 }, { type: "tween", duration: 1 });
+        animate(".second", { x: -82 }, { type: "tween", duration: 1 });
         setTimeout(() => {
           let newIndex = ind;
           let newSuccessIndex = successInd;
@@ -89,7 +89,7 @@ export default function InsertionSortAnimation({ arr, order }) {
           }
 
           if (indProxy === 1) {
-            animate(".divider", { x: 82 }, { type: "tween", duration: 0.7 });
+            animate(".divider", { x: 82 }, { type: "tween", duration: 0.5 });
             setTimeout(() => {
               setSuccessInd((p) => p + 1);
               setInd(successIndProxy + 2);
@@ -105,7 +105,7 @@ export default function InsertionSortAnimation({ arr, order }) {
                 ];
               });
               setHang(false);
-            }, 700);
+            }, 500);
           } else {
             setInd((p) => p - 1);
             setArray([...newArr]);
@@ -121,10 +121,10 @@ export default function InsertionSortAnimation({ arr, order }) {
             });
             setHang(false);
           }
-        }, 2000);
+        }, 1000);
       } else {
         const successIndProxy = successInd;
-        animate(".divider", { x: 82 }, { type: "tween", duration: 0.7 });
+        animate(".divider", { x: 82 }, { type: "tween", duration: 0.5 });
         setTimeout(() => {
           setSuccessInd((p) => p + 1);
           setInd(successIndProxy + 2);
@@ -139,7 +139,7 @@ export default function InsertionSortAnimation({ arr, order }) {
             ];
           });
           setHang(false);
-        }, 700);
+        }, 500);
       }
     }, 0);
   }

@@ -64,6 +64,9 @@ export default function BinarySearch() {
       }
       str = str.slice(count);
       let integer = parseInt(num);
+      if (integer < 0 || integer > 1000) {
+        return null;
+      }
       arr.push(integer);
     }
     if (arr.length > 10 || arr.length === 0) {
@@ -94,7 +97,7 @@ export default function BinarySearch() {
 
   return (
     <>
-      <div className="flex flex-col w-full py-16 pt-12 px-8 h-full">
+      <div className="flex flex-col w-full py-16 pt-12 px-8 h-full mb-[200px]">
         <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-12">
           Binary Search
         </h1>

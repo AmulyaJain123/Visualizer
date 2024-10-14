@@ -20,8 +20,8 @@ export default function BubbleSortAnimation({ arr, order }) {
           (order === "desc" && array[ind] < array[ind + 1])
         ) {
           // setHang(true);
-          animate(".first", { x: 82 }, { type: "spring", duration: 2 });
-          animate(".second", { x: -82 }, { type: "spring", duration: 2 });
+          animate(".first", { x: 82 }, { type: "tween", duration: 1 });
+          animate(".second", { x: -82 }, { type: "tween", duration: 1 });
           setTimeout(() => {
             if (order === "desc" && array[ind] < array[ind + 1]) {
               let newArr = [...array];
@@ -51,7 +51,7 @@ export default function BubbleSortAnimation({ arr, order }) {
               return (ind + 1) % (successInd - 1);
             });
             setHang(false);
-          }, 2000);
+          }, 1000);
         } else {
           if (ind + 2 === successInd) {
             if (successInd === 2) {

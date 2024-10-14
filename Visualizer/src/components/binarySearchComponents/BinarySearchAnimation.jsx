@@ -61,11 +61,7 @@ export default function BinarySearchAnimation({ arr, node }) {
           if (array[indP] > node) {
             console.log("rger");
             const value = -82 * (high - indP + 1);
-            animate(
-              ".high",
-              { x: [0, value] },
-              { type: "spring", duration: 2 }
-            );
+            animate(".high", { x: [0, value] }, { type: "tween", duration: 1 });
             setTimeout(() => {
               setHigh(indP - 1);
               setHistory((p) => {
@@ -79,10 +75,10 @@ export default function BinarySearchAnimation({ arr, node }) {
                 ];
               });
               setHang(false);
-            }, 2000);
+            }, 1000);
           } else {
             const value = 82 * (indP + 1 - low);
-            animate(".low", { x: [0, value] }, { type: "spring", duration: 2 });
+            animate(".low", { x: [0, value] }, { type: "tween", duration: 1 });
             setTimeout(() => {
               setLow(indP + 1);
               setHistory((p) => {
@@ -96,7 +92,7 @@ export default function BinarySearchAnimation({ arr, node }) {
                 ];
               });
               setHang(false);
-            }, 2000);
+            }, 1000);
           }
         }, 0);
       }

@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
+import github from "../assets/githubFooter.png";
+import linkedin from "../assets/linkedinFooter.png";
+
+const col1 = "#c08552";
+const col2 = "#f3e9dc";
 
 const Tile = styled.div`
-  background-color: ${(props) =>
-    props.$status == "true" ? "#ff87ab" : "#fadde1"};
-  color: ${(props) => (props.$status == "true" ? "#fadde1" : "#ff87ab")};
+  background-color: ${(props) => (props.$status == "true" ? col1 : col2)};
+  color: ${(props) => (props.$status == "true" ? col2 : col1)};
 
   &:hover {
-    background-color: ${(props) =>
-      props.$status == "true" ? "#ff87ab" : "#fff"};
+    background-color: ${(props) => (props.$status == "true" ? col1 : "#fff")};
   }
 `;
 
@@ -45,9 +48,6 @@ export default function SideMenu() {
   const kruskal = location.pathname == "/graphs/kruskal";
   const bellman = location.pathname == "/graphs/bellman";
   const floyd = location.pathname == "/graphs/floyd";
-
-  const col1 = "#ff87ab";
-  const col2 = "#fadde1";
 
   const tiles = [
     {
@@ -199,7 +199,7 @@ export default function SideMenu() {
           {/* <div className="text-center flex flex-col uppercase font-bold text-lg">
             Navigation
           </div> */}
-          <div className="flex flex-col mt-4 border-y-2 w-[150px] justify-center divide-y-2 divide-[#ff87ab] border-[#ff87ab]">
+          <div className="flex flex-col mt-4 border-y-2 w-[150px] justify-center divide-y-2 divide-[#c08552] border-[#c08552]">
             <Link to={"/"}>
               <Tile
                 className="text-center py-1"
@@ -215,7 +215,7 @@ export default function SideMenu() {
                 <header className="font-semibold uppercase text-center text-sm py-1">
                   {i.name}
                 </header>
-                <div className="flex flex-col border-y-2 w-[150px] justify-center divide-y-2 divide-[#ff87ab] border-[#ff87ab]">
+                <div className="flex flex-col border-y-2 w-[150px] justify-center divide-y-2 divide-[#c08552] border-[#c08552]">
                   {i.children.map((j) => {
                     return (
                       <Link key={j.name} to={j.path}>
@@ -233,8 +233,16 @@ export default function SideMenu() {
             );
           })}
         </div>
-        <div className="h-[50px] border-t-2 mt-8 py-2 border-neutral-400 flex justify-center items-center w-full ">
-          <span className="text-xs">
+        <div className=" flex-col border-t-2 mt-8 py-4 border-neutral-400 flex justify-center items-center w-full ">
+          <div className="flex gap-x-4 my-3">
+            <a href="">
+              <img src={github} className="w-[20px]" alt="" />
+            </a>
+            <a href="">
+              <img src={linkedin} className="w-[20px]" alt="" />
+            </a>
+          </div>
+          <span className="text-sm">
             Uicons by{" "}
             <a
               className="underline underline-offset-2"
