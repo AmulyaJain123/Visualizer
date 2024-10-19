@@ -27,8 +27,6 @@ export default function SideMenu() {
   const selectionSort = location.pathname === "/sorting/selection";
   const countingSort = location.pathname === "/sorting/counting";
   const mergeSort = location.pathname === "/sorting/merge";
-  const bucketSort = location.pathname === "/sorting/bucket";
-  const radixSort = location.pathname === "/sorting/radix";
   const quickSort = location.pathname === "/sorting/quick";
 
   const linearSearch = location.pathname === "/search/linear";
@@ -83,16 +81,6 @@ export default function SideMenu() {
           name: "Quick Sort",
           path: "/sorting/quick",
           status: quickSort,
-        },
-        {
-          name: "Bucket Sort",
-          path: "/sorting/bucket",
-          status: bucketSort,
-        },
-        {
-          name: "Radix Sort",
-          path: "/sorting/radix",
-          status: radixSort,
         },
       ],
     },

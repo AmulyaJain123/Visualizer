@@ -64,14 +64,6 @@ const dictionary = [
     path: "/sorting/quick",
   },
   {
-    name: "Bucket Sort",
-    path: "/sorting/bucket",
-  },
-  {
-    name: "Radix Sort",
-    path: "/sorting/radix",
-  },
-  {
     name: "Linear Search",
     path: "/search/linear",
   },

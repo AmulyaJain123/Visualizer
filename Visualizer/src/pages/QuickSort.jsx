@@ -116,7 +116,7 @@ export default function QuickSort() {
           </div>
         </div>
 
-        <div className="w-full h-full mt-8 flex justify-center items-center">
+        <div className="w-full h-full mt-8 flex justify-center ">
           {arr != null && arr != undefined && ready ? (
             <QuickSortAnimation arr={arr} />
           ) : null}

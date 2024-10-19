@@ -67,12 +67,6 @@ export default function Home() {
               <span className="px-3 rounded-lg bg-neutral-200  text-center text-lg">
                 Quick Sort
               </span>
-              <span className="px-3 rounded-lg bg-neutral-200  text-center text-lg">
-                Bucket Sort
-              </span>
-              <span className="px-3 rounded-lg bg-neutral-200  text-center text-lg">
-                Radix Sort
-              </span>
             </div>
           </div>
         </div>
