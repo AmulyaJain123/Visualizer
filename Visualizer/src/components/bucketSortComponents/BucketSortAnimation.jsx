@@ -306,6 +306,7 @@ export default function BucketSortAnimation({ arr, order }) {
             successInd={successInd}
           />
         ) : null}
+
         <div className="flex mx-auto">
           {array.map((i, index) => {
             return (

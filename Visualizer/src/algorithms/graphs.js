@@ -156,6 +156,7 @@ export function dfsTimeline(lst) {
     const visited = new Array(lst[lst.length - 1][0] + 1).fill(false);
     const fullVisit = [];
     const stack = [];
+    const callStack = [];
     const dfs = [];
     for (let i = 1; i <= lst[lst.length - 1][0]; ++i) {
         if (visited[i]) {
@@ -166,24 +167,27 @@ export function dfsTimeline(lst) {
 
         function solver(stack, visited) {
             const top = stack.shift();
+            callStack.push(`dfs(${top})`);
             visited[top] = true;
             dfs.push(top);
-            ans.push({ type: "start", highlight: [top], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...dfs] });
+            ans.push({ type: "start", callstack: [...callStack], highlight: [top], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...dfs] });
             for (let j of lst[top - 1][1]) {
                 if (visited[j] === false) {
                     stack.unshift(j);
-                    ans.push({ type: "exploration", highlight: [top], explore: [j], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...dfs] });
+                    ans.push({ type: "exploration", callstack: [...callStack], highlight: [top], explore: [j], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...dfs] });
                     solver(stack, visited);
                 }
             }
             fullVisit.push(top);
-            ans.push({ type: "fullVisit", highlight: [top], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...dfs] });
+            ans.push({ type: "fullVisit", callstack: [...callStack], highlight: [top], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...dfs] });
+            callStack.pop();
+
         }
 
         solver(stack, visited);
 
     }
-    ans.push({ type: "success", visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...dfs] });
+    ans.push({ type: "success", callstack: [...callStack], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...dfs] });
     console.log(ans);
     return ans;
 
@@ -300,9 +304,9 @@ export function primsTimeline(lst, edges, start) {
         if (!node) {
             break;
         }
-        ans.push({ mst: [...mst], key: [...key], highlight: node, edges: [...getMst(key, parents, mst)] })
+        ans.push({ mst: [...mst], parents: [...parents], key: [...key], highlight: node, edges: [...getMst(key, parents, mst)] })
         mst[node] = true;
-        ans.push({ mst: [...mst], key: [...key], highlight: node, edges: [...getMst(key, parents, mst)] })
+        ans.push({ mst: [...mst], parents: [...parents], key: [...key], highlight: node, edges: [...getMst(key, parents, mst)] })
 
         for (let i of lst[node - 1][1]) {
             if (mst[i]) {
@@ -310,15 +314,17 @@ export function primsTimeline(lst, edges, start) {
             }
             const edge = [node, i];
             const weight = getWeight(edges, edge);
-            ans.push({ mst: [...mst], key: [...key], highlight: node, neighbour: i, edges: [...getMst(key, parents, mst)] })
             if (mst[i] === false && key[i] > weight) {
                 const prevKey = key[i];
+                ans.push({ mst: [...mst], parents: [...parents], key: [...key], highlight: node, neighbour: i, edges: [...getMst(key, parents, mst)], type: "change", msg: `E [${node},${i}] < ${prevKey}` });
                 key[i] = weight;
                 parents[i] = node;
-                ans.push({ mst: [...mst], key: [...key], highlight: node, neighbour: i, edges: [...getMst(key, parents, mst)], type: "change", msg: `E [${node},${i}] < ${prevKey}` });
+                ans.push({ mst: [...mst], parents: [...parents], key: [...key], highlight: node, neighbour: i, edges: [...getMst(key, parents, mst)] })
+
             } else {
                 const prevKey = key[i];
-                ans.push({ mst: [...mst], key: [...key], highlight: node, neighbour: i, edges: [...getMst(key, parents, mst)], type: "noChange", msg: `E [${node},${i}] >= ${prevKey}` });
+                ans.push({ mst: [...mst], parents: [...parents], key: [...key], highlight: node, neighbour: i, edges: [...getMst(key, parents, mst)], type: "noChange", msg: `E [${node},${i}] >= ${prevKey}` });
+                ans.push({ mst: [...mst], parents: [...parents], key: [...key], highlight: node, neighbour: i, edges: [...getMst(key, parents, mst)] })
 
             }
         }
@@ -506,9 +512,8 @@ export function bellmanFordTimeline(lst, edges, start) {
             const second = j[1];
             const weight = j[2];
 
-            if (key[first] + weight < key[second]) {
+            if (key[first] + weight < key[second] && !((key[first] + weight > 2000) && key[second] > 2000)) {
                 ans.push({ history: dc(history), edges: dc(edges), currEdge: index, highlight: [first, second], type: "change", msg: `${key[first] >= 3000 ? "∞" : key[first]} + ${weight}  -->  ${key[first] + weight >= 3000 ? "∞" : key[first] + weight} < ${key[second] >= 3000 ? "∞" : key[second]}` });
-
                 key[second] = key[first] + weight;
                 ans.push({ history: dc(history), edges: dc(edges), currEdge: index, });
                 stat = true;

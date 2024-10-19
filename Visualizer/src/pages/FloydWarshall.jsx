@@ -230,6 +230,7 @@ export default function FloydWarshall() {
 
         {timeline &&
         ind != null &&
+        algoName === "Floyd Warshall" &&
         (timeline[ind].type === "change" ||
           timeline[ind].type === "noChange") ? (
           <div className="w-fit mt-8 mx-auto text-lg relative min-h-[40px] border-2 border-black px-6 flex items-center font-medium tracking-wide">
@@ -321,7 +322,10 @@ export default function FloydWarshall() {
           </div>
 
           <div className="w-fit h-full">
-            {timeline != null && ind != null && timeline[ind].matrix ? (
+            {algoName === "Floyd Warshall" &&
+            timeline != null &&
+            ind != null &&
+            timeline[ind].matrix ? (
               <Table></Table>
             ) : null}
           </div>

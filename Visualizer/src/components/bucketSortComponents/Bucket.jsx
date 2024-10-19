@@ -25,8 +25,13 @@ export default function Bucket({ array, low, high, active, success, ind }) {
           );
         })}
       </div>
-      <span className="absolute text-nowrap text-sm font-semibold bottom-[-10px] right-[50%] translate-x-[50%]">
-        {`${low} - ${high}`}
+      <span className="absolute flex text-nowrap rounded-lg bg-[#caf0f8] px-3 py-1 text-sm font-semibold bottom-[-20px] right-[50%] translate-x-[50%]">
+        <span>{low}</span>
+        <span className="flex flex-col mx-1 w-[20px]">
+          <span className="flex-grow border-b border-black"></span>
+          <span className="flex-grow border-t border-black"></span>
+        </span>
+        <span>{high}</span>
       </span>
       {active ? (
         <img

@@ -20,6 +20,7 @@ export default function SideMenu() {
   const location = useLocation();
 
   const home = location.pathname === "/";
+  const gallery = location.pathname === "/gallery";
 
   const bubbleSort = location.pathname === "/sorting/bubble";
   const insertionSort = location.pathname === "/sorting/insertion";
@@ -206,6 +207,14 @@ export default function SideMenu() {
                 $status={home ? "true" : "false"}
               >
                 Home
+              </Tile>
+            </Link>
+            <Link to={"/gallery"}>
+              <Tile
+                className="text-center py-1"
+                $status={gallery ? "true" : "false"}
+              >
+                Gallery
               </Tile>
             </Link>
           </div>

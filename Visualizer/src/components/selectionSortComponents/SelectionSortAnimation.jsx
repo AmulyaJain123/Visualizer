@@ -34,6 +34,11 @@ export default function SelectionSortAnimation({ arr, order }) {
             { x: -82 * (val - successInd) },
             { type: "tween", duration: 1 }
           );
+          animate(
+            ".first img",
+            { opacity: [0, 0] },
+            { type: "tween", duration: 1 }
+          );
           setTimeout(() => {
             setArray([...newArr]);
             const successIndProxy = successInd;

@@ -6,6 +6,7 @@ import { options } from "../algorithms/options";
 import right from "../assets/next.png";
 import { bfsTimeline, dfsTimeline } from "../algorithms/graphs";
 import next from "../assets/next.png";
+import down from "../assets/down-arrow.png";
 
 const types = [
   "undirected",
@@ -263,13 +264,26 @@ export default function BSFNDFS() {
         ) : null}
 
         {timeline != null ? (
-          <>
+          <div className="relative">
             {ind != null && timeline[ind] && timeline[ind].bfs ? (
-              <div className="flex border-2 border-[#0077b6] divide-x-2 h-fit mx-auto mt-16 divide-[#0077b6]">
+              <div className="flex  border-2 border-[#0077b6] divide-x-2 h-fit w-fit mx-auto mt-16 divide-[#0077b6]">
                 {timeline[ind].bfs.map((i) => {
                   return (
-                    <div className="h-[40px] w-[40px] flex justify-center bg-[#caf0f8] items-center text-[#0077b6] font-semibold">
+                    <div className="h-[40px] relative w-[40px] flex justify-center bg-[#caf0f8] items-center text-[#0077b6] font-semibold">
                       {i}
+                      {ind != null &&
+                      timeline &&
+                      algoName === "BFS" &&
+                      timeline[ind].highlight &&
+                      timeline[ind].highlight[0] === i ? (
+                        <div className="absolute top-[-10px] translate-y-[-100%] right-[50%] translate-x-[50%]">
+                          <img
+                            src={down}
+                            className="w-[20px] h-[20px]"
+                            alt=""
+                          />
+                        </div>
+                      ) : null}
                     </div>
                   );
                 })}
@@ -277,7 +291,37 @@ export default function BSFNDFS() {
             ) : (
               <div className="min-h-[104px] w-[20px]"></div>
             )}
-          </>
+
+            {ind != null &&
+            timeline &&
+            algoName === "DFS" &&
+            ind != timeline.length - 1 &&
+            timeline[ind].callstack ? (
+              <div className="absolute right-0 top-16">
+                <div className=" border-2 w-[80px] border-black divide-y-2 divide-black">
+                  {timeline[ind].callstack.toReversed().map((i, index) => {
+                    return (
+                      <div className="font-medium relative w-full flex justify-center items-center h-[30px]">
+                        {i}
+                        {index === 0 ? (
+                          <div className="absolute left-[-5px] translate-x-[-100%] top-[50%] translate-y-[-50%]">
+                            <img
+                              src={down}
+                              className="rotate-[-90deg] w-[20px] h-[20px]"
+                              alt=""
+                            />
+                          </div>
+                        ) : null}
+                      </div>
+                    );
+                  })}
+                </div>
+                <span className="uppercase text-lg font-semibold absolute top-[-40px] right-[50%] translate-x-[50%]">
+                  Callstack
+                </span>
+              </div>
+            ) : null}
+          </div>
         ) : null}
 
         <div

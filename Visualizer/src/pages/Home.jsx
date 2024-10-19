@@ -21,7 +21,7 @@ export default function Home() {
           ALGOTRACE
         </span>
       </h1>
-      <p className="mt-8 text-lg px-8 text-center">
+      <p className="mt-8 text-lg px-8 max-w-[1500px] text-center">
         Hey there! Welcome to AlgoTrace. I know how tough it can be to wrap your
         head around algorithms just by reading theory or staring at code. <br />{" "}
         That’s why I created AlgoTrace – a fun, visual way to actually see how
@@ -167,11 +167,14 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col mt-16">
+      <div className="flex flex-col mt-12">
         <h1 className="font-semibold text-3xl text-center">
           You can find me here
         </h1>
-
+        <p className="text-lg mt-8">
+          Your Feedback and Suggestions are higly valuable to me. Please feel
+          free to contact me anytime on any of the following platforms:
+        </p>
         <div className="flex justify-center mt-12 gap-16">
           <a
             target="_blank"
@@ -184,6 +187,8 @@ export default function Home() {
           </a>
         </div>
       </div>
+
+      <div className="flex flex-col mt-16"></div>
 
       <div className="min-w-[400px] min-h-[200px]"></div>
     </div>

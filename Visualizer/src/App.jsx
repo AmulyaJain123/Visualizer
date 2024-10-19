@@ -31,6 +31,8 @@ import BellmanFord from "./pages/BellmanFord";
 import FloydWarshall from "./pages/FloydWarshall";
 import PageWrapper from "./pages/PageWrapper";
 import NotFound from "./pages/NotFound";
+import Gallery from "./pages/Gallery";
+import Error from "./pages/Error";
 
 const router = createBrowserRouter([
   {
@@ -41,10 +43,15 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <PageWrapper />,
+        errorElement: <Error />,
         children: [
           {
             path: "",
             element: <Home />,
+          },
+          {
+            path: "gallery",
+            element: <Gallery />,
           },
           {
             path: "sorting",

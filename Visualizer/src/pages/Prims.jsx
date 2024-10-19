@@ -317,9 +317,33 @@ export default function Prims() {
         <div className="w-full h-full mt-24 space-x-20 justify-center flex mb-8">
           <div
             style={{ minHeight: `${list ? list.length * 80 : 0}px` }}
-            className="w-full h-full"
+            className="w-[50%]  h-full"
           >
             {edgesArr != null && edgesArr.length != 0 ? <Fig></Fig> : null}
+          </div>
+          <div className="w-fit">
+            {ind != null &&
+            timeline &&
+            timeline[ind] &&
+            timeline[ind].parents ? (
+              <div className="relative">
+                <div className="flex flex-col  border-2 border-black divide-y-2 divide-black w-[60px]">
+                  {timeline[ind].parents.map((i, index) => {
+                    return (
+                      <div className="h-[30px] uppercase font-medium flex justify-center items-center w-full relative">
+                        {i === -1 ? "NULL" : i}
+                        <span className="absolute left-[-10px] translate-x-[-100%] font-bold top-[50%] translate-y-[-50%]">
+                          {index}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+                <span className="absolute top-[-10px] text-lg font-semibold translate-y-[-100%] right-[50%] translate-x-[50%] uppercase">
+                  parents
+                </span>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
