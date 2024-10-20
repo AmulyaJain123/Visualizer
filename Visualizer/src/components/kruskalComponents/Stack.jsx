@@ -29,7 +29,10 @@ export default function Stack() {
           timeline[ind].weightedEdges.map((i, index) => {
             const status = isThere(timeline[ind].mst, i);
             return (
-              <div className="h-[35px] font-semibold relative flex justify-center items-center">
+              <div
+                key={index}
+                className="h-[35px] font-semibold relative flex justify-center items-center"
+              >
                 {`E (${i[0]},${i[1]},${i[2]})`}
                 {index === timeline[ind].currEdge &&
                 ind < timeline.length - 1 ? (

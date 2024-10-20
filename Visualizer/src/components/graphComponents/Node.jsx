@@ -12,9 +12,10 @@ export default function Node({ val, x, y, i }) {
       {val}
       {graphType % 2 === 1 ? (
         <>
-          {i.angle.map((deg) => {
+          {i.angle.map((deg, kom) => {
             return (
               <div
+                key={kom}
                 style={{
                   transform: `rotate(${
                     deg.length === undefined ? deg : deg[2]

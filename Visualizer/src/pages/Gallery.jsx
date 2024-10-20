@@ -59,11 +59,17 @@ export default function Gallery() {
         <h1 className="text-center text-[35px] tracking-wide mx-auto  w-fit  text-[#9c6644] rounded-xl font-extrabold mb-16">
           Gallery Wall
         </h1>
-        <p className="mx-auto text-lg max-w-[1200px] text-center mb-12">
+        <p className="mx-auto text-lg max-w-[1200px] text-center">
           Welcome to the AlgoTrace Gallery! Here, you'll find a collection of
           snapshots showcasing different algorithms in action. <br /> Each image
           represents the result of an algorithm running on a sample input,
           giving you a quick glimpse into what AlgoTrace has to offer.
+        </p>
+        <p className="mb-12 mt-4 text-lg text-center">
+          {" "}
+          This was the last part of AlgoTrace and it took{" "}
+          <span className="text-green-700">64 Days</span> to get here. <br />{" "}
+          Enjoy the View
         </p>
         <div className="p-4 bg-white ">
           <div className="flex  flex-col w-[1300px] overflow-clip relative h-[7000px] p-6 px-12 shadow-lg gradient    ">

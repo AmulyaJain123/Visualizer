@@ -316,7 +316,10 @@ export default function Dijkstra() {
           </div>
         ) : null}
 
-        {timeline && ind != null && timeline[ind].msg ? (
+        {timeline &&
+        ind != null &&
+        algoName === "Dijkstra" &&
+        timeline[ind].msg ? (
           <div className="w-fit mt-8 mx-auto text-lg relative min-h-[40px] border-2 border-black px-6 flex items-center font-medium tracking-wide">
             {timeline[ind].msg.replaceAll("4000", "∞").split("-->")[0]}
             <span className="mx-4">
@@ -345,7 +348,10 @@ export default function Dijkstra() {
           </div>
 
           <div className="w-fit h-full">
-            {timeline != null && ind != null && timeline[ind].table ? (
+            {timeline != null &&
+            algoName === "Dijkstra" &&
+            ind != null &&
+            timeline[ind].table ? (
               <Table></Table>
             ) : null}
           </div>

@@ -10,10 +10,11 @@ export default function Table() {
       <div className="flex flex-col">
         {timeline[ind].matrix.map((i, ind1) => {
           return (
-            <div className="flex">
+            <div key={ind1} className="flex">
               {i.map((j, ind2) => {
                 return (
                   <div
+                    key={ind2}
                     style={{
                       borderTop:
                         ind1 != 0 && ind2 != 0 ? "2px solid black" : "",

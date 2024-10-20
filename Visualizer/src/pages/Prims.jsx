@@ -297,7 +297,10 @@ export default function Prims() {
           </div>
         ) : null}
 
-        {timeline && ind != null && timeline[ind].msg ? (
+        {timeline &&
+        ind != null &&
+        algoName === "Prims" &&
+        timeline[ind].msg ? (
           <div className="w-fit mt-8 mx-auto text-lg relative min-h-[40px] border-2 border-black px-6 flex items-center font-medium tracking-wide">
             {timeline[ind].msg.replaceAll("4000", "∞")}
 
@@ -324,13 +327,17 @@ export default function Prims() {
           <div className="w-fit">
             {ind != null &&
             timeline &&
+            algoName === "Prims" &&
             timeline[ind] &&
             timeline[ind].parents ? (
               <div className="relative">
                 <div className="flex flex-col  border-2 border-black divide-y-2 divide-black w-[60px]">
                   {timeline[ind].parents.map((i, index) => {
                     return (
-                      <div className="h-[30px] uppercase font-medium flex justify-center items-center w-full relative">
+                      <div
+                        key={index}
+                        className="h-[30px] uppercase font-medium flex justify-center items-center w-full relative"
+                      >
                         {i === -1 ? "NULL" : i}
                         <span className="absolute left-[-10px] translate-x-[-100%] font-bold top-[50%] translate-y-[-50%]">
                           {index}

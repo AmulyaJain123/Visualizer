@@ -51,6 +51,9 @@
 }
 
 @media (max-width: 1700px) {
+  .websiteWrapper {
+    display: none;
+  }
   .confirm {
     display: none;
   }
@@ -62,11 +65,80 @@
   animation: gradient-animation 6s ease infinite;
 }
 
+.placehold {
+  background-image: url(./assets/placeholder.svg);
+  background-position: center;
+}
+
 .wall {
   /* background-image: url("./assets/prplebg2.gif");
   background-position: center;
   background-repeat: repeat; */
   background-color: #e5e5e5;
+}
+
+.responsiveDialog {
+  font-size: large;
+}
+
+@media (max-width: 1020px) {
+  .responsiveDialog {
+    font-size: medium;
+  }
+  .responsiveDialog h1 {
+    font-size: 25px;
+  }
+  .responsiveDialog img {
+    width: 35px;
+    height: 35px;
+  }
+  .responsiveDialog .dialogBox {
+    width: 400px;
+  }
+}
+
+@media (max-width: 640px) {
+  .responsiveDialog {
+    font-size: small;
+  }
+  .responsiveDialog h1 {
+    font-size: 20px;
+  }
+  .responsiveDialog .para3 {
+    margin-bottom: 15px;
+  }
+  .responsiveDialog img {
+    width: 30px;
+    height: 30px;
+  }
+  .responsiveDialog .dialogBox {
+    width: 300px;
+  }
+}
+
+@media (max-width: 440px) {
+  .responsiveDialog {
+    font-size: small;
+  }
+  .responsiveDialog h1 {
+    font-size: 20px;
+  }
+  .responsiveDialog .para3 {
+    margin-bottom: 15px;
+  }
+  .responsiveDialog img {
+    width: 30px;
+    height: 30px;
+  }
+  .responsiveDialog .dialogBox {
+    width: 200px;
+  }
+  .responsiveDialog .para1 {
+    margin-top: 4px;
+  }
+  .responsiveDialog .para2 {
+    margin-top: 12px;
+  }
 }
 
 @keyframes gradient-animation {

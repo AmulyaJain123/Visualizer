@@ -219,7 +219,10 @@ export default function Kruskal() {
           </div>
         ) : null}
 
-        {timeline && ind != null && timeline[ind].msg ? (
+        {timeline &&
+        ind != null &&
+        algoName === "Kruskal" &&
+        timeline[ind].msg ? (
           <div className="w-fit mt-8 mx-auto text-lg relative min-h-[40px] border-2 border-black px-6 flex items-center font-medium tracking-wide">
             {timeline[ind].msg.replaceAll("4000", "∞")}
 
@@ -245,7 +248,9 @@ export default function Kruskal() {
           </div>
 
           <div className="w-fit h-full">
-            {timeline != null && ind != null ? <Stack></Stack> : null}
+            {timeline != null && ind != null && algoName === "Kruskal" ? (
+              <Stack></Stack>
+            ) : null}
           </div>
         </div>
       </div>

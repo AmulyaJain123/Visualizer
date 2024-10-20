@@ -248,9 +248,12 @@ const DeletionAnimation = forwardRef(function DeletionAnimation(
           </div>
         </div>
         <div className="flex justify-center h-[40px] mt-8 space-x-4">
-          {sortedArr.map((i) => {
+          {sortedArr.map((i, kom) => {
             return (
-              <div className="w-[40px] h-[40px] rounded-full flex justify-center items-center text-white bg-[#4f772d]">
+              <div
+                key={kom}
+                className="w-[40px] h-[40px] rounded-full flex justify-center items-center text-white bg-[#4f772d]"
+              >
                 {i}
               </div>
             );

@@ -17,6 +17,7 @@ export default function Node({ val, x, y, i }) {
           (timeline && ind != null && ind === timeline.length - 1) ||
           (timeline &&
             ind != null &&
+            timeline[ind] &&
             timeline[ind].highlight &&
             (timeline[ind].highlight[0] === val ||
               timeline[ind].highlight[1] === val))
@@ -25,6 +26,7 @@ export default function Node({ val, x, y, i }) {
         outline:
           timeline &&
           ind != null &&
+          timeline[ind] &&
           timeline[ind].highlight &&
           (timeline[ind].highlight[0] === val ||
             timeline[ind].highlight[1] === val)
@@ -36,6 +38,7 @@ export default function Node({ val, x, y, i }) {
             ? "#4f772d"
             : timeline &&
               ind != null &&
+              timeline[ind] &&
               timeline[ind].highlight &&
               (timeline[ind].highlight[0] === val ||
                 timeline[ind].highlight[1] === val)
@@ -46,6 +49,7 @@ export default function Node({ val, x, y, i }) {
             ? "#fff"
             : timeline &&
               ind != null &&
+              timeline[ind] &&
               timeline[ind].highlight &&
               (timeline[ind].highlight[0] === val ||
                 timeline[ind].highlight[1] === val)
@@ -57,9 +61,10 @@ export default function Node({ val, x, y, i }) {
       {val}
       {graphType % 2 === 1 ? (
         <>
-          {i.angle.map((deg) => {
+          {i.angle.map((deg, kom) => {
             return (
               <div
+                key={kom}
                 style={{ transform: `rotate(${deg[2]}deg)` }}
                 className="absolute"
               >
@@ -78,7 +83,10 @@ export default function Node({ val, x, y, i }) {
           })}
         </>
       ) : null}
-      {timeline != null && ind != null && timeline[ind].history ? (
+      {timeline != null &&
+      ind != null &&
+      timeline[ind] &&
+      timeline[ind].history ? (
         <div
           style={{ transform: `rotate(${graph.free[val - 1]}deg)` }}
           className="absolute"

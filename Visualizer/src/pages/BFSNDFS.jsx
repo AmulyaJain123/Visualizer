@@ -137,7 +137,7 @@ export default function BSFNDFS() {
                   onClick={() => {
                     typeClick(-1);
                   }}
-                  className="m-2"
+                  className="m-2 disabled:opacity-40"
                 >
                   <img
                     src={right}
@@ -153,7 +153,7 @@ export default function BSFNDFS() {
                   onClick={() => {
                     typeClick(1);
                   }}
-                  className="m-2"
+                  className="m-2 disabled:opacity-40"
                 >
                   <img src={right} className="w-[30px] h-[30px]" alt="" />
                 </button>
@@ -164,7 +164,7 @@ export default function BSFNDFS() {
                   onClick={() => {
                     keyClick(-1);
                   }}
-                  className="m-2"
+                  className="m-2 disabled:opacity-40"
                 >
                   <img
                     src={right}
@@ -182,7 +182,7 @@ export default function BSFNDFS() {
                   onClick={() => {
                     keyClick(1);
                   }}
-                  className="m-2"
+                  className="m-2 disabled:opacity-40"
                 >
                   <img src={right} className="w-[30px] h-[30px]" alt="" />
                 </button>
@@ -265,11 +265,17 @@ export default function BSFNDFS() {
 
         {timeline != null ? (
           <div className="relative">
-            {ind != null && timeline[ind] && timeline[ind].bfs ? (
+            {ind != null &&
+            (algoName === "BFS" || algoName === "DFS") &&
+            timeline[ind] &&
+            timeline[ind].bfs ? (
               <div className="flex  border-2 border-[#0077b6] divide-x-2 h-fit w-fit mx-auto mt-16 divide-[#0077b6]">
-                {timeline[ind].bfs.map((i) => {
+                {timeline[ind].bfs.map((i, kom) => {
                   return (
-                    <div className="h-[40px] relative w-[40px] flex justify-center bg-[#caf0f8] items-center text-[#0077b6] font-semibold">
+                    <div
+                      key={kom}
+                      className="h-[40px] relative w-[40px] flex justify-center bg-[#caf0f8] items-center text-[#0077b6] font-semibold"
+                    >
                       {i}
                       {ind != null &&
                       timeline &&
@@ -301,7 +307,10 @@ export default function BSFNDFS() {
                 <div className=" border-2 w-[80px] border-black divide-y-2 divide-black">
                   {timeline[ind].callstack.toReversed().map((i, index) => {
                     return (
-                      <div className="font-medium relative w-full flex justify-center items-center h-[30px]">
+                      <div
+                        key={index}
+                        className="font-medium relative w-full flex justify-center items-center h-[30px]"
+                      >
                         {i}
                         {index === 0 ? (
                           <div className="absolute left-[-5px] translate-x-[-100%] top-[50%] translate-y-[-50%]">

@@ -112,15 +112,15 @@ export default function Fig() {
         </svg>
         {graph.coordinates.map((i, ind1) => {
           return (
-            <div className="relative">
+            <div key={ind1} className="relative">
               <Node val={i.val} x={i.x} y={i.y} i={i}></Node>
             </div>
           );
         })}
         {graphType > 1 ? (
           <>
-            {graph.weights.map((i) => {
-              return <Weight val={i.val} x={i.x} y={i.y}></Weight>;
+            {graph.weights.map((i, kom) => {
+              return <Weight key={kom} val={i.val} x={i.x} y={i.y}></Weight>;
             })}
           </>
         ) : null}

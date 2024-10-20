@@ -193,10 +193,11 @@ export default function TopNav() {
                             <h2 className="text-center">No Match Found.</h2>
                           ) : (
                             <div className="flex flex-col divide-y-2 divide-[#000] border-y-2 w-fit mb-8 mx-auto border-[#000]">
-                              {results.map((i) => {
+                              {results.map((i, kom) => {
                                 return (
                                   <Link
                                     to={i.path}
+                                    key={kom}
                                     onClick={() => setFocFalse()}
                                     className="flex justify-center searchTile items-center py-2 w-[170px] mx-auto "
                                   >

@@ -14,9 +14,11 @@ export default function Node({ val, x, y, i }) {
         left: `calc( 50% - 20px + ${x}px )`,
         border:
           (ind != null &&
+            timeline[ind] &&
             timeline[ind].nodes &&
             timeline[ind].nodes.includes(val)) ||
           (ind != null &&
+            timeline[ind] &&
             timeline[ind].highlight &&
             (timeline[ind].highlight[0] === val ||
               timeline[ind].highlight[1] === val))
@@ -24,6 +26,7 @@ export default function Node({ val, x, y, i }) {
             : "0px solid black",
         outline:
           ind != null &&
+          timeline[ind] &&
           timeline[ind].highlight &&
           (timeline[ind].highlight[0] === val ||
             timeline[ind].highlight[1] === val)
@@ -32,10 +35,12 @@ export default function Node({ val, x, y, i }) {
         outlineOffset: "3px",
         backgroundColor:
           ind != null &&
+          timeline[ind] &&
           timeline[ind].nodes &&
           timeline[ind].nodes.includes(val)
             ? "#4f772d"
             : ind != null &&
+              timeline[ind] &&
               timeline[ind].highlight &&
               (timeline[ind].highlight[0] === val ||
                 timeline[ind].highlight[1] === val)
@@ -43,10 +48,12 @@ export default function Node({ val, x, y, i }) {
             : "#0077b6",
         color:
           ind != null &&
+          timeline[ind] &&
           timeline[ind].nodes &&
           timeline[ind].nodes.includes(val)
             ? "#fff"
             : ind != null &&
+              timeline[ind] &&
               timeline[ind].highlight &&
               (timeline[ind].highlight[0] === val ||
                 timeline[ind].highlight[1] === val)
@@ -58,9 +65,10 @@ export default function Node({ val, x, y, i }) {
       {val}
       {graphType % 2 === 1 ? (
         <>
-          {i.angle.map((deg) => {
+          {i.angle.map((deg, kom) => {
             return (
               <div
+                key={kom}
                 style={{ transform: `rotate(${deg}deg)` }}
                 className="absolute"
               >
