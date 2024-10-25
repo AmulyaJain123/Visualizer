@@ -154,7 +154,7 @@ export default function Prims() {
 
   return (
     <>
-      <div className="flex flex-col w-full py-16 pt-12 px-8 h-full mb-[200px]">
+      <div className="flex flex-col  select-none  w-full py-16 pt-12 px-8 h-full mb-[200px]">
         <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-12">
           Prim's Algorithm
         </h1>
@@ -284,13 +284,17 @@ export default function Prims() {
                   disabled={ind === null}
                   className="w-[30px] h-[30px] duration-700 disabled:pointer-events-none disabled:opacity-30 hover:scale-110 flex justify-center items-center rounded-full bg-blue-300 "
                 >
-                  <img src={next} className="w-[50px] rotate-180" alt="" />
+                  <img
+                    src={next}
+                    className="w-[50px] rotate-180 select-none"
+                    alt=""
+                  />
                 </button>
                 <button
                   onClick={forward}
                   className="w-[30px] h-[30px] duration-700 disabled:pointer-events-none disabled:opacity-30 hover:scale-110 flex justify-center items-center rounded-full bg-blue-300 "
                 >
-                  <img src={next} className="w-[50px]" alt="" />
+                  <img src={next} className="w-[50px] select-none" alt="" />
                 </button>
               </>
             )}
@@ -340,7 +344,7 @@ export default function Prims() {
                       >
                         {i === -1 ? "NULL" : i}
                         <span className="absolute left-[-10px] translate-x-[-100%] font-bold top-[50%] translate-y-[-50%]">
-                          {index}
+                          {index + 1}
                         </span>
                       </div>
                     );

@@ -22,6 +22,12 @@ export default function SideMenu() {
   const home = location.pathname === "/";
   const gallery = location.pathname === "/gallery";
 
+  const sorting = location.pathname === "/sorting";
+  const search = location.pathname === "/search";
+  const stacksNQueue = location.pathname === "/stacksnqueue";
+  const tree = location.pathname === "/tree";
+  const graphs = location.pathname === "/graphs";
+
   const bubbleSort = location.pathname === "/sorting/bubble";
   const insertionSort = location.pathname === "/sorting/insertion";
   const selectionSort = location.pathname === "/sorting/selection";
@@ -52,6 +58,11 @@ export default function SideMenu() {
     {
       name: "Sorting",
       children: [
+        {
+          name: "Overview",
+          path: "/sorting",
+          status: sorting,
+        },
         {
           name: "Bubble Sort",
           path: "/sorting/bubble",
@@ -88,6 +99,11 @@ export default function SideMenu() {
       name: "Search",
       children: [
         {
+          name: "Overview",
+          path: "/search",
+          status: search,
+        },
+        {
           name: "Linear Search",
           path: "/search/linear",
           status: linearSearch,
@@ -102,6 +118,11 @@ export default function SideMenu() {
     {
       name: "Trees",
       children: [
+        {
+          name: "Overview",
+          path: "/tree",
+          status: tree,
+        },
         {
           name: "Binary Tree",
           path: "/tree/binary_tree",
@@ -128,6 +149,11 @@ export default function SideMenu() {
       name: "Stacks & Queue",
       children: [
         {
+          name: "Overview",
+          path: "/stacksnqueue",
+          status: stacksNQueue,
+        },
+        {
           name: "Stacks",
           path: "/stacksnqueue/stacks",
           status: stacks,
@@ -142,6 +168,11 @@ export default function SideMenu() {
     {
       name: "Graphs",
       children: [
+        {
+          name: "Overview",
+          path: "/graphs",
+          status: graphs,
+        },
         {
           name: "Graph",
           path: "/graphs/graph",
@@ -212,10 +243,22 @@ export default function SideMenu() {
                 <header className="font-semibold uppercase text-center text-sm py-1">
                   {i.name}
                 </header>
-                <div className="flex flex-col border-y-2 w-[150px] justify-center divide-y-2 divide-[#c08552] border-[#c08552]">
+                <div className="flex flex-col border-b-2 w-[150px] justify-center divide-y-2 divide-[#c08552] border-[#c08552]">
                   {i.children.map((j) => {
                     return (
-                      <Link key={j.name} to={j.path}>
+                      <Link
+                        style={{
+                          marginBottom: j.name === "Overview" ? "8px" : "0px",
+                          fontSize: j.name === "Overview" ? "14px" : "",
+                          textTransform:
+                            j.name === "Overview" ? "uppercase" : "",
+                          letterSpacing: j.name === "Overview" ? "2px" : "",
+                          border:
+                            j.name === "Overview" ? "1px solid #c08552" : "",
+                        }}
+                        key={j.name}
+                        to={j.path}
+                      >
                         <Tile
                           className="text-center py-1"
                           $status={j.status ? "true" : "false"}
@@ -232,10 +275,13 @@ export default function SideMenu() {
         </div>
         <div className=" flex-col border-t-2 mt-8 py-4 border-neutral-400 flex justify-center items-center w-full ">
           <div className="flex gap-x-4 my-3">
-            <a href="">
+            <a target="_blank" href="https://github.com/AmulyaJain123">
               <img src={github} className="w-[20px]" alt="" />
             </a>
-            <a href="">
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/in/amulya-jain-a31180255/"
+            >
               <img src={linkedin} className="w-[20px]" alt="" />
             </a>
           </div>

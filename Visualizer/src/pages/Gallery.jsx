@@ -55,7 +55,7 @@ const images = [
 export default function Gallery() {
   return (
     <>
-      <div className="flex w-full h-full flex-col items-center pt-[60px] py-[100px]  ">
+      <div className="flex w-full  h-full flex-col items-center pt-[60px] py-[100px]  ">
         <h1 className="text-center text-[35px] tracking-wide mx-auto  w-fit  text-[#9c6644] rounded-xl font-extrabold mb-16">
           Gallery Wall
         </h1>
@@ -65,10 +65,7 @@ export default function Gallery() {
           represents the result of an algorithm running on a sample input,
           giving you a quick glimpse into what AlgoTrace has to offer.
         </p>
-        <p className="mb-12 mt-4 text-lg text-center">
-          {" "}
-          This was the last part of AlgoTrace and it took{" "}
-          <span className="text-green-700">64 Days</span> to get here. <br />{" "}
+        <p className="mb-12 mt-4 text-lg text-green-600 text-center">
           Enjoy the View
         </p>
         <div className="p-4 bg-white ">

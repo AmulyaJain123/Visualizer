@@ -6,7 +6,7 @@ export default function SortedArray({ array, ind }) {
       {array.map((i, index) => {
         return (
           <div
-            key={Math.random()}
+            key={index}
             className="w-[40px] h-[40px] text-bold bg-[#caf0f8] text-[#0077b6] flex relative justify-center items-center"
           >
             <span className={`index${index}`}>{i != null ? i : " "}</span>

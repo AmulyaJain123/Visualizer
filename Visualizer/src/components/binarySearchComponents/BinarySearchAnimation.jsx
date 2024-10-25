@@ -130,13 +130,13 @@ export default function BinarySearchAnimation({ arr, node }) {
 
   return (
     <div className="flex flex-col">
-      <div className="flex space-x-4 mx-auto justify-center w-full items-center mb-16">
+      <div className="flex space-x-4 relative mx-auto justify-center w-full items-center mb-16">
         <span className="font-semibold">Search Node:</span>
         <div className="bg-[#0077b6] relative text-[#caf0f8] flex justify-center items-center rounded-full w-[50px] h-[50px]">
           <span>{node}</span>
         </div>
         {ind != null ? (
-          <div className="pl-4 absolute right-[50px] font-bold">
+          <div className="pl-4 absolute right-[-100px] font-bold">
             {`(${low} + ${high})/2 = ${ind}`}
           </div>
         ) : null}
@@ -192,14 +192,18 @@ export default function BinarySearchAnimation({ arr, node }) {
               }
               className="w-[30px] h-[30px] duration-700 disabled:pointer-events-none disabled:opacity-30 hover:scale-110 flex justify-center items-center rounded-full bg-blue-300 "
             >
-              <img src={next} className="w-[50px] rotate-180" alt="" />
+              <img
+                src={next}
+                className="w-[50px] select-none rotate-180"
+                alt=""
+              />
             </button>
             <button
               onClick={forward}
               disabled={ans != null || ind === array.length || hang}
               className="w-[30px] h-[30px] duration-700 disabled:pointer-events-none disabled:opacity-30 hover:scale-110 flex justify-center items-center rounded-full bg-blue-300 "
             >
-              <img src={next} className="w-[50px]" alt="" />
+              <img src={next} className="w-[50px] select-none" alt="" />
             </button>
           </>
         )}

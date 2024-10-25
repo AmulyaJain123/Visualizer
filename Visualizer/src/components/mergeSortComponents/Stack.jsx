@@ -10,26 +10,22 @@ export default function Stack({ arr }) {
         {arr.toReversed().map((i, index) => {
           if (i[0] === "-") {
             return (
-              <>
-                <div className="relative " key={Math.random()}>
-                  <span className="text-sm opacity-30 px-1">
-                    {i.split("-")[1]}
-                  </span>
-                </div>
-              </>
+              <div className="relative " key={index}>
+                <span className="text-sm opacity-30 px-1">
+                  {i.split("-")[1]}
+                </span>
+              </div>
             );
           } else {
             return (
-              <>
-                <div className="relative" key={Math.random()}>
-                  <span className="text-sm px-1">{i}</span>
-                  {index === 0 ? (
-                    <div className="absolute left-[-20px] top-[50%] translate-y-[-50%]">
-                      <img src={down} className="w-[10px] -rotate-90" alt="" />
-                    </div>
-                  ) : null}
-                </div>
-              </>
+              <div className="relative" key={index}>
+                <span className="text-sm px-1">{i}</span>
+                {index === 0 ? (
+                  <div className="absolute left-[-20px] top-[50%] translate-y-[-50%]">
+                    <img src={down} className="w-[10px] -rotate-90" alt="" />
+                  </div>
+                ) : null}
+              </div>
             );
           }
         })}

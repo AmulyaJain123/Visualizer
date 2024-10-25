@@ -237,37 +237,6 @@ export default function TopNav() {
             className="absolute w-screen h-screen z-30 top-0 left-0 bg-black/10"
           ></div>
         ) : null}
-
-        <div className="absolute z-[9999] flex justify-center items-center warning top-0 left-0 w-screen h-screen bg-black/40">
-          <div className="p-3 bg-red-300 border-2 rounded-3xl border-black">
-            <div className="bg-zinc-100 border-2 border-black flex flex-col p-8 rounded-3xl items-center">
-              <div className="flex  items-center mb-8">
-                <img src={alarm} className="w-[45px] h-[45px] mr-4" alt="" />
-                <h1 className="text-3xl font-bold text-red-600">
-                  Too Zoomed!!
-                </h1>
-              </div>
-              <div className="text-lg w-[650px]">
-                <p className=" text-center">
-                  Hey Bud!! It seems like the the zoom on your device is a
-                  little too much for us.
-                </p>
-                <p className="mt-2 text-center">
-                  Because this is a Visualization Tool we can't work on smaller
-                  screens. We need a minimum screen width of{" "}
-                  <span className="text-red-600">1700 px</span>. If you are on a
-                  Smartphone, switch to a bigger screen otherwise{" "}
-                  <span className="text-red-600">
-                    lower the zoom untill this warning disappears
-                  </span>
-                </p>
-                <p className="text-center mt-6 ">
-                  Zoom-Out till this Dialog Box disappears
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </>
   );

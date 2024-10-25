@@ -146,7 +146,7 @@ const TraversalAnimation = forwardRef(function TraversalAnimation(
         <div className="">
           <div className="flex justify-center space-x-4">
             <button
-              className="p-1 px-2 rounded-lg text-[#757bc8] bg-blue-200"
+              className="p-1 px-2 select-none  rounded-lg text-[#757bc8] bg-blue-200"
               onClick={end}
             >
               End
@@ -168,13 +168,13 @@ const TraversalAnimation = forwardRef(function TraversalAnimation(
             {status === true || status === false ? (
               <>
                 <button
-                  className="p-1 px-2 rounded-lg text-[#757bc8] bg-blue-200"
+                  className="p-1 px-2 select-none  rounded-lg text-[#757bc8] bg-blue-200"
                   onClick={restart}
                 >
                   Restart
                 </button>
                 <button
-                  className="p-1 px-2 rounded-lg text-[#757bc8] bg-blue-200"
+                  className="p-1 px-2 select-none  rounded-lg text-[#757bc8] bg-blue-200"
                   onClick={end}
                 >
                   End
@@ -187,13 +187,17 @@ const TraversalAnimation = forwardRef(function TraversalAnimation(
                   disabled={currInd === null}
                   className="w-[30px] h-[30px] duration-700 disabled:pointer-events-none disabled:opacity-30 hover:scale-110 flex justify-center items-center rounded-full bg-blue-300 "
                 >
-                  <img src={next} className="w-[50px] rotate-180" alt="" />
+                  <img
+                    src={next}
+                    className="w-[50px] select-none  rotate-180"
+                    alt=""
+                  />
                 </button>
                 <button
                   onClick={forward}
                   className="w-[30px] h-[30px] duration-700 disabled:pointer-events-none disabled:opacity-30 hover:scale-110 flex justify-center items-center rounded-full bg-blue-300 "
                 >
-                  <img src={next} className="w-[50px]" alt="" />
+                  <img src={next} className="w-[50px] select-none " alt="" />
                 </button>
               </>
             )}

@@ -87,7 +87,7 @@ export default function LinearSearch() {
 
   return (
     <>
-      <div className="flex flex-col w-full py-16 pt-12 px-8 h-full mb-[200px]">
+      <div className="flex flex-col select-none  w-full py-16 pt-12 px-8 h-full mb-[200px]">
         <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-12">
           Linear Search
         </h1>
@@ -112,7 +112,7 @@ export default function LinearSearch() {
                   onKeyDown={(event) => keyClick(event)}
                 />
               </div>
-              <div className="px-2 p-1 m-1 flex flex-col bg-[#f3e9dc] border-2 border-[#c08552] rounded-xl text-sm flex-grow justify-center items-center flex ">
+              <div className="px-2 p-1 m-1 flex-col bg-[#f3e9dc] border-2 border-[#c08552] rounded-xl text-sm flex-grow justify-center items-center flex ">
                 {arr === undefined ? (
                   <p>Array not entered</p>
                 ) : arr === null ? (

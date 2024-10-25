@@ -45,7 +45,7 @@
 }
 
 @media (min-width: 1700px) {
-  .warning {
+  .mobileScreen {
     display: none;
   }
 }
@@ -77,8 +77,16 @@
   background-color: #e5e5e5;
 }
 
+.all-unset {
+  all: unset;
+}
+
 .responsiveDialog {
   font-size: large;
+}
+
+.hljs span {
+  font-family: monospace;
 }
 
 @media (max-width: 1020px) {
@@ -88,9 +96,17 @@
   .responsiveDialog h1 {
     font-size: 25px;
   }
-  .responsiveDialog img {
-    width: 35px;
-    height: 35px;
+  .imageBox {
+    margin-bottom: 20px;
+  }
+  .responsiveDialog .img1 {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+  }
+  .responsiveDialog .img2 {
+    width: 100px;
+    height: 100px;
   }
   .responsiveDialog .dialogBox {
     width: 400px;
@@ -104,12 +120,29 @@
   .responsiveDialog h1 {
     font-size: 20px;
   }
+  .imageBox {
+    margin-bottom: 10px;
+  }
+  .responsiveDialog .topNav {
+    font-size: 25px;
+  }
+  .responsiveDialog .content {
+    padding: 12px;
+  }
   .responsiveDialog .para3 {
     margin-bottom: 15px;
   }
-  .responsiveDialog img {
-    width: 30px;
-    height: 30px;
+  .responsiveDialog .img1 {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+  }
+  .last {
+    margin-top: 20px;
+  }
+  .responsiveDialog .img2 {
+    width: 75px;
+    height: 75px;
   }
   .responsiveDialog .dialogBox {
     width: 300px;
@@ -123,12 +156,23 @@
   .responsiveDialog h1 {
     font-size: 20px;
   }
+  .imageBox {
+    margin-bottom: 10px;
+  }
   .responsiveDialog .para3 {
     margin-bottom: 15px;
   }
-  .responsiveDialog img {
-    width: 30px;
-    height: 30px;
+  .responsiveDialog .img1 {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+  .last {
+    margin-top: 20px;
+  }
+  .responsiveDialog .img2 {
+    width: 65px;
+    height: 65px;
   }
   .responsiveDialog .dialogBox {
     width: 200px;

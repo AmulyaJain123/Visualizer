@@ -11,7 +11,7 @@ import BinarySearch from "./pages/BinarySearch";
 import MergeSort from "./pages/MergeSort";
 import QuickSort from "./pages/QuickSort";
 import Search from "./pages/Search";
-import BST from "./pages/BST";
+import Trees from "./pages/Trees";
 import BinaryTree from "./pages/BinaryTree";
 import BinarySearchTree from "./pages/BinarySearchTree";
 import StacksNQueue from "./pages/StacksNQueue";
@@ -55,6 +55,10 @@ const router = createBrowserRouter([
             path: "sorting",
             children: [
               {
+                path: "",
+                element: <Sorting />,
+              },
+              {
                 path: "bubble",
                 element: <BubbleSort />,
               },
@@ -84,6 +88,10 @@ const router = createBrowserRouter([
             path: "search",
             children: [
               {
+                path: "",
+                element: <Search />,
+              },
+              {
                 path: "linear",
                 element: <LinearSearch />,
               },
@@ -96,6 +104,10 @@ const router = createBrowserRouter([
           {
             path: "tree",
             children: [
+              {
+                path: "",
+                element: <Trees />,
+              },
               {
                 path: "binary_tree",
                 element: <BinaryTree />,
@@ -118,6 +130,10 @@ const router = createBrowserRouter([
             path: "stacksnqueue",
             children: [
               {
+                path: "",
+                element: <StacksNQueue />,
+              },
+              {
                 path: "stacks",
                 element: <Stacks />,
               },
@@ -130,6 +146,10 @@ const router = createBrowserRouter([
           {
             path: "graphs",
             children: [
+              {
+                path: "",
+                element: <Graphs />,
+              },
               {
                 path: "graph",
                 element: <Graph />,

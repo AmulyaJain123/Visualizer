@@ -8,8 +8,30 @@ import searchnstack from "../assets/searchnstack.png";
 import graph from "../assets/graph.png";
 import linkedin from "../assets/linkedin.png";
 import github from "../assets/github.png";
+import email from "../assets/email.png";
+
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
+  const [copyStatus, setCopyStatus] = useState(false);
+  const copyRef = useRef();
+
+  function copyEmail(str) {
+    navigator.clipboard.writeText(str);
+    setCopyStatus(true);
+  }
+
+  useEffect(() => {
+    if (copyStatus) {
+      setTimeout(() => {
+        setCopyStatus(false);
+      }, 5000);
+      setTimeout(() => {
+        copyRef.current.style.opacity = 100;
+      }, 0);
+    }
+  }, [copyStatus]);
+
   return (
     <div className="flex w-full h-full flex-col items-center py-[100px]  px-16">
       <h1 className="text-center text-[40px] font-semibold">
@@ -165,11 +187,36 @@ export default function Home() {
         <h1 className="font-semibold text-3xl text-center">
           You can find me here
         </h1>
-        <p className="text-lg mt-8">
+        <p className="text-lg mt-8 text-center">
           Your Feedback and Suggestions are higly valuable to me. Please feel
           free to contact me anytime on any of the following platforms:
         </p>
-        <div className="flex justify-center mt-12 gap-16">
+
+        <div className="flex justify-center items-center mt-12 gap-20">
+          <div className="text-lg relative flex justify-center items-center ">
+            <img src={email} className="w-[55px] " alt="" />
+            <span className="items-center absolute bottom-[-10px] translate-y-[100%] right-[50%] translate-x-[50%] min-w-[110px] justify-center bg-white rounded-xl px-2  h-fit flex w-fit py-1">
+              {copyStatus ? (
+                <span className=" rounded-lg px-2">
+                  <span
+                    ref={copyRef}
+                    className="opacity-[0.1] text-base font-medium text-green-600 duration-[2500ms]"
+                  >
+                    Copied
+                  </span>
+                </span>
+              ) : (
+                <button
+                  onClick={() => copyEmail("amulyajain123@gmail.com")}
+                  className=" hover:bg-stone-100 rounded-lg px-2"
+                >
+                  <span className="text-base text-nowrap font-medium ">
+                    Copy Email
+                  </span>
+                </button>
+              )}
+            </span>
+          </div>
           <a
             target="_blank"
             href="https://www.linkedin.com/in/amulya-jain-a31180255/"
@@ -180,6 +227,11 @@ export default function Home() {
             <img src={github} className="w-[50px]" alt="" />
           </a>
         </div>
+        <p className="text-lg mt-24 max-w-[80%] mx-auto text-center">
+          AlgoTrace is extensively debugged. Still if you discover any minor
+          bugs or some inconsistencies, please report them to me at any of the
+          above platforms. Your contibution will be highly appreciated
+        </p>
       </div>
 
       <div className="flex flex-col mt-16"></div>

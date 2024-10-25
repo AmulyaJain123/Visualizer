@@ -253,13 +253,17 @@ const InsertionAnimation = forwardRef(function InsertionAnimation(
                   disabled={currInd === null}
                   className="w-[30px] h-[30px] duration-700 disabled:pointer-events-none disabled:opacity-30 hover:scale-110 flex justify-center items-center rounded-full bg-blue-300 "
                 >
-                  <img src={next} className="w-[50px] rotate-180" alt="" />
+                  <img
+                    src={next}
+                    className="w-[50px] rotate-180 select-none"
+                    alt=""
+                  />
                 </button>
                 <button
                   onClick={forward}
                   className="w-[30px] h-[30px] duration-700 disabled:pointer-events-none disabled:opacity-30 hover:scale-110 flex justify-center items-center rounded-full bg-blue-300 "
                 >
-                  <img src={next} className="w-[50px]" alt="" />
+                  <img src={next} className="w-[50px] select-none" alt="" />
                 </button>
               </>
             )}

@@ -402,7 +402,7 @@ export default function MergeSortAnimation({ arr, order }) {
                       : "0px",
                   marginRight: space.includes(index) ? `40px` : "0px",
                 }}
-                key={Math.random()}
+                key={index}
                 className="px-2  py-2"
               >
                 <Node
@@ -436,14 +436,18 @@ export default function MergeSortAnimation({ arr, order }) {
               disabled={space.length === 0 || hang}
               className="w-[30px] h-[30px] duration-700 disabled:pointer-events-none disabled:opacity-30 hover:scale-110 flex justify-center items-center rounded-full bg-blue-300 "
             >
-              <img src={next} className="w-[50px] rotate-180" alt="" />
+              <img
+                src={next}
+                className="w-[50px] rotate-180 select-none"
+                alt=""
+              />
             </button>
             <button
               onClick={forward}
               disabled={hang}
               className="w-[30px] h-[30px] duration-700 disabled:pointer-events-none disabled:opacity-30 hover:scale-110 flex justify-center items-center rounded-full bg-blue-300 "
             >
-              <img src={next} className="w-[50px]" alt="" />
+              <img src={next} className="w-[50px] select-none" alt="" />
             </button>
           </>
         )}
