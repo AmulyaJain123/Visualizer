@@ -10,7 +10,7 @@ export default function Node({
   low,
   high,
 }) {
-  //   console.log(low, high, index);
+  //   // console.log(low, high, index);
   const val = index >= low && index <= high;
   return (
     <>

@@ -106,7 +106,7 @@ export default function SelectionSortAnimation({ arr, order }) {
     }, 0);
   }
 
-  console.log(ind, array, history, successInd);
+  // console.log(ind, array, history, successInd);
 
   function backward() {
     const newHistory = [...history];

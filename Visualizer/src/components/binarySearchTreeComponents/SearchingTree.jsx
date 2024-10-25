@@ -6,20 +6,20 @@ export default function SearchingTree({ treeArr, focus, status }) {
   const [ans, setAns] = useState(undefined);
   const containerRef = useRef(null);
   const [lines, setLines] = useState([]);
-  console.log(treeArr, focus);
+  // console.log(treeArr, focus);
 
   useEffect(() => {
     const ansObject = buildObject(treeArr);
-    console.log(ansObject);
+    // console.log(ansObject);
     const newArr = JSON.parse(JSON.stringify(treeArr));
     finalArray(0, 0, newArr, ansObject);
-    console.log(newArr);
+    // console.log(newArr);
     setAns(newArr);
   }, [treeArr]);
 
   function buildObject(array) {
     const root = solver(0, 0, array);
-    console.log(root);
+    // console.log(root);
     addOffset(root);
     return root;
   }
@@ -75,7 +75,7 @@ export default function SearchingTree({ treeArr, focus, status }) {
   }
 
   function solver(x, y, array) {
-    console.log(array, array[0]);
+    // console.log(array, array[0]);
     if (x >= array.length || y >= array[x].length || array[x][y] === null) {
       return null;
     }
@@ -108,7 +108,7 @@ export default function SearchingTree({ treeArr, focus, status }) {
           val: node.children[0].innerText,
         });
       });
-      console.log(nodePositions);
+      // console.log(nodePositions);
 
       const newLines = [];
       const newArray = [];
@@ -128,7 +128,7 @@ export default function SearchingTree({ treeArr, focus, status }) {
         --num;
       }
       newArray.push(temp);
-      console.log(newArray);
+      // console.log(newArray);
 
       for (let i = 0; i < newArray.length - 1; ++i) {
         for (let j = 0; j < newArray[i].length; ++j) {
@@ -153,7 +153,7 @@ export default function SearchingTree({ treeArr, focus, status }) {
     return () => window.removeEventListener("resize", calculateLines);
   }, [ans]);
 
-  console.log(lines);
+  // console.log(lines);
 
   return (
     <div className="flex flex-col m-auto mt-24">

@@ -8,7 +8,7 @@ export default function TreeNode({
   success,
   failed,
 }) {
-  // console.log(nextNode);
+  // // console.log(nextNode);
   return (
     <>
       <div

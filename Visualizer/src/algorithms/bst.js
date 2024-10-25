@@ -270,7 +270,7 @@ export function getMaxNode(tree) {
     }
     return res;
   }
-  console.log(tree, tree.right)
+  // console.log(tree, tree.right)
   return solver(tree.right, tree);
 
 }

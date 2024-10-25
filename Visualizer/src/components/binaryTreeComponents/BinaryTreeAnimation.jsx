@@ -48,7 +48,7 @@ export default function BinaryTreeAnimation({ arr }) {
       }
       ++index;
     }
-    console.log(array);
+    // console.log(array);
     let stat = true;
     for (let i of array[array.length - 1]) {
       if (i === "N") {
@@ -62,15 +62,15 @@ export default function BinaryTreeAnimation({ arr }) {
       array.pop();
     }
     const ansObject = buildObject(array);
-    console.log(ansObject);
+    // console.log(ansObject);
     finalArray(0, 0, array, ansObject);
-    console.log(array);
+    // console.log(array);
     setAns(array);
   }, []);
 
   function buildObject(array) {
     const root = solver(0, 0, array);
-    console.log(root);
+    // console.log(root);
     addOffset(root);
     return root;
   }
@@ -126,7 +126,7 @@ export default function BinaryTreeAnimation({ arr }) {
   }
 
   function solver(x, y, array) {
-    console.log(array, array[0]);
+    // console.log(array, array[0]);
     if (x >= array.length || y >= array[x].length || array[x][y] === "N") {
       return null;
     }
@@ -159,7 +159,7 @@ export default function BinaryTreeAnimation({ arr }) {
           val: node.children[0].innerText,
         });
       });
-      console.log(nodePositions);
+      // console.log(nodePositions);
 
       const newLines = [];
       const newArray = [];
@@ -179,7 +179,7 @@ export default function BinaryTreeAnimation({ arr }) {
         --num;
       }
       newArray.push(temp);
-      console.log(newArray);
+      // console.log(newArray);
 
       for (let i = 0; i < newArray.length - 1; ++i) {
         for (let j = 0; j < newArray[i].length; ++j) {
@@ -204,7 +204,7 @@ export default function BinaryTreeAnimation({ arr }) {
     return () => window.removeEventListener("resize", calculateLines);
   }, [ans]);
 
-  console.log(lines);
+  // console.log(lines);
 
   return (
     <div className="flex flex-col m-auto mt-16">

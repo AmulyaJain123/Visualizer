@@ -34,7 +34,7 @@ export default function Fig() {
           val: node.innerText,
         });
       });
-      console.log(nodePositions);
+      // console.log(nodePositions);
 
       const newLines = [];
       const completedEdges = [];
@@ -87,7 +87,7 @@ export default function Fig() {
     return () => window.removeEventListener("resize", calculateLines);
   }, [graph]);
 
-  console.log(lines);
+  // console.log(lines);
 
   return (
     <div className="w-full h-full">

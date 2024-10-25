@@ -53,7 +53,7 @@ export default function Fig() {
           val: node.children.length != 0 ? getStr() : node.innerText,
         });
       });
-      console.log(nodePositions);
+      // console.log(nodePositions);
 
       const newLines = [];
       const completedEdges = [];
@@ -125,7 +125,7 @@ export default function Fig() {
     return () => window.removeEventListener("resize", calculateLines);
   }, [graph, timeline, ind]);
 
-  console.log(lines);
+  // console.log(lines);
 
   return (
     <div className="w-full h-full">

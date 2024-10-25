@@ -99,7 +99,7 @@ export default function CountingSortAnimation({ arr, order }) {
         const newCounting = [...counting];
         newCounting[nextVal]++;
         const str = `.index${nextVal}`;
-        console.log(counting);
+        // console.log(counting);
         if (ind > -1) {
           animate(
             str,
@@ -235,11 +235,11 @@ export default function CountingSortAnimation({ arr, order }) {
     }
   }
 
-  console.log(ind, max, array, history);
+  // console.log(ind, max, array, history);
 
   function backward() {
     const newReality = { ...history[history.length - 2] };
-    console.log(newReality, newReality.list);
+    // console.log(newReality, newReality.list);
     setArray([...newReality.list]);
     setMax(newReality.max);
     setInd(newReality.ind);

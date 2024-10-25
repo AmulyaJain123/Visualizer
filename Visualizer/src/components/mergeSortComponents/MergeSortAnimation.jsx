@@ -33,8 +33,8 @@ export default function MergeSortAnimation({ arr, order }) {
     `mergeSort(0,${arr.length - 1})`,
   ]);
 
-  //   console.log(history);
-  console.log(instructions);
+  //   // console.log(history);
+  // console.log(instructions);
 
   function forward() {
     const endInd = range.length - 1;
@@ -245,7 +245,7 @@ export default function MergeSortAnimation({ arr, order }) {
               setMergeInd((p) => {
                 return [...newMergeInd];
               });
-              console.log(newMergeInd);
+              // console.log(newMergeInd);
 
               setHistory((p) => {
                 return [
@@ -296,7 +296,7 @@ export default function MergeSortAnimation({ arr, order }) {
     }
   }
 
-  //   console.log( array, history, successInd);
+  //   // console.log( array, history, successInd);
 
   function backward() {
     const lastHistory = history[history.length - 2];

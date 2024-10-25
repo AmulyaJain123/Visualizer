@@ -22,7 +22,7 @@ export function heapArrToTreeArr(arr) {
         ++level;
 
     }
-    console.log(ans);
+    // console.log(ans);
     return ans;
 }
 
@@ -44,7 +44,7 @@ export function heapArrToTreeObj(arr) {
         }
     }
     solver(arr, 0, head);
-    console.log(head);
+    // console.log(head);
     return head;
 }
 
@@ -57,7 +57,7 @@ export function heapSortTimeline(arr, heapType) {
         newArr = deletionInHeap(newArr, heapType);
     }
     ans.push({ type: "fullSuccessful" })
-    console.log(ans);
+    // console.log(ans);
     return ans;
 }
 
@@ -66,7 +66,7 @@ export function arrToHeap(arr, heapType) {
     for (let i of arr) {
         newArr = insertionInHeap(newArr, i, heapType);
     }
-    console.log(newArr);
+    // console.log(newArr);
     return newArr;
 }
 
@@ -114,7 +114,7 @@ export function insertionTimeline(arr, val, heapType) {
             curInd = parentInd;
         }
     }
-    console.log(ans);
+    // console.log(ans);
     return ans;
 }
 
@@ -150,7 +150,7 @@ export function insertionInHeap(arr, val, heapType) {
             curInd = parentInd;
         }
     }
-    console.log(newArr);
+    // console.log(newArr);
     return newArr;
 }
 
@@ -267,7 +267,7 @@ export function deletionTimeline(arr, heapType) {
     }
 
     solver(0, newArr);
-    console.log(ans);
+    // console.log(ans);
     return ans;
 }
 
@@ -314,6 +314,6 @@ export function deletionInHeap(arr, heapType) {
     }
 
     solver(0, newArr);
-    console.log(newArr);
+    // console.log(newArr);
     return newArr;
 }

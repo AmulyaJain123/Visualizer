@@ -121,7 +121,7 @@ class BinarySearchTree {
   inOrder(node) {
     if (node !== null) {
       this.inOrder(node.left);
-      console.log(node.value);
+      // console.log(node.value);
       this.inOrder(node.right);
     }
   }
@@ -129,7 +129,7 @@ class BinarySearchTree {
   // Pre-order Traversal
   preOrder(node) {
     if (node !== null) {
-      console.log(node.value);
+      // console.log(node.value);
       this.preOrder(node.left);
       this.preOrder(node.right);
     }
@@ -140,7 +140,7 @@ class BinarySearchTree {
     if (node !== null) {
       this.postOrder(node.left);
       this.postOrder(node.right);
-      console.log(node.value);
+      // console.log(node.value);
     }
   }
 }`;

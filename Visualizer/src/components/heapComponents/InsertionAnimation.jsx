@@ -61,17 +61,17 @@ const InsertionAnimation = forwardRef(function InsertionAnimation(
 
   useEffect(() => {
     const array = insertionTimeline(heapArr, currentOp[1], heapType);
-    console.log(array);
+    // console.log(array);
     setTimeline(JSON.parse(JSON.stringify(array)));
   }, []);
 
   function end() {
     const newArr = insertionInHeap(heapArr, currentOp[1], heapType);
-    console.log(newArr);
+    // console.log(newArr);
     const newTreeObj = JSON.parse(JSON.stringify(heapArrToTreeObj(newArr)));
-    console.log(newTreeObj);
+    // console.log(newTreeObj);
     const newTreeArr = JSON.parse(JSON.stringify(heapArrToTreeArr(newArr)));
-    console.log(newTreeArr);
+    // console.log(newTreeArr);
     dispatch(bstActions.setTreeObject(newTreeObj));
     dispatch(bstActions.setTreeArr(newTreeArr));
     dispatch(bstActions.setHeapArr(newArr));
@@ -88,7 +88,7 @@ const InsertionAnimation = forwardRef(function InsertionAnimation(
       newHeapArr.push(currentOp[1]);
       const newTreeArr = heapArrToTreeArr(newHeapArr);
       const newTreeObj = heapArrToTreeObj(newHeapArr);
-      console.log(newTreeArr, newTreeObj);
+      // console.log(newTreeArr, newTreeObj);
       setTreeArr(newTreeArr);
       setTreeObject(newTreeObj);
       setCurrNode([timelineObj.currx, timelineObj.curry]);
@@ -135,7 +135,7 @@ const InsertionAnimation = forwardRef(function InsertionAnimation(
       const py = parNode[1];
       const cx = currNode[0];
       const cy = currNode[1];
-      console.log(px, py, cx, cy);
+      // console.log(px, py, cx, cy);
       const temp = newTreeArr[px][py];
       newTreeArr[px][py] = newTreeArr[cx][cy];
       newTreeArr[cx][cy] = temp;
@@ -172,7 +172,7 @@ const InsertionAnimation = forwardRef(function InsertionAnimation(
       });
     }
   }
-  console.log(timeline, currInd, found);
+  // console.log(timeline, currInd, found);
 
   function backward() {
     const lastHistory = JSON.parse(JSON.stringify(history[history.length - 2]));

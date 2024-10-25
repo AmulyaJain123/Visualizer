@@ -11,7 +11,7 @@ export default function BinarySearch() {
   function keyClick(event) {
     if (event.key === "Enter") {
       const res = getArray(event.target.value);
-      console.log(res);
+      // console.log(res);
       if (res != null) {
         res.sort((a, b) => {
           if (a > b) {
@@ -31,7 +31,7 @@ export default function BinarySearch() {
   function key2Click(event) {
     if (event.key === "Enter") {
       const res = getNum(event.target.value);
-      console.log(res);
+      // console.log(res);
       setNum(res);
       event.target.value = "";
     }

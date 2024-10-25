@@ -40,7 +40,7 @@ const InsertionAnimation = forwardRef(function InsertionAnimation(
       treeObject != null ? JSON.parse(JSON.stringify(originalObj)) : null;
     newTree = addInBinarySearchTree(newTree, currentOp[1]);
     const array = objectTreeToArray(newTree);
-    console.log(newTree, array);
+    // console.log(newTree, array);
     dispatch(bstActions.setTreeObject(newTree));
     dispatch(bstActions.setTreeArr(array));
     clean();
@@ -87,7 +87,7 @@ const InsertionAnimation = forwardRef(function InsertionAnimation(
         ];
       });
     } else if (typeof focus[2][0] != "boolean") {
-      console.log(typeof focus[2][0]);
+      // console.log(typeof focus[2][0]);
       let newFocus = JSON.parse(JSON.stringify(focus));
       newFocus = [newFocus[2][0], newFocus[2][1], null];
       setFocus(newFocus);
@@ -104,7 +104,7 @@ const InsertionAnimation = forwardRef(function InsertionAnimation(
         treeObject != null ? JSON.parse(JSON.stringify(treeObject)) : null;
       newTree = addInBinarySearchTree(newTree, currentOp[1]);
       const array = objectTreeToArray(newTree);
-      console.log(newTree, array);
+      // console.log(newTree, array);
       setTreeArr(JSON.parse(JSON.stringify(array)));
       setTreeObject(JSON.parse(JSON.stringify(newTree)));
       setFocus(null);

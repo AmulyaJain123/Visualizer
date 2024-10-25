@@ -70,7 +70,7 @@ export default function LinearSearchAnimation({ arr, node }) {
     }
   }
 
-  console.log(ind, array, history, node);
+  // console.log(ind, array, history, node);
 
   function backward() {
     const prevHistory = history[history.length - 2];

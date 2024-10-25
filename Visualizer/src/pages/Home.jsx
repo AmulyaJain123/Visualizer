@@ -230,7 +230,7 @@ export default function Home() {
         <p className="text-lg mt-24 max-w-[80%] mx-auto text-center">
           AlgoTrace is extensively debugged. Still if you discover any minor
           bugs or some inconsistencies, please report them to me at any of the
-          above platforms. Your contibution will be highly appreciated
+          above platforms. Your contibution will be highly appreciated.
         </p>
       </div>
 

@@ -35,7 +35,7 @@ export default function BinarySearchAnimation({ arr, node }) {
         });
         setTimeout(() => {
           if (array[mid] === node) {
-            console.log("chh");
+            // console.log("chh");
             animate(
               `.index${mid}`,
               {
@@ -54,12 +54,12 @@ export default function BinarySearchAnimation({ arr, node }) {
           }
         }, 0);
       } else {
-        console.log(ind, low, high);
+        // console.log(ind, low, high);
         const indP = ind;
         setInd(null);
         setTimeout(() => {
           if (array[indP] > node) {
-            console.log("rger");
+            // console.log("rger");
             const value = -82 * (high - indP + 1);
             animate(".high", { x: [0, value] }, { type: "tween", duration: 1 });
             setTimeout(() => {
@@ -99,7 +99,7 @@ export default function BinarySearchAnimation({ arr, node }) {
     }, 0);
   }
 
-  console.log(ind, array, history, node);
+  // console.log(ind, array, history, node);
 
   function backward() {
     const prevHistory = history[history.length - 2];

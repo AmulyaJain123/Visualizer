@@ -94,7 +94,7 @@ const SearchingAnimation = forwardRef(function SearchingAnimation(
         ];
       });
     } else if (typeof focus[2][0] != "boolean") {
-      console.log(typeof focus[2][0]);
+      // console.log(typeof focus[2][0]);
       let newFocus = JSON.parse(JSON.stringify(focus));
       newFocus = [newFocus[2][0], newFocus[2][1], null];
       setFocus(newFocus);

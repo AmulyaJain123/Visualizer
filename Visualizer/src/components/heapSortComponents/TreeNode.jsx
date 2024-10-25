@@ -9,7 +9,7 @@ export default function TreeNode({
   failed,
   comparing,
 }) {
-  // console.log(nextNode);
+  // // console.log(nextNode);
   return (
     <>
       <div

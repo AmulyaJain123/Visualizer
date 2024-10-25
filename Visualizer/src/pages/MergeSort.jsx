@@ -10,7 +10,7 @@ export default function MergeSort() {
   function keyClick(event) {
     if (event.key === "Enter") {
       const res = getArray(event.target.value);
-      console.log(res);
+      // console.log(res);
       if (res != null) {
         setArr([...res]);
       } else {

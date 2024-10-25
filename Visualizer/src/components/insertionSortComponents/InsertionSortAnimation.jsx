@@ -144,7 +144,7 @@ export default function InsertionSortAnimation({ arr, order }) {
     }, 0);
   }
 
-  console.log(ind, array, history, successInd);
+  // console.log(ind, array, history, successInd);
 
   function backward() {
     const prevSuccessInd = history[history.length - 2].successIndex;

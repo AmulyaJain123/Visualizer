@@ -40,7 +40,7 @@ export function arrToAdjacencyList(arr) {
             }
         })
     }
-    console.log(nodes);
+    // console.log(nodes);
     return nodes;
 
 }
@@ -75,7 +75,7 @@ export function arrToAdjacencyMatrix(arr) {
         matrix[0][i] = nodes[ind];
         matrix[i][0] = nodes[ind];
     }
-    console.log(JSON.parse(JSON.stringify(matrix)));
+    // console.log(JSON.parse(JSON.stringify(matrix)));
     for (let i = 1; i < matrix.length; ++i) {
         for (let j = 1; j < matrix.length; ++j) {
             if (matrix[i][j] === 1) {
@@ -96,7 +96,7 @@ export function arrToAdjacencyMatrix(arr) {
             }
         }
     }
-    console.log(matrix);
+    // console.log(matrix);
     return matrix
 }
 
@@ -128,7 +128,7 @@ export function bfsTimeline(lst) {
 
             const front = queue.shift();
             ans.push({ type: "start", highlight: [front], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...bfs] });
-            console.log(front);
+            // console.log(front);
             for (let j of lst[front - 1][1]) {
                 if (visited[j] === false) {
                     ans.push({ type: "exploration", highlight: [front], explore: [j], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...bfs] });
@@ -146,7 +146,7 @@ export function bfsTimeline(lst) {
 
     }
     ans.push({ type: "success", visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...bfs] });
-    console.log(ans);
+    // console.log(ans);
     return ans;
 
 }
@@ -188,7 +188,7 @@ export function dfsTimeline(lst) {
 
     }
     ans.push({ type: "success", callstack: [...callStack], visited: getVisited(visited), fullVisit: [...fullVisit], bfs: [...dfs] });
-    console.log(ans);
+    // console.log(ans);
     return ans;
 
 }
@@ -269,7 +269,7 @@ export function dijkstraTimeline(lst, edges, start) {
         }
     }
     ans.push({ table: dc(distanceTable), type: "success", selected: [...selected] })
-    console.log(ans);
+    // console.log(ans);
     return ans;
 }
 
@@ -332,7 +332,7 @@ export function primsTimeline(lst, edges, start) {
     ans.push({ mst: [...mst], key: [...key], edges: [...getMst(key, parents, mst)], type: "success" });
 
 
-    console.log(ans);
+    // console.log(ans);
     return ans;
 }
 
@@ -358,7 +358,7 @@ function getWeightedEdges(lst, edges) {
 
 function detectCycle(edges, nodes) {
     const maxval = Math.max(...nodes);
-    console.log(maxval);
+    // console.log(maxval);
     const visited = new Array(maxval + 1).fill(false);
     const list = new Array(maxval + 1);
     for (let i = 0; i < list.length; ++i) {
@@ -375,20 +375,20 @@ function detectCycle(edges, nodes) {
             list[second].push(first);
         }
     }
-    console.log(list)
+    // console.log(list)
 
     function solver(node, visited, parents) {
         for (let i of list[node]) {
             //node->i
             if (visited[i] && (parents[node] != i)) {
-                console.log("yo", node, i)
+                // console.log("yo", node, i)
                 return true;
             } else if (visited[i] === false) {
                 visited[i] = true;
                 parents[i] = node;
                 const res = solver(i, visited, parents);
                 if (res) {
-                    console.log("hi", node, i)
+                    // console.log("hi", node, i)
                     return res;
                 }
             }
@@ -405,7 +405,7 @@ function detectCycle(edges, nodes) {
         visited[i] = true;
         const res = solver(i, visited, parents);
         if (res) {
-            console.log(i, visited, parents, list);
+            // console.log(i, visited, parents, list);
             return true;
         }
     }
@@ -481,8 +481,8 @@ export function kruskalsTimeline(lst, edges) {
             ++count;
         }
     }
-    console.log(mst);
-    console.log(ans);
+    // console.log(mst);
+    // console.log(ans);
     return ans;
 
 
@@ -538,14 +538,14 @@ export function bellmanFordTimeline(lst, edges, start) {
             const weight = j[2];
             if (key[first] + weight < key[second]) {
                 // neg Cycle is present 
-                console.log("Oh No")
+                // console.log("Oh No")
                 break;
             } else {
 
             }
         }
     }
-    console.log(ans);
+    // console.log(ans);
     return ans;
 
 }
@@ -570,7 +570,7 @@ export function floydWarshallTimeline(lst, edges) {
         matrix[i] = [...arr];
     }
 
-    console.log(dc(matrix));
+    // console.log(dc(matrix));
     ans.push({ matrix: dc(matrix), no: 0 });
 
     for (let i = 1; i < n + 1; ++i) {
@@ -599,7 +599,7 @@ export function floydWarshallTimeline(lst, edges) {
     ans.push({ type: "success", matrix: dc(matrix) });
 
 
-    console.log(ans);
+    // console.log(ans);
     return ans;
 
 }

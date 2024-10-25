@@ -65,7 +65,7 @@ export default function QuickSortAnimation({ arr, order }) {
         const newRange = JSON.parse(JSON.stringify(range));
         newRange.pop();
         const newStack = [...stack];
-        console.log(newStack);
+        // console.log(newStack);
         while (
           newStack.length != 0 &&
           newStack[newStack.length - 1][0] != "-"
@@ -364,7 +364,7 @@ export default function QuickSortAnimation({ arr, order }) {
     }
   }
 
-  //   console.log(ind, array, history, successInd);
+  //   // console.log(ind, array, history, successInd);
 
   function backward() {
     const lastHistory = history[history.length - 2];

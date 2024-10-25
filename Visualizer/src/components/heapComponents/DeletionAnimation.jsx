@@ -58,13 +58,13 @@ const DeletionAnimation = forwardRef(function DeletionAnimation(
 
   useEffect(() => {
     const array = deletionTimeline(heapArr, heapType);
-    console.log(array);
+    // console.log(array);
     setTimeline(JSON.parse(JSON.stringify(array)));
   }, []);
 
   function end() {
     const newArr = deletionInHeap(heapArr, heapType);
-    console.log(newArr);
+    // console.log(newArr);
     if (newArr.length === 0) {
       dispatch(bstActions.setTreeObject(null));
       dispatch(bstActions.setTreeArr(null));
@@ -73,9 +73,9 @@ const DeletionAnimation = forwardRef(function DeletionAnimation(
       return;
     }
     const newTreeObj = JSON.parse(JSON.stringify(heapArrToTreeObj(newArr)));
-    console.log(newTreeObj);
+    // console.log(newTreeObj);
     const newTreeArr = JSON.parse(JSON.stringify(heapArrToTreeArr(newArr)));
-    console.log(newTreeArr);
+    // console.log(newTreeArr);
     dispatch(bstActions.setTreeObject(newTreeObj));
     dispatch(bstActions.setTreeArr(newTreeArr));
     dispatch(bstActions.setHeapArr(newArr));
@@ -155,7 +155,7 @@ const DeletionAnimation = forwardRef(function DeletionAnimation(
       });
     }
   }
-  console.log(timeline, currInd, found);
+  // console.log(timeline, currInd, found);
 
   function backward() {
     const lastHistory = JSON.parse(JSON.stringify(history[history.length - 2]));

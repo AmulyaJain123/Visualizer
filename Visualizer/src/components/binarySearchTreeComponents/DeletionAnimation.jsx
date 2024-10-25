@@ -57,19 +57,19 @@ const DeletionAnimation = forwardRef(function DeletionAnimation(
 
   useEffect(() => {
     const array = deleteNode(originalObj, currentOp[1]);
-    console.log(array);
+    // console.log(array);
     setTimeline(JSON.parse(JSON.stringify(array)));
   }, []);
 
   function end() {
     const newTree = JSON.parse(JSON.stringify(originalObj));
     const res = deleteInBinarySearchTree(newTree, currentOp[1]);
-    console.log(res);
+    // console.log(res);
     let newArr = objectTreeToArray(res);
     if (newArr.length === 0) {
       newArr = null;
     }
-    console.log(newArr);
+    // console.log(newArr);
     dispatch(bstActions.setTreeObject(res));
     dispatch(bstActions.setTreeArr(newArr));
     clean();
@@ -161,7 +161,7 @@ const DeletionAnimation = forwardRef(function DeletionAnimation(
         });
         return;
       }
-      console.log(node, parent);
+      // console.log(node, parent);
       if (y1 % 2 === 0) {
         if (y2 % 2 === 0) {
           parent.left = node.left;
@@ -287,7 +287,7 @@ const DeletionAnimation = forwardRef(function DeletionAnimation(
       newArr[p][q] = temp;
       const node = getNode(newTree, currentOp[1]);
       node.val = newArr[x][y];
-      console.log(node);
+      // console.log(node);
       const [successor, parentOfSuccessor] = getMaxNode(node);
       successor.val = temp;
       setToBeDeleted([p - 1, Math.floor(q / 2)]);
@@ -417,7 +417,7 @@ const DeletionAnimation = forwardRef(function DeletionAnimation(
       });
     }
   }
-  console.log(timeline, currInd, found);
+  // console.log(timeline, currInd, found);
 
   function backward() {
     const lastHistory = JSON.parse(JSON.stringify(history[history.length - 2]));
