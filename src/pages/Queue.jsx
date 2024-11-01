@@ -3,6 +3,12 @@ import { useDispatch } from "react-redux";
 import { stacksNQueueActions } from "../store/main";
 import { useSelector } from "react-redux";
 import QueueAnimation from "../components/stacksNQueueComponents/QueueAnimation";
+import { motion } from "framer-motion";
+import enterWater from "../assets/watermarks/Stacks/enter.png";
+import pushWater from "../assets/watermarks/Stacks/enqueue.png";
+import popWater from "../assets/watermarks/Stacks/dequeue.png";
+import peekWater from "../assets/watermarks/Stacks/peek.png";
+import resetWater from "../assets/watermarks/Stacks/reset2.png";
 
 export default function Queue() {
   const pushRef = useRef();
@@ -73,12 +79,34 @@ export default function Queue() {
   return (
     <>
       <div className="flex flex-col select-none  w-full py-16 pt-12 px-8 h-full mb-[200px]">
-        <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-12">
+        <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-16">
           Queue
         </h1>
-        <div className="flex flex-col mx-auto">
+        <div className="flex relative flex-col mx-auto">
+          {disable || currOp ? null : (
+            <motion.div
+              style={{ display: disable || currOp ? "none" : "" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.75 }}
+              className="absolute top-[-10px] left-[70px]  translate-x-[-100%] scale-125 translate-y-[-100%]"
+            >
+              <img src={enterWater} className="opacity-50" alt="" />
+            </motion.div>
+          )}
           <div className="flex  border-2 text-[#c08552]   border-neutral-200">
-            <div className="flex flex-col max-w-[200px]">
+            <div className="flex relative flex-col max-w-[200px]">
+              {disable || currOp ? null : (
+                <motion.div
+                  style={{ display: disable || currOp ? "none" : "" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="absolute bottom-[-20px] left-[20px] translate-x-[-100%] scale-[125%]  translate-y-[100%]"
+                >
+                  <img src={pushWater} className="opacity-50" alt="" />
+                </motion.div>
+              )}
               <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
                 Enqueue
               </p>
@@ -103,7 +131,18 @@ export default function Queue() {
                 )}
               </div>
             </div>
-            <div className="flex flex-col max-w-[200px]">
+            <div className="flex relative flex-col max-w-[200px]">
+              {disable || currOp ? null : (
+                <motion.div
+                  style={{ display: disable || currOp ? "none" : "" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="absolute top-[-20px] right-[20px] translate-x-[100%] scale-[180%]  translate-y-[-100%]"
+                >
+                  <img src={popWater} className="opacity-50" alt="" />
+                </motion.div>
+              )}
               <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
                 Dequeue
               </p>
@@ -117,7 +156,18 @@ export default function Queue() {
                 </button>
               </div>
             </div>
-            <div className="flex flex-col max-w-[200px]">
+            <div className="flex relative flex-col max-w-[200px]">
+              {disable || currOp ? null : (
+                <motion.div
+                  style={{ display: disable || currOp ? "none" : "" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="absolute bottom-[-30px] right-[-20px] scale-[170%] translate-x-[100%] translate-y-[100%]"
+                >
+                  <img src={peekWater} className="opacity-50" alt="" />
+                </motion.div>
+              )}
               <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
                 Peek
               </p>
@@ -132,7 +182,18 @@ export default function Queue() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col mx-auto flex-grow w-[150px]  mt-2">
+          <div className="flex relative flex-col mx-auto flex-grow w-[150px]  mt-2">
+            {disable || currOp ? null : (
+              <motion.div
+                style={{ display: disable || currOp ? "none" : "" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.75 }}
+                className="absolute bottom-[-40px] left-[40%] scale-[210%] translate-x-[-100%] translate-y-[100%]"
+              >
+                <img src={resetWater} className="opacity-50" alt="" />
+              </motion.div>
+            )}
             <button
               disabled={!(currOp != null)}
               onClick={reset}

@@ -214,7 +214,7 @@ export default function SideMenu() {
 
   return (
     <div className="flex flex-col w-full h-full overflow-y-auto overflow-x-hidden sidebarScroll  pt-2  ">
-      <div className="flex flex-col items-center gap-y-6 pb-4">
+      <div className="flex flex-col items-center gap-y-6 pb-3">
         <div className="flex flex-col gap-y-6 pb-4 mx-4">
           {/* <div className="text-center flex flex-col uppercase font-bold text-lg">
             Navigation
@@ -273,7 +273,7 @@ export default function SideMenu() {
             );
           })}
         </div>
-        <div className=" flex-col border-t-2 mt-8 py-4 border-neutral-400 flex justify-center items-center w-full ">
+        <div className=" flex-col border-t-2 mt-8 pt-4 border-neutral-400 flex justify-center items-center w-full ">
           <div className="flex gap-x-4 my-3">
             <a target="_blank" href="https://github.com/AmulyaJain123">
               <img src={github} className="w-[20px]" alt="" />

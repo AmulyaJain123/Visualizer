@@ -1,5 +1,8 @@
 import { useState, useRef } from "react";
 import LinearSearchAnimation from "../components/linearSearchComponents/LinearSearchAnimation";
+import EnterArray from "../components/UIComponents/EnterArray";
+import Order from "../components/UIComponents/SearchNode";
+import Go from "../components/UIComponents/Go";
 
 export default function LinearSearch() {
   const textRef = useRef();
@@ -88,7 +91,7 @@ export default function LinearSearch() {
   return (
     <>
       <div className="flex flex-col select-none  w-full py-16 pt-12 px-8 h-full mb-[200px]">
-        <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-12">
+        <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-16">
           Linear Search
         </h1>
         <div className="flex   mx-auto">
@@ -101,7 +104,9 @@ export default function LinearSearch() {
                 Enter upto 10 numbers from 0 to 1000 separated by space
               </p>
             </div>
-            <div className="flex  flex-col">
+            <div className="flex relative flex-col">
+              <EnterArray status={ready} />
+
               <div className="bg-[#f3e9dc] border-2 border-[#c08552] m-1 rounded-xl flex justify-center items-center">
                 <input
                   className="px-3 p-1 text-black text-sm min-w-[300px] mx-2 my-2 disabled:opacity-50 disabled:bg-white rounded-md focus:outline-none"
@@ -129,7 +134,8 @@ export default function LinearSearch() {
                 )}
               </div>
             </div>
-            <div className="flex  flex-col">
+            <div className="flex relative flex-col">
+              <Order status={ready} />
               <p className="text-lg px-2 m-1 bg-[#f3e9dc] border-2 border-[#c08552] rounded-xl p-1 h-[40px] font-bold min-w-[200px]  flex justify-center items-center">
                 Enter Search Node
               </p>
@@ -144,7 +150,8 @@ export default function LinearSearch() {
                 />
               </div>
             </div>
-            <div className="flex m-1 bg-[#f3e9dc] border-2 border-[#c08552] rounded-xl justify-center items-center">
+            <div className="flex m-1 relative bg-[#f3e9dc] border-2 border-[#c08552] rounded-xl justify-center items-center">
+              <Go status={ready} />
               <button
                 disabled={
                   !(arr != undefined && arr != null) ||

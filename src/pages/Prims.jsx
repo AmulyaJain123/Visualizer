@@ -12,7 +12,13 @@ import {
   primsTimeline,
 } from "../algorithms/graphs";
 import next from "../assets/next.png";
-// import Table from "../components/dijkstraComponents/Table";
+import { motion } from "framer-motion";
+import typeWater from "../assets/watermarks/Graph/type.png";
+import graphWater from "../assets/watermarks/Graph/graph2.png";
+import buttonWater from "../assets/watermarks/Graph/button.png";
+import startWater from "../assets/watermarks/Graph/start.png";
+import resetWater from "../assets/watermarks/Graph/reset.png";
+import enterWater from "../assets/watermarks/Graph/enter.png";
 
 const types = [
   "undirected",
@@ -155,10 +161,32 @@ export default function Prims() {
   return (
     <>
       <div className="flex flex-col  select-none  w-full py-16 pt-12 px-8 h-full mb-[200px]">
-        <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-12">
+        <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-16">
           Prim's Algorithm
         </h1>
-        <div className="flex   mx-auto">
+        <div className="flex relative mx-auto">
+          {chosenGraph != undefined ? null : (
+            <>
+              <motion.div
+                style={{ display: chosenGraph ? "none" : "" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.75 }}
+                className="absolute bottom-[70px] left-[-40px]  translate-x-[-100%] scale-125 translate-y-[100%]"
+              >
+                <img src={graphWater} className="opacity-50" alt="" />
+              </motion.div>
+              <motion.div
+                style={{ display: chosenGraph ? "none" : "" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.75 }}
+                className="absolute top-[50%] right-[-40px]  translate-x-[100%] scale-125 translate-y-[-100%]"
+              >
+                <img src={buttonWater} className="opacity-50" alt="" />
+              </motion.div>
+            </>
+          )}
           <div className="flex  border-2 text-[#c08552]   border-neutral-200">
             <div className="flex  flex-col min-w-[350px]">
               <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
@@ -202,7 +230,29 @@ export default function Prims() {
           </div>
 
           <div className="flex  border-2 text-[#c08552]   border-neutral-200">
-            <div className="flex  flex-col min-w-[200px] ">
+            <div className="flex relative flex-col min-w-[200px] ">
+              {chosenGraph != undefined ? null : (
+                <>
+                  <motion.div
+                    style={{ display: chosenGraph ? "none" : "" }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.75 }}
+                    className="absolute top-[-15px] right-[0px] translate-x-[100%] scale-[210%]  translate-y-[-100%]"
+                  >
+                    <img src={enterWater} className="opacity-50" alt="" />
+                  </motion.div>
+                  <motion.div
+                    style={{ display: chosenGraph ? "none" : "" }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.75 }}
+                    className="absolute bottom-[-10px] right-[-10px] scale-[130%] translate-x-[100%] translate-y-[100%]"
+                  >
+                    <img src={startWater} className="opacity-50" alt="" />
+                  </motion.div>
+                </>
+              )}
               <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
                 Enter Start Node
               </p>
@@ -259,7 +309,18 @@ export default function Prims() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col mx-auto flex-grow w-[200px]  mt-2">
+        <div className="flex relative flex-col mx-auto flex-grow w-[200px]  mt-2">
+          {chosenGraph != undefined ? null : (
+            <motion.div
+              style={{ display: chosenGraph ? "none" : "" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.75 }}
+              className="absolute bottom-[-40px] right-[50%]  translate-x-[50%] scale-[200%] translate-y-[100%]"
+            >
+              <img src={resetWater} className="opacity-50" alt="" />
+            </motion.div>
+          )}
           <button
             disabled={algoName === null}
             onClick={reset}

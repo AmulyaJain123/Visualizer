@@ -1,5 +1,9 @@
 import { useState, useRef } from "react";
 import QuickSortAnimation from "../components/quickSortComponents/QuickSortAnimation";
+import enterWater from "../assets/watermarks/enter.png";
+import arrayWater from "../assets/watermarks/array.png";
+import { motion } from "framer-motion";
+import Go from "../components/UIComponents/Go";
 
 export default function QuickSort() {
   const textRef = useRef();
@@ -70,7 +74,7 @@ export default function QuickSort() {
   return (
     <>
       <div className="flex flex-col select-none  w-full py-16 pt-12 px-8 h-full mb-[200px]">
-        <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-12">
+        <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-16">
           Quick Sort
         </h1>
         <div className="flex   mx-auto">
@@ -83,7 +87,29 @@ export default function QuickSort() {
                 Enter upto 10 numbers from 0 to 1000 separated by space
               </p>
             </div>
-            <div className="flex  flex-col">
+            <div className="flex relative flex-col">
+              {ready ? null : (
+                <>
+                  <motion.div
+                    style={{ display: ready ? "none" : "" }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.75 }}
+                    className="absolute top-[-10px] min-w-[500px] right-[80%] translate-y-[-100%]"
+                  >
+                    <img src={enterWater} className="opacity-50" alt="" />
+                  </motion.div>
+                  <motion.div
+                    style={{ display: ready ? "none" : "" }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.75 }}
+                    className="absolute bottom-[-25px] scale-[135%] left-[50px] translate-x-[-100%] translate-y-[100%]"
+                  >
+                    <img src={arrayWater} className="opacity-50" alt="" />
+                  </motion.div>
+                </>
+              )}
               <div className="bg-[#f3e9dc] border-2 border-[#c08552] m-1 rounded-xl flex justify-center items-center">
                 <input
                   className="px-3 p-1 text-black text-sm min-w-[300px] mx-2 my-2 disabled:opacity-50 disabled:bg-white rounded-md focus:outline-none"
@@ -104,7 +130,8 @@ export default function QuickSort() {
                 )}
               </div>
             </div>
-            <div className="flex m-1 bg-[#f3e9dc] border-2 border-[#c08552] rounded-xl justify-center items-center">
+            <div className="flex relative m-1 bg-[#f3e9dc] border-2 border-[#c08552] rounded-xl justify-center items-center">
+              <Go status={ready} />
               <button
                 disabled={!(arr != undefined && arr != null)}
                 onClick={goClick}

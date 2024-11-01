@@ -147,7 +147,7 @@ export default function SelectionSortTemplate() {
             <div className="flex gap-x-12 items-center">
               <img src={max} className="rounded-xl w-[80px]" alt="" />
               <div className="flex flex-col items-center ">
-                <span className="text-lg font-medium">Max Node</span>
+                <span className="text-lg font-medium">Min/Max Node</span>
               </div>
             </div>
             <div className="flex gap-x-12 items-center">

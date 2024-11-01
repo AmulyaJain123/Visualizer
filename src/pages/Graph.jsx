@@ -5,6 +5,9 @@ import Adjacency from "../components/graphComponents/Adjacency";
 import Fig from "../components/graphComponents/Fig";
 import { options } from "../algorithms/options";
 import right from "../assets/next.png";
+import { motion } from "framer-motion";
+import typeWater from "../assets/watermarks/Graph/type.png";
+import graphWater from "../assets/watermarks/Graph/graph.png";
 
 const types = [
   "undirected",
@@ -88,12 +91,34 @@ export default function Graph() {
   return (
     <>
       <div className="flex flex-col select-none  w-full py-16 pt-12 px-8 h-full mb-[200px]">
-        <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-12">
+        <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-16">
           Graph
         </h1>
-        <div className="flex   mx-auto">
+        <div className="flex relative mx-auto">
+          {chosenGraph != undefined ? null : (
+            <>
+              <motion.div
+                style={{ display: chosenGraph ? "none" : "" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.75 }}
+                className="absolute top-[50%] left-[-40px]  translate-x-[-100%] scale-125 translate-y-[-100%]"
+              >
+                <img src={typeWater} className="opacity-50" alt="" />
+              </motion.div>
+              <motion.div
+                style={{ display: chosenGraph ? "none" : "" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.75 }}
+                className="absolute bottom-[70px] right-[-40px]  translate-x-[100%] scale-125 translate-y-[100%]"
+              >
+                <img src={graphWater} className="opacity-50" alt="" />
+              </motion.div>
+            </>
+          )}
           <div className="flex  border-2 text-[#c08552]   border-neutral-200">
-            <div className="flex  flex-col">
+            <div className="flex min-w-[350px] flex-col">
               <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
                 Choose Graph
               </p>

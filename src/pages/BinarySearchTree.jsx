@@ -8,6 +8,14 @@ import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import TraversalAnimation from "../components/binarySearchTreeComponents/TraversalAnimaton";
 import DeletionAnimation from "../components/binarySearchTreeComponents/DeletionAnimation";
+import enterWater from "../assets/watermarks/BST/enter.png";
+import insertWater from "../assets/watermarks/BST/insert.png";
+import deleteWater from "../assets/watermarks/BST/delete.png";
+import searchWater from "../assets/watermarks/BST/search.png";
+import traverseWater from "../assets/watermarks/BST/traverse.png";
+import cancelWater from "../assets/watermarks/BST/cancel.png";
+import skipWater from "../assets/watermarks/BST/skip.png";
+import resetWater from "../assets/watermarks/BST/reset.png";
 
 export default function BinarySearchTree() {
   const insertionRef = useRef();
@@ -171,12 +179,34 @@ export default function BinarySearchTree() {
   return (
     <>
       <div className="flex flex-col  select-none  w-full py-16 pt-12 px-8 h-full mb-[200px]">
-        <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-12">
+        <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-16">
           Binary Search Tree
         </h1>
-        <div className="flex   mx-auto">
+        <div className="flex relative  mx-auto">
+          {disable || treeArray ? null : (
+            <motion.div
+              style={{ display: disable || treeArray ? "none" : "" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.75 }}
+              className="absolute top-[-10px] left-[70px] scale-125 translate-y-[-100%]"
+            >
+              <img src={enterWater} className="opacity-50" alt="" />
+            </motion.div>
+          )}
           <div className="flex  border-2 text-[#c08552]   border-neutral-200">
-            <div className="flex flex-col max-w-[200px]">
+            <div className="flex relative flex-col max-w-[200px]">
+              {disable || treeArray ? null : (
+                <motion.div
+                  style={{ display: disable || treeArray ? "none" : "" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="absolute bottom-[-20px] left-[20px] translate-x-[-100%] scale-[125%]  translate-y-[100%]"
+                >
+                  <img src={insertWater} className="opacity-50" alt="" />
+                </motion.div>
+              )}
               <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
                 Insertion
               </p>
@@ -190,7 +220,6 @@ export default function BinarySearchTree() {
                   onKeyDown={(event) => insertionClick(event)}
                 />
               </div>
-
               <div className="px-2 p-1 m-1  bg-[#f3e9dc] border-2 h-16 border-[#c08552] rounded-xl text-sm flex-grow justify-center items-center flex ">
                 {insertion === undefined ? (
                   <p></p>
@@ -201,7 +230,19 @@ export default function BinarySearchTree() {
                 )}
               </div>
             </div>
-            <div className="flex flex-col max-w-[200px]">
+            <div className="flex relative flex-col max-w-[200px]">
+              {disable || treeArray ? null : (
+                <motion.div
+                  style={{ display: disable || treeArray ? "none" : "" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="absolute bottom-[-40px] left-[50%] translate-x-[-100%] scale-[200%]  translate-y-[100%]"
+                >
+                  <img src={deleteWater} className="opacity-50" alt="" />
+                </motion.div>
+              )}
+
               <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
                 Deletion
               </p>
@@ -226,7 +267,18 @@ export default function BinarySearchTree() {
                 )}
               </div>
             </div>
-            <div className="flex flex-col max-w-[200px]">
+            <div className="flex relative flex-col max-w-[200px]">
+              {disable || treeArray ? null : (
+                <motion.div
+                  style={{ display: disable || treeArray ? "none" : "" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="absolute bottom-[-45px] right-[100px] scale-[200%] translate-x-[100%] translate-y-[100%]"
+                >
+                  <img src={searchWater} className="opacity-50" alt="" />
+                </motion.div>
+              )}
               <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
                 Searching
               </p>
@@ -251,7 +303,18 @@ export default function BinarySearchTree() {
                 )}
               </div>
             </div>
-            <div className="flex flex-col w-[180px]">
+            <div className="flex relative flex-col w-[180px]">
+              {disable || treeArray ? null : (
+                <motion.div
+                  style={{ display: disable || treeArray ? "none" : "" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="absolute bottom-[-30px] right-[20px] scale-[150%] translate-x-[100%] translate-y-[100%]"
+                >
+                  <img src={traverseWater} className="opacity-50" alt="" />
+                </motion.div>
+              )}
               <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
                 Traversal
               </p>
@@ -279,7 +342,40 @@ export default function BinarySearchTree() {
                 </button>
               </div>
             </div>
-            <div className="flex flex-col w-[150px] justify-center ml-2">
+            <div className="flex relative flex-col w-[150px] justify-center ml-2">
+              {disable || treeArray ? null : (
+                <motion.div
+                  style={{ display: disable || treeArray ? "none" : "" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="absolute top-[30px] right-[-45px] scale-[135%] translate-x-[100%] translate-y-[-100%]"
+                >
+                  <img src={cancelWater} className="opacity-50" alt="" />
+                </motion.div>
+              )}
+              {disable || treeArray ? null : (
+                <motion.div
+                  style={{ display: disable || treeArray ? "none" : "" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="absolute top-[20px] right-[-45px] scale-[135%] translate-x-[100%] translate-y-[100%]"
+                >
+                  <img src={skipWater} className="opacity-50" alt="" />
+                </motion.div>
+              )}
+              {disable || treeArray ? null : (
+                <motion.div
+                  style={{ display: disable || treeArray ? "none" : "" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="absolute bottom-[30px] right-[-45px] scale-[135%] translate-x-[100%] translate-y-[100%]"
+                >
+                  <img src={resetWater} className="opacity-50" alt="" />
+                </motion.div>
+              )}
               <button
                 disabled={!disable}
                 onClick={cancel}

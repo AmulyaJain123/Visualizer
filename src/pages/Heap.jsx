@@ -7,6 +7,14 @@ import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import DeletionAnimation from "../components/heapComponents/DeletionAnimation";
 import Array from "../components/heapComponents/Array";
+import enterWater from "../assets/watermarks/Heap/enter.png";
+import insertWater from "../assets/watermarks/Heap/insert.png";
+import deleteWater from "../assets/watermarks/Heap/delete.png";
+import minmaxWater from "../assets/watermarks/Heap/minmax.png";
+import typeWater from "../assets/watermarks/Heap/type.png";
+import cancelWater from "../assets/watermarks/Heap/cancel.png";
+import skipWater from "../assets/watermarks/Heap/skip.png";
+import resetWater from "../assets/watermarks/Heap/reset.png";
 
 export default function Heap() {
   const insertionRef = useRef();
@@ -118,12 +126,34 @@ export default function Heap() {
   return (
     <>
       <div className="flex flex-col select-none  w-full py-16 pt-12 px-8 h-full mb-[200px]">
-        <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-12">
+        <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-16">
           Heap
         </h1>
-        <div className="flex   mx-auto">
+        <div className="flex relative mx-auto">
+          {disable || treeArray ? null : (
+            <motion.div
+              style={{ display: disable || treeArray ? "none" : "" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.75 }}
+              className="absolute top-[-10px] left-[0px] translate-x-[-100%] scale-125 translate-y-[-100%]"
+            >
+              <img src={enterWater} className="opacity-50" alt="" />
+            </motion.div>
+          )}
           <div className="flex  border-2 text-[#c08552]   border-neutral-200">
-            <div className="flex flex-col max-w-[200px]">
+            <div className="flex relative flex-col max-w-[200px]">
+              {disable || treeArray ? null : (
+                <motion.div
+                  style={{ display: disable || treeArray ? "none" : "" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="absolute bottom-[-20px] left-[20px] translate-x-[-100%] scale-[125%]  translate-y-[100%]"
+                >
+                  <img src={insertWater} className="opacity-50" alt="" />
+                </motion.div>
+              )}
               <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
                 Insertion
               </p>
@@ -148,7 +178,18 @@ export default function Heap() {
                 )}
               </div>
             </div>
-            <div className="flex flex-col max-w-[200px]">
+            <div className="flex relative flex-col max-w-[200px]">
+              {disable || treeArray ? null : (
+                <motion.div
+                  style={{ display: disable || treeArray ? "none" : "" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="absolute bottom-[-40px] left-[50%] translate-x-[-100%] scale-[200%]  translate-y-[100%]"
+                >
+                  <img src={deleteWater} className="opacity-50" alt="" />
+                </motion.div>
+              )}
               <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
                 Deletion
               </p>
@@ -162,7 +203,18 @@ export default function Heap() {
                 </button>
               </div>
             </div>
-            <div className="flex flex-col max-w-[200px]">
+            <div className="flex relative flex-col max-w-[200px]">
+              {disable || treeArray ? null : (
+                <motion.div
+                  style={{ display: disable || treeArray ? "none" : "" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="absolute bottom-[-45px] left-[120px] scale-[370%] translate-x-[-100%] translate-y-[100%]"
+                >
+                  <img src={minmaxWater} className="opacity-50" alt="" />
+                </motion.div>
+              )}
               <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
                 Min/Max
               </p>
@@ -177,7 +229,16 @@ export default function Heap() {
                 </button>
               </div>
             </div>
-            <div className="flex flex-col w-[180px]">
+            <div className="flex relative flex-col w-[180px]">
+              <motion.div
+                style={{ display: disable || treeArray ? "none" : "" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.75 }}
+                className="absolute bottom-[-30px] right-[20px] scale-[150%] translate-x-[100%] translate-y-[100%]"
+              >
+                <img src={typeWater} className="opacity-50" alt="" />
+              </motion.div>
               <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
                 Type
               </p>
@@ -200,7 +261,40 @@ export default function Heap() {
                 ) : null}
               </div>
             </div>
-            <div className="flex flex-col w-[150px] justify-center ml-2">
+            <div className="flex relative flex-col w-[150px] justify-center ml-2">
+              {disable || treeArray ? null : (
+                <motion.div
+                  style={{ display: disable || treeArray ? "none" : "" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="absolute top-[30px] right-[-45px] scale-[135%] translate-x-[100%] translate-y-[-100%]"
+                >
+                  <img src={cancelWater} className="opacity-50" alt="" />
+                </motion.div>
+              )}
+              {disable || treeArray ? null : (
+                <motion.div
+                  style={{ display: disable || treeArray ? "none" : "" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="absolute top-[40px] right-[-45px] scale-[135%] translate-x-[100%] translate-y-[100%]"
+                >
+                  <img src={skipWater} className="opacity-50" alt="" />
+                </motion.div>
+              )}
+              {disable || treeArray ? null : (
+                <motion.div
+                  style={{ display: disable || treeArray ? "none" : "" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="absolute bottom-[30px] right-[-45px] scale-[135%] translate-x-[100%] translate-y-[100%]"
+                >
+                  <img src={resetWater} className="opacity-50" alt="" />
+                </motion.div>
+              )}
               <button
                 disabled={!disable}
                 onClick={cancel}

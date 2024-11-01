@@ -1,5 +1,8 @@
 import { useState, useRef } from "react";
 import BinaryTreeAnimation from "../components/binaryTreeComponents/BinaryTreeAnimation";
+import EnterArray from "../components/UIComponents/EnterArray";
+import Order from "../components/UIComponents/Order";
+import Go from "../components/UIComponents/Go";
 
 export default function BinaryTree() {
   const textRef = useRef();
@@ -49,6 +52,9 @@ export default function BinaryTree() {
       }
       arr.push(integer + "");
     }
+    if (arr.length === 0) {
+      return null;
+    }
     return arr;
   }
 
@@ -74,7 +80,7 @@ export default function BinaryTree() {
   return (
     <>
       <div className="flex flex-col select-none  w-full py-16 pt-12 px-8 h-full mb-[200px]">
-        <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-12">
+        <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-16">
           Binary Tree
         </h1>
         <div className="flex   mx-auto">
@@ -88,7 +94,8 @@ export default function BinaryTree() {
                 NULL values. Node values must be from 0 to 1000
               </p>
             </div>
-            <div className="flex  flex-col">
+            <div className="flex relative flex-col">
+              <EnterArray status={ready} />
               <div className="bg-[#f3e9dc] border-2 border-[#c08552] m-1 rounded-xl flex justify-center items-center">
                 <input
                   className="px-3 p-1 text-black text-sm min-w-[300px] mx-2 my-2 disabled:opacity-50 disabled:bg-white rounded-md focus:outline-none"
@@ -109,7 +116,8 @@ export default function BinaryTree() {
                 )}
               </div>
             </div>
-            <div className="flex m-1 bg-[#f3e9dc] border-2 border-[#c08552] rounded-xl justify-center items-center">
+            <div className="flex m-1 relative bg-[#f3e9dc] border-2 border-[#c08552] rounded-xl justify-center items-center">
+              <Go status={ready} />
               <button
                 disabled={!(arr != undefined && arr != null)}
                 onClick={goClick}
