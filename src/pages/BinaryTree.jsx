@@ -1,13 +1,25 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import BinaryTreeAnimation from "../components/binaryTreeComponents/BinaryTreeAnimation";
 import EnterArray from "../components/UIComponents/EnterArray";
 import Order from "../components/UIComponents/Order";
 import Go from "../components/UIComponents/Go";
+import { useDispatch } from "react-redux";
+import { generalActions } from "../store/main";
 
 export default function BinaryTree() {
   const textRef = useRef();
   const [arr, setArr] = useState(undefined);
   const [ready, setReady] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (arr) {
+      dispatch(generalActions.setActivity(true));
+    }
+    return () => {
+      dispatch(generalActions.setActivity(false));
+    };
+  }, [arr]);
 
   function keyClick(event) {
     if (event.key === "Enter") {

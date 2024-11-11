@@ -3,6 +3,10 @@ import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import github from "../assets/githubFooter.png";
 import linkedin from "../assets/linkedinFooter.png";
+import { useDispatch, useSelector } from "react-redux";
+import { generalActions } from "../store/main";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useRef } from "react";
 
 const col1 = "#c08552";
 const col2 = "#f3e9dc";
@@ -18,6 +22,13 @@ const Tile = styled.div`
 
 export default function SideMenu() {
   const location = useLocation();
+  const activity = useSelector((state) => state.general.activity);
+  const modalOpen = useSelector((state) => state.general.showModal);
+  const pendingPath = useSelector((state) => state.general.pendingPath);
+  const navigate = useNavigate();
+  const dialogRef = useRef();
+
+  const dispatch = useDispatch();
 
   const home = location.pathname === "/";
   const gallery = location.pathname === "/gallery";
@@ -212,6 +223,33 @@ export default function SideMenu() {
     },
   ];
 
+  function clickGuard(event, path) {
+    if (activity) {
+      event.preventDefault();
+      dispatch(generalActions.showNavigationModal(path));
+    }
+  }
+
+  function handleCancel() {
+    console.log("efef");
+    dispatch(generalActions.hideNavigationModal());
+  }
+  function handleConfirm() {
+    if (pendingPath) {
+      navigate(pendingPath);
+    }
+    dispatch(generalActions.hideNavigationModal());
+    dispatch(generalActions.setActivity(false));
+  }
+
+  useEffect(() => {
+    if (modalOpen) {
+      dialogRef.current.showModal();
+    } else {
+      dialogRef.current.close();
+    }
+  }, [modalOpen]);
+
   return (
     <div className="flex flex-col w-full h-full overflow-y-auto overflow-x-hidden sidebarScroll  pt-2  ">
       <div className="flex flex-col items-center gap-y-6 pb-3">
@@ -220,7 +258,7 @@ export default function SideMenu() {
             Navigation
           </div> */}
           <div className="flex flex-col mt-4 border-y-2 w-[150px] justify-center divide-y-2 divide-[#c08552] border-[#c08552]">
-            <Link to={"/"}>
+            <Link onClick={(event) => clickGuard(event, "/")} to={"/"}>
               <Tile
                 className="text-center py-1"
                 $status={home ? "true" : "false"}
@@ -228,7 +266,10 @@ export default function SideMenu() {
                 Home
               </Tile>
             </Link>
-            <Link to={"/gallery"}>
+            <Link
+              onClick={(event) => clickGuard(event, "/gallery")}
+              to={"/gallery"}
+            >
               <Tile
                 className="text-center py-1"
                 $status={gallery ? "true" : "false"}
@@ -256,6 +297,8 @@ export default function SideMenu() {
                           border:
                             j.name === "Overview" ? "1px solid #c08552" : "",
                         }}
+                        className="link-navigation"
+                        onClick={(event) => clickGuard(event, j.path)}
                         key={j.name}
                         to={j.path}
                       >
@@ -297,6 +340,37 @@ export default function SideMenu() {
           </span>
         </div>
       </div>
+
+      <dialog
+        ref={dialogRef}
+        className="rounded-3xl border-2 border-[#000] shadow-2xl bg-stone-200 text-[#000]"
+      >
+        <div className="m-8 rounded-3xl ">
+          <div>
+            <div className="text-2xl font-bold mx-auto text-center mb-8">
+              Confirm Navigation
+            </div>
+            <div className="text-center text-lg">
+              Are you sure you want to leave this page? <br /> All the data for
+              the current Animation will be lost.
+            </div>
+          </div>
+          <div className="mt-8 flex justify-center space-x-6">
+            <button
+              className="text-white font-semibold bg-red-500 border-2 border-red-500 hover:bg-white hover:text-red-500 duration-500 text-lg rounded-lg py-1 px-4"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
+            <button
+              className="text-white font-semibold bg-green-500 border-2 border-green-500 hover:bg-white hover:text-green-500 duration-500 text-lg rounded-lg py-1 px-4"
+              onClick={handleConfirm}
+            >
+              Continue
+            </button>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 }

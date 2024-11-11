@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import search from "../assets/search.png";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import alarm from "../assets/alarm.gif";
 import tick from "../assets/hand-tick.png";
+import { useDispatch, useSelector } from "react-redux";
+import { generalActions } from "../store/main";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Logo = styled.button`
   font-size: xx-large;
@@ -131,6 +134,17 @@ export default function TopNav() {
   const [query, setQuery] = useState("");
   const [foc, setFoc] = useState(false);
   const [results, setResults] = useState(null);
+  const activity = useSelector((state) => state.general.activity);
+  const modalOpen = useSelector((state) => state.general.showModal);
+  const pendingPath = useSelector((state) => state.general.pendingPath);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setFocFalse();
+  }, [location]);
 
   function searchChange(event) {
     const str = searchRef.current.value.trim().toLowerCase();
@@ -151,14 +165,26 @@ export default function TopNav() {
     searchRef.current.value = "";
   }
 
-  // console.log(results);
+  function clickGuard(event, path) {
+    if (activity) {
+      event.preventDefault();
+      dispatch(generalActions.showNavigationModal(path));
+    }
+  }
+
+  function searchGuard(event, path) {
+    if (activity) {
+      event.preventDefault();
+      dispatch(generalActions.showNavigationModal(path));
+    }
+  }
 
   return (
     <>
       <div className="flex w-screen bg-inherit ">
         <div className="flex flex-grow  bg-black px-8 items-center justify-between">
           <div className="flex ">
-            <Link to={"/"}>
+            <Link onClick={(event) => clickGuard(event, "/")} to={"/"}>
               <Logo>AlgoTrace</Logo>
             </Link>
             <div
@@ -198,7 +224,9 @@ export default function TopNav() {
                                   <Link
                                     to={i.path}
                                     key={kom}
-                                    onClick={() => setFocFalse()}
+                                    onClick={(event) =>
+                                      searchGuard(event, i.path)
+                                    }
                                     className="flex justify-center searchTile items-center py-2 w-[170px] mx-auto "
                                   >
                                     {i.name}
@@ -223,7 +251,12 @@ export default function TopNav() {
             <div className="flex space-x-4 text-lg items-center text-white ">
               {bar.map((i) => {
                 return (
-                  <Link to={i.path} key={i.name} className="uppercase text-sm ">
+                  <Link
+                    onClick={(event) => clickGuard(event, i.path)}
+                    to={i.path}
+                    key={i.name}
+                    className="uppercase text-sm "
+                  >
                     {i.name}
                   </Link>
                 );

@@ -1,8 +1,10 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import LinearSearchAnimation from "../components/linearSearchComponents/LinearSearchAnimation";
 import EnterArray from "../components/UIComponents/EnterArray";
 import Order from "../components/UIComponents/SearchNode";
 import Go from "../components/UIComponents/Go";
+import { useDispatch } from "react-redux";
+import { generalActions } from "../store/main";
 
 export default function LinearSearch() {
   const textRef = useRef();
@@ -10,6 +12,16 @@ export default function LinearSearch() {
   const [arr, setArr] = useState(undefined);
   const [ready, setReady] = useState(false);
   const [num, setNum] = useState(undefined);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (arr || num) {
+      dispatch(generalActions.setActivity(true));
+    }
+    return () => {
+      dispatch(generalActions.setActivity(false));
+    };
+  }, [arr, num]);
 
   function keyClick(event) {
     if (event.key === "Enter") {

@@ -16,6 +16,7 @@ import traverseWater from "../assets/watermarks/BST/traverse.png";
 import cancelWater from "../assets/watermarks/BST/cancel.png";
 import skipWater from "../assets/watermarks/BST/skip.png";
 import resetWater from "../assets/watermarks/BST/reset.png";
+import { generalActions } from "../store/main";
 
 export default function BinarySearchTree() {
   const insertionRef = useRef();
@@ -41,6 +42,15 @@ export default function BinarySearchTree() {
     dispatch(bstActions.setMinMaxNumber(null));
     dispatch(bstActions.setHeapType(null));
   }, []);
+
+  useEffect(() => {
+    if (treeArray || disable) {
+      dispatch(generalActions.setActivity(true));
+    }
+    return () => {
+      dispatch(generalActions.setActivity(false));
+    };
+  }, [treeArray, disable]);
 
   function insertionClick(event) {
     if (event.key === "Enter") {

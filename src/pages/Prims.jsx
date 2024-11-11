@@ -405,7 +405,7 @@ export default function Prims() {
                       >
                         {i === -1 ? "NULL" : i}
                         <span className="absolute left-[-10px] translate-x-[-100%] font-bold top-[50%] translate-y-[-50%]">
-                          {index + 1}
+                          {index}
                         </span>
                       </div>
                     );

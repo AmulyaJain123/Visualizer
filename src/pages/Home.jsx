@@ -11,6 +11,7 @@ import github from "../assets/github.png";
 import email from "../assets/email.png";
 
 import { useEffect, useRef, useState } from "react";
+import SwipeAnimation from "../components/UIComponents/SwipeAnimation";
 
 export default function Home() {
   const [copyStatus, setCopyStatus] = useState(false);

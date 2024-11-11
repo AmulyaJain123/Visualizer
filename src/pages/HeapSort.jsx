@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import EnterArray from "../components/UIComponents/EnterArray";
 import Order from "../components/UIComponents/Order";
 import Go from "../components/UIComponents/Go2";
+import { generalActions } from "../store/main";
 
 export default function HeapSort() {
   const textRef = useRef();
@@ -19,6 +20,15 @@ export default function HeapSort() {
   const [ready, setReady] = useState(false);
   const dispatch = useDispatch();
   const animationRef = useRef();
+
+  useEffect(() => {
+    if (arr) {
+      dispatch(generalActions.setActivity(true));
+    }
+    return () => {
+      dispatch(generalActions.setActivity(false));
+    };
+  }, [arr]);
 
   function keyClick(event) {
     if (event.key === "Enter") {

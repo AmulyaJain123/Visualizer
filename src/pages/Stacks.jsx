@@ -9,6 +9,7 @@ import pushWater from "../assets/watermarks/Stacks/push.png";
 import popWater from "../assets/watermarks/Stacks/pop.png";
 import peekWater from "../assets/watermarks/Stacks/peek.png";
 import resetWater from "../assets/watermarks/Stacks/reset.png";
+import { generalActions } from "../store/main";
 
 export default function Stacks() {
   const pushRef = useRef();
@@ -21,6 +22,15 @@ export default function Stacks() {
   useEffect(() => {
     dispatch(stacksNQueueActions.reset());
   }, []);
+
+  useEffect(() => {
+    if (push || stack) {
+      dispatch(generalActions.setActivity(true));
+    }
+    return () => {
+      dispatch(generalActions.setActivity(false));
+    };
+  }, [push, stack]);
 
   function pushClick(event) {
     if (event.key === "Enter") {

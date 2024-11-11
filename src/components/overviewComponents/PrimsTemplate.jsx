@@ -222,7 +222,7 @@ export default function PrimsTemplate() {
             </div>
 
             <div className="flex gap-x-12 justify-center items-center">
-              <img src={p4} className="rounded-xl w-[120px]" alt="" />
+              <img src={p4} className="rounded-xl w-[110px]" alt="" />
               <div className="flex flex-col items-center">
                 <span className="text-lg font-medium">Parents Array</span>
                 <p className="max-w-[300px] text-center">

@@ -1,14 +1,26 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import QuickSortAnimation from "../components/quickSortComponents/QuickSortAnimation";
 import enterWater from "../assets/watermarks/enter.png";
 import arrayWater from "../assets/watermarks/array.png";
 import { motion } from "framer-motion";
 import Go from "../components/UIComponents/Go";
+import { useDispatch } from "react-redux";
+import { generalActions } from "../store/main";
 
 export default function QuickSort() {
   const textRef = useRef();
   const [arr, setArr] = useState(undefined);
   const [ready, setReady] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (arr) {
+      dispatch(generalActions.setActivity(true));
+    }
+    return () => {
+      dispatch(generalActions.setActivity(false));
+    };
+  }, [arr]);
 
   function keyClick(event) {
     if (event.key === "Enter") {

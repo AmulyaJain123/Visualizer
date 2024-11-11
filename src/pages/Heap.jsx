@@ -15,6 +15,7 @@ import typeWater from "../assets/watermarks/Heap/type.png";
 import cancelWater from "../assets/watermarks/Heap/cancel.png";
 import skipWater from "../assets/watermarks/Heap/skip.png";
 import resetWater from "../assets/watermarks/Heap/reset.png";
+import { generalActions } from "../store/main";
 
 export default function Heap() {
   const insertionRef = useRef();
@@ -38,6 +39,15 @@ export default function Heap() {
     dispatch(bstActions.setMinMaxNumber(null));
     dispatch(bstActions.setHeapType(null));
   }, []);
+
+  useEffect(() => {
+    if (treeArray || disable) {
+      dispatch(generalActions.setActivity(true));
+    }
+    return () => {
+      dispatch(generalActions.setActivity(false));
+    };
+  }, [treeArray, disable]);
 
   function insertionClick(event) {
     if (event.key === "Enter") {
@@ -230,15 +240,17 @@ export default function Heap() {
               </div>
             </div>
             <div className="flex relative flex-col w-[180px]">
-              <motion.div
-                style={{ display: disable || treeArray ? "none" : "" }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.75 }}
-                className="absolute bottom-[-30px] right-[20px] scale-[150%] translate-x-[100%] translate-y-[100%]"
-              >
-                <img src={typeWater} className="opacity-50" alt="" />
-              </motion.div>
+              {disable || treeArray ? null : (
+                <motion.div
+                  style={{ display: disable || treeArray ? "none" : "" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="absolute bottom-[-30px] right-[20px] scale-[150%] translate-x-[100%] translate-y-[100%]"
+                >
+                  <img src={typeWater} className="opacity-50" alt="" />
+                </motion.div>
+              )}
               <p className="text-lg px-3 m-1 p-1 h-[40px]  bg-[#f3e9dc] justify-center border-2 border-[#c08552] rounded-xl flex items-center font-bold">
                 Type
               </p>

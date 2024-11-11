@@ -1,14 +1,26 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import InsertionSortAnimation from "../components/insertionSortComponents/InsertionSortAnimation";
 import EnterArray from "../components/UIComponents/EnterArray";
 import Order from "../components/UIComponents/Order";
 import Go from "../components/UIComponents/Go";
+import { useDispatch } from "react-redux";
+import { generalActions } from "../store/main";
 
 export default function InsertionSort() {
   const textRef = useRef();
   const selectRef = useRef();
   const [arr, setArr] = useState(undefined);
   const [ready, setReady] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (arr) {
+      dispatch(generalActions.setActivity(true));
+    }
+    return () => {
+      dispatch(generalActions.setActivity(false));
+    };
+  }, [arr]);
 
   function keyClick(event) {
     if (event.key === "Enter") {
