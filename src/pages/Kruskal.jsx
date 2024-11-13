@@ -9,12 +9,10 @@ import { kruskalsTimeline } from "../algorithms/graphs";
 import next from "../assets/next.png";
 import Stack from "../components/kruskalComponents/Stack";
 import { motion } from "framer-motion";
-import typeWater from "../assets/watermarks/Graph/type.png";
 import graphWater from "../assets/watermarks/Graph/graph2.png";
 import buttonWater from "../assets/watermarks/Graph/button.png";
-import startWater from "../assets/watermarks/Graph/start.png";
 import resetWater from "../assets/watermarks/Graph/reset.png";
-import enterWater from "../assets/watermarks/Graph/enter.png";
+import { generalActions } from "../store/main";
 
 const types = [
   "undirected",
@@ -62,6 +60,15 @@ export default function Kruskal() {
   useEffect(() => {
     dispatch(graphsActions.resetAll());
   }, []);
+
+  useEffect(() => {
+    if (chosenGraph != undefined) {
+      dispatch(generalActions.setActivity(true));
+    }
+    return () => {
+      dispatch(generalActions.setActivity(false));
+    };
+  }, [chosenGraph]);
 
   function keyClick(num) {
     let graphNo;

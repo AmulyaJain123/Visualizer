@@ -8,6 +8,7 @@ import right from "../assets/next.png";
 import { motion } from "framer-motion";
 import typeWater from "../assets/watermarks/Graph/type.png";
 import graphWater from "../assets/watermarks/Graph/graph.png";
+import { generalActions } from "../store/main";
 
 const types = [
   "undirected",
@@ -52,6 +53,15 @@ export default function Graph() {
   useEffect(() => {
     dispatch(graphsActions.resetAll());
   }, []);
+
+  useEffect(() => {
+    if (chosenGraph != undefined) {
+      dispatch(generalActions.setActivity(true));
+    }
+    return () => {
+      dispatch(generalActions.setActivity(false));
+    };
+  }, [chosenGraph]);
 
   function keyClick(num) {
     let graphNo;

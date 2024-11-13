@@ -20,6 +20,7 @@ import buttonWater from "../assets/watermarks/Graph/button.png";
 import startWater from "../assets/watermarks/Graph/start.png";
 import resetWater from "../assets/watermarks/Graph/reset.png";
 import enterWater from "../assets/watermarks/Graph/enter.png";
+import { generalActions } from "../store/main";
 
 const types = [
   "undirected",
@@ -45,6 +46,15 @@ export default function Dijkstra() {
   useEffect(() => {
     dispatch(graphsActions.resetAll());
   }, []);
+
+  useEffect(() => {
+    if (chosenGraph != undefined) {
+      dispatch(generalActions.setActivity(true));
+    }
+    return () => {
+      dispatch(generalActions.setActivity(false));
+    };
+  }, [chosenGraph]);
 
   function keyClick(num) {
     insertionRef.current.value = "";

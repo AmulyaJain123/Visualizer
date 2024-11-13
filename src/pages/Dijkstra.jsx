@@ -19,6 +19,7 @@ import buttonWater from "../assets/watermarks/Graph/button.png";
 import startWater from "../assets/watermarks/Graph/start.png";
 import resetWater from "../assets/watermarks/Graph/reset.png";
 import enterWater from "../assets/watermarks/Graph/enter.png";
+import { generalActions } from "../store/main";
 
 const types = [
   "undirected",
@@ -41,6 +42,15 @@ export default function Dijkstra() {
 
   const unweightedPos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 14, 15, 16, 17, 18, 19];
   const weightedPos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 14, 15, 16, 17, 18, 19];
+
+  useEffect(() => {
+    if (chosenGraph != undefined) {
+      dispatch(generalActions.setActivity(true));
+    }
+    return () => {
+      dispatch(generalActions.setActivity(false));
+    };
+  }, [chosenGraph]);
 
   function getPos(val, type) {
     if (type < 2) {

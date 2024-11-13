@@ -12,6 +12,7 @@ import typeWater from "../assets/watermarks/Graph/type.png";
 import graphWater from "../assets/watermarks/Graph/graph2.png";
 import bfsdfsWater from "../assets/watermarks/Graph/bfsdfs.png";
 import resetWater from "../assets/watermarks/Graph/reset.png";
+import { generalActions } from "../store/main";
 
 const types = [
   "undirected",
@@ -34,6 +35,15 @@ export default function BSFNDFS() {
   const weightedPos = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
   ];
+
+  useEffect(() => {
+    if (chosenGraph != undefined) {
+      dispatch(generalActions.setActivity(true));
+    }
+    return () => {
+      dispatch(generalActions.setActivity(false));
+    };
+  }, [chosenGraph]);
 
   function getPos(val, type) {
     if (type < 2) {
