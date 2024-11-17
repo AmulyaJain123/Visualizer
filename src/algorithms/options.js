@@ -2167,23 +2167,23 @@ export const options = [
         weights: [
             {
                 val: 2,
-                x: -0.5 * h - 20,
-                y: 0.5 * h,
+                x: -0.5 * h,
+                y: 3 / 4 * h + 20,
             },
             {
                 val: 6,
-                x: 0,
-                y: -10,
+                x: -h - 15,
+                y: 0.5 * h + 5,
             },
             {
                 val: 3,
-                x: 0,
-                y: h + 20,
+                x: 0.5 * h,
+                y: 0.5 * h - 5,
             },
             {
                 val: 5,
-                x: -20,
-                y: 0.5 * h,
+                x: -0.5 * h,
+                y: 1 / 4 * h - 5,
             },
         ],
         nodes: [
@@ -2192,29 +2192,29 @@ export const options = [
         coordinates: [
             {
                 val: 1,
-                x: -0.5 * h,
-                y: 0,
-                angle: [90],
+                x: -1 * h,
+                y: 1 * h,
+                angle: [0],
 
 
             },
             {
                 val: 2,
-                x: 0.5 * h,
+                x: -1 * h,
                 y: 0,
-                angle: [225, 270],
+                angle: [120, 180],
             },
             {
                 val: 3,
-                x: -0.5 * h,
-                y: h,
-                angle: [0],
+                x: 0,
+                y: 0.5 * h,
+                angle: [240],
 
             },
             {
                 val: 4,
-                x: 0.5 * h,
-                y: h,
+                x: 1 * h,
+                y: 0.5 * h,
                 angle: [270],
             },
         ]
@@ -2328,33 +2328,33 @@ export const options = [
         weights: [
             {
                 val: 2,
-                x: -0.5 * h - 20,
-                y: 0.5 * h,
+                x: 10,
+                y: 0.8 * h,
             },
             {
                 val: 1,
-                x: 0,
-                y: -10,
+                x: -0.5 * h,
+                y: 1.5 * h,
             },
             {
                 val: 4,
-                x: 0,
-                y: h + 20,
+                x: 0.5 * h + 15,
+                y: h,
             },
             {
                 val: 3,
-                x: 5,
-                y: 0.3 * h,
+                x: 0,
+                y: 2 * h + 20,
             },
             {
                 val: 5,
-                x: 0.5 * h + 10,
-                y: 0.5 * h,
+                x: -0.5 * h - 20,
+                y: 1 * h,
             },
             {
                 val: 2,
-                x: 5,
-                y: 0.8 * h,
+                x: 0.5 * h - 5,
+                y: 1.5 * h,
             },
         ],
         nodes: [
@@ -2363,30 +2363,30 @@ export const options = [
         coordinates: [
             {
                 val: 1,
-                x: -0.5 * h,
-                y: 0,
-                angle: [135, 180],
+                x: 0,
+                y: 1.25 * h,
+                angle: [0, 125],
 
 
             },
             {
                 val: 2,
-                x: 0.5 * h,
-                y: 0,
-                angle: [225, 270],
+                x: -1 * h,
+                y: 2 * h,
+                angle: [55, 90],
             },
             {
                 val: 3,
-                x: -0.5 * h,
-                y: h,
+                x: 1 * h,
+                y: 2 * h,
                 angle: [],
 
             },
             {
                 val: 4,
-                x: 0.5 * h,
-                y: h,
-                angle: [0, 270, 315],
+                x: 0,
+                y: 0,
+                angle: [150, 180, 210],
             },
         ]
     },
