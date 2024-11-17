@@ -5,6 +5,7 @@ import Order from "../components/UIComponents/SearchNode";
 import Go from "../components/UIComponents/Go";
 import { useDispatch } from "react-redux";
 import { generalActions } from "../store/main";
+import { Helmet } from "react-helmet-async";
 
 export default function LinearSearch() {
   const textRef = useRef();
@@ -102,6 +103,13 @@ export default function LinearSearch() {
 
   return (
     <>
+      <Helmet>
+        <title>Linear Search | AlgoTrace</title>
+        <meta
+          name="description"
+          content="Visit the interactive Animation for Linear Search"
+        />
+      </Helmet>
       <div className="flex flex-col select-none  w-full py-16 pt-12 px-8 h-full mb-[200px]">
         <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-16">
           Linear Search

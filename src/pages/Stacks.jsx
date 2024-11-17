@@ -10,6 +10,7 @@ import popWater from "../assets/watermarks/Stacks/pop.png";
 import peekWater from "../assets/watermarks/Stacks/peek.png";
 import resetWater from "../assets/watermarks/Stacks/reset.png";
 import { generalActions } from "../store/main";
+import { Helmet } from "react-helmet-async";
 
 export default function Stacks() {
   const pushRef = useRef();
@@ -88,6 +89,13 @@ export default function Stacks() {
 
   return (
     <>
+      <Helmet>
+        <title>Stacks | AlgoTrace</title>
+        <meta
+          name="description"
+          content="Visit the interactive Animation for Stacks"
+        />
+      </Helmet>
       <div className="flex flex-col  select-none  w-full py-16 pt-12 px-8 h-full mb-[200px]">
         <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-16">
           Stacks

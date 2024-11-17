@@ -16,6 +16,7 @@ import cancelWater from "../assets/watermarks/Heap/cancel.png";
 import skipWater from "../assets/watermarks/Heap/skip.png";
 import resetWater from "../assets/watermarks/Heap/reset.png";
 import { generalActions } from "../store/main";
+import { Helmet } from "react-helmet-async";
 
 export default function Heap() {
   const insertionRef = useRef();
@@ -135,6 +136,13 @@ export default function Heap() {
 
   return (
     <>
+      <Helmet>
+        <title>Heap | AlgoTrace</title>
+        <meta
+          name="description"
+          content="Visit the interactive Animation for Heap"
+        />
+      </Helmet>
       <div className="flex flex-col select-none  w-full py-16 pt-12 px-8 h-full mb-[200px]">
         <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-16">
           Heap

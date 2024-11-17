@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import typeWater from "../assets/watermarks/Graph/type.png";
 import graphWater from "../assets/watermarks/Graph/graph.png";
 import { generalActions } from "../store/main";
+import { Helmet } from "react-helmet-async";
 
 const types = [
   "undirected",
@@ -98,6 +99,13 @@ export default function Graph() {
 
   return (
     <>
+      <Helmet>
+        <title>Graph | AlgoTrace</title>
+        <meta
+          name="description"
+          content="Visit the interactive Animation for Graph"
+        />
+      </Helmet>
       <div className="flex flex-col select-none  w-full py-16 pt-12 px-8 h-full mb-[200px]">
         <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-16">
           Graph

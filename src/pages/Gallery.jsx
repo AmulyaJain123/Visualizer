@@ -23,6 +23,7 @@ import queue from "../assets/gallery/queue.png";
 import quickSort from "../assets/gallery/quickSort.png";
 import selectionSort from "../assets/gallery/selectionSort.png";
 import stack from "../assets/gallery/stack.png";
+import { Helmet } from "react-helmet-async";
 
 const images = [
   bellmanFord,
@@ -55,6 +56,13 @@ const images = [
 export default function Gallery() {
   return (
     <>
+      <Helmet>
+        <title>Gallery | AlgoTrace</title>
+        <meta
+          name="description"
+          content="Visit AlgoTrace Gallery to discover what AlgoTrace has to offer."
+        />
+      </Helmet>
       <div className="flex w-full  h-full flex-col items-center pt-[60px] py-[100px]  ">
         <h1 className="text-center text-[35px] tracking-wide mx-auto  w-fit  text-[#9c6644] rounded-xl font-extrabold mb-16">
           Gallery Wall

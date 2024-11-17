@@ -14,6 +14,7 @@ import graphWater from "../assets/watermarks/Graph/graph2.png";
 import buttonWater from "../assets/watermarks/Graph/button.png";
 import resetWater from "../assets/watermarks/Graph/reset.png";
 import { generalActions } from "../store/main";
+import { Helmet } from "react-helmet-async";
 
 const types = [
   "undirected",
@@ -110,6 +111,13 @@ export default function FloydWarshall() {
 
   return (
     <>
+      <Helmet>
+        <title>Floyd Warshall's Algorithm | AlgoTrace</title>
+        <meta
+          name="description"
+          content="Visit the interactive Animation for Floyd Warshall's Algorithm"
+        />
+      </Helmet>
       <div className="flex select-none flex-col w-full py-16 pt-12 px-8 h-full mb-[200px]">
         <h1 className="text-center text-3xl tracking-wide mx-auto w-fit  text-[#9c6644] rounded-xl font-extrabold mb-16">
           Floyd Warshall's Algorithm
