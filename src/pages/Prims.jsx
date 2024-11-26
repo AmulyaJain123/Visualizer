@@ -397,7 +397,7 @@ export default function Prims() {
           <div className="mt-8 min-h-[40px] w-[50px] mx-auto"></div>
         )}
 
-        <div className="w-full h-full mt-24 space-x-20 justify-center flex mb-8">
+        <div className="w-full h-full mt-24  justify-center flex mb-8">
           <div
             style={{ minHeight: `${list ? list.length * 80 : 0}px` }}
             className="w-[50%]  h-full"
@@ -410,7 +410,7 @@ export default function Prims() {
             algoName === "Prims" &&
             timeline[ind] &&
             timeline[ind].parents ? (
-              <div className="relative">
+              <div className="relative ml-36">
                 <div className="flex flex-col  border-2 border-black divide-y-2 divide-black w-[60px]">
                   {timeline[ind].parents.map((i, index) => {
                     return (

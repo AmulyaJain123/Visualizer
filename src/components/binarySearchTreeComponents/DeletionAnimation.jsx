@@ -145,16 +145,33 @@ const DeletionAnimation = forwardRef(function DeletionAnimation(
       const node = getNode(newTree, currentOp[1]);
       const parent = findParent(newTree, currentOp[1]);
       if (parent === null) {
-        setTreeArr([[originalArr[x2][y2]]]);
-        setTreeObject({ val: originalArr[x2][y2], right: null, left: null });
+        const replaceNode = getNodeByIndices(newTree, x2, y2);
+        const rightExists = replaceNode.right != null;
+        const leftExists = replaceNode.left != null;
+
+        let newTreeObject = {
+          val: originalArr[x2][y2],
+          right: rightExists
+            ? JSON.parse(JSON.stringify(replaceNode.right))
+            : null,
+          left: leftExists
+            ? JSON.parse(JSON.stringify(replaceNode.left))
+            : null,
+        };
+        let newTreeArr = JSON.parse(
+          JSON.stringify(objectTreeToArray(newTreeObject))
+        );
+        setTreeArr(newTreeArr);
+        // console.log(newTreeArr, newTreeObject);
+        setTreeObject(newTreeObject);
         setStatus(true);
         setHistory((p) => {
           return [
             ...p,
             {
               ...p[p.length - 1],
-              treeArr: [[originalArr[x2][y2]]],
-              treeObject: { val: originalArr[x2][y2], left: null, right: null },
+              treeArr: JSON.parse(JSON.stringify(newTreeArr)),
+              treeObject: JSON.parse(JSON.stringify(newTreeObject)),
               status: true,
             },
           ];

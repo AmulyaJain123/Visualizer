@@ -230,7 +230,7 @@ export default function BinaryTreeAnimation({ arr }) {
           </svg>
 
           {ans.map((i, ind1) => {
-            console.log(i);
+            // console.log(i);
             return (
               <div key={ind1} className="flex w-auto relative h-[80px]">
                 {i.map((j, ind2) => {

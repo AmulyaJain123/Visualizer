@@ -9,11 +9,11 @@ export default function Arrow({ status }) {
         {status ? (
           <img
             src={triangleB}
-            className="w-[13px] h-[13px] rotate-180"
+            className="w-[11px] h-[11px] rotate-180"
             alt=""
           />
         ) : (
-          <img src={triangle} className="w-[13px] h-[13px] rotate-180" alt="" />
+          <img src={triangle} className="w-[11px] h-[11px] rotate-180" alt="" />
         )}
       </div>
     </div>

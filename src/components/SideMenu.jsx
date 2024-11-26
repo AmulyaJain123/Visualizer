@@ -231,7 +231,7 @@ export default function SideMenu() {
   }
 
   function handleCancel() {
-    console.log("efef");
+    // console.log("efef");
     dispatch(generalActions.hideNavigationModal());
   }
   function handleConfirm() {
