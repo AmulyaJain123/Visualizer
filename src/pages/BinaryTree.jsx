@@ -45,7 +45,8 @@ export default function BinaryTree() {
         ++count;
         if (
           (i.charCodeAt(0) >= 48 && i.charCodeAt(0) <= 57) ||
-          i.charCodeAt(0) === 78
+          i.charCodeAt(0) === 78 ||
+          i.charCodeAt(0) === 45
         ) {
           num += i;
         } else if (i === " ") {
