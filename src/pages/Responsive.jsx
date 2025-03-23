@@ -42,7 +42,7 @@ export default function Responsive() {
 
                 <div className="flex justify-center w-full mt-2 sm:mt-4 overflow-clip">
                   <div className="overflow-clip h-[170px] vsm:h-[90px] lg:h-auto">
-                    <div className="w-fit mx-auto text-nowrap scale-[65%] sm:scale-75 origin-top lg:scale-100 flex justify-center flex-col vsm:flex-row items-center gap-6 mb-4 sm:mb-6 md:mb-8">
+                    <div className="w-fit mx-auto relative text-nowrap scale-[65%] sm:scale-75 origin-top lg:scale-100 flex justify-center flex-col vsm:flex-row items-center gap-6 mb-4 sm:mb-6 md:mb-8">
                       <span className="text-3xl font-bold text-center text-red-600 ">
                         PRESS
                       </span>
@@ -74,22 +74,20 @@ export default function Responsive() {
                             <div className="border-2 border-white w-[14px] absolute rotate-[-134deg] bottom-[7px] right-[-3px]"></div>
                           </div>
                         </div>
+                        <div className="flex absolute -right-4 -top-2 justify-center mt-3">
+                          <button
+                            className=" bg-inherit text-black rounded-full flex items-center gap-1  hover:bg-white duration-500 transition"
+                            onClick={() =>
+                              setShowKeyboardInfo(!showKeyboardInfo)
+                            }
+                          >
+                            <img src={info} className="w-[20px]" alt="" />
+                          </button>
+                        </div>
                       </div>
 
-                      <span className="text-3xl relative flex font-bold text-center text-red-600 ">
+                      <span className="text-3xl vsm:pl-4 relative flex font-bold text-center text-red-600 ">
                         <span>To Zoom Out</span>
-                        <div className="w-8 h-full relative">
-                          <div className="flex absolute right-0 -top-4 justify-center mt-3">
-                            <button
-                              className=" bg-inherit text-black rounded-full flex items-center gap-1  hover:bg-white duration-500 transition"
-                              onClick={() =>
-                                setShowKeyboardInfo(!showKeyboardInfo)
-                              }
-                            >
-                              <img src={info} className="w-[20px]" alt="" />
-                            </button>
-                          </div>
-                        </div>
                       </span>
                     </div>
                   </div>
