@@ -105,7 +105,7 @@ export default function Responsive() {
                         className="bg-blue-500 text-white px-4 py-[6px] text-base sm:text-lg sm:py-2 rounded-md w-full"
                         onClick={() => setShowKeyboardInfo(false)}
                       >
-                        Got it
+                        Close
                       </button>
                     </div>
                   </div>
