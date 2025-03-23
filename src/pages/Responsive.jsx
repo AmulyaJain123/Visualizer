@@ -2,7 +2,7 @@ import alarm from "../assets/responsive.gif";
 import no from "../assets/no.png";
 import { useState } from "react";
 import info from "../assets/info.png";
-import keyboard from "../assets/keyboard.png";
+import keyboard from "../assets/keyboard.webp";
 
 export default function Responsive() {
   const [showKeyboardInfo, setShowKeyboardInfo] = useState(false);
