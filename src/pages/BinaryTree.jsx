@@ -112,7 +112,7 @@ export default function BinaryTree() {
               </p>
               <p className="text-sm p-1 m-1 px-3 bg-[#f3e9dc] border-2 border-[#c08552] rounded-xl">
                 Enter Level-Wise representation of the Binary Tree. Use 'N' for
-                NULL values. Node values must be from 0 to 1000
+                NULL values. Node values must be from -1000 to 1000
               </p>
             </div>
             <div className="flex relative flex-col">
