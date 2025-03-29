@@ -49,7 +49,7 @@ export default function Graphs() {
             master its logic and execution.
           </p>
           <p className="text-center text-lg w-[80%] mx-auto">
-            <b>NOTE:</b> For the algrithms from dijkstra to kruskal, the
+            <b>NOTE:</b> For the algrithms from Dijkstra to Kruskal, the
             following is the structure of the <code>graph</code> parameter of
             the function:{" "}
           </p>
